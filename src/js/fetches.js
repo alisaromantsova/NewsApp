@@ -54,4 +54,3 @@ export async function fetchNewsBySearch(search) {
     .join('');
   div.insertAdjacentHTML('beforeend', markup);
 }
-//ghjd
