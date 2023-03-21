@@ -22,18 +22,17 @@
  }
 }
 .new__card{
-width: 353px;
 // height temporary
 height: 630px;
-max-width: 353px;
+
 @include tablet{
 width: 353px;
 height: 675px;
-max-width: 353px;
+
 }
  @include desktop{
    width: 395px;
     height: 675px;
-    min-width: 395px;
+
 }
 }
