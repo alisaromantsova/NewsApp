@@ -13,14 +13,13 @@ export async function fetchPopularNews() {
     .map((article) => {
         const meta = 'media-metadata'
       return `
-      <div class="news_card">
-      <p>123</p>
-        <h2>${article.title}</h2>
-        <p>${article.abstract}</p>
-        <img src="${
+      <div class="new__card">
+        <h2 class="news__title>${article.title}</h2>
+        <p class="news__text">${article.abstract}</p>
+        <img class="new__img" src="${
           article.media[0][meta][0].url ? article.media[0][meta][0].url : 'qwe'
         }"/>
-        <a href="${article.url}">read more</a>
+        <a class="new__link" href="${article.url}">read more</a>
         </div>`;
     })
     .join('');
@@ -35,8 +34,15 @@ export async function fetchNewsByCategory(category) {
   const newsByCategory = await response.data.results;
   const markup = newsByCategory
     .map((article) => {
-      
-      return `<h2>${article.title}</h2>`;
+      console.log(article)
+      return `<div class="new__card">
+      <h2 class="news__title">${article.title}</h2>
+      <p class="news__text">${article.abstract}</p>
+      <img class="new__img" src="${
+        article.multimedia[0] ? article.multimedia[0].url : 'qwe'
+      }"/>
+      <a class="new__link" href="${article.url}">read more</a>
+      </div>`;
     })
     .join('');
   div.insertAdjacentHTML('beforeend', markup);
@@ -53,7 +59,14 @@ export async function fetchNewsBySearch(search) {
   const markup = newsBySearch
     .map((article) => {
       
-      return `<h2>${article.abstract}</h2>`;
+      return `<div class="new__card">
+      <h2 class="news__title">${article.headline.print_headline}</h2>
+      <p class="news__text">${article.abstract}</p>
+      <img class="new__img" src="https://static01.nyt.com/${
+        article.multimedia[0].url ? article.multimedia[0].url : 'qwe'
+      }"/>
+      <a class="new__link" href="${article.url}">read more</a>
+      </div>`;
     })
     .join('');
   div.insertAdjacentHTML('beforeend', markup);
