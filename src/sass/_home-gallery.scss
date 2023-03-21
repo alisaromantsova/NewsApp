@@ -1,0 +1,17 @@
+.news{
+ background-color: blue;
+}
+.news_card{
+   background-color: black;
+width: 353px;
+// height temporary
+height: 630px;
+// @include tablet{
+//     width: 353px;
+// height: 675px;
+// }
+// @include desktop{
+//     width: 395px;
+//     height: 675px;
+// }
+}
