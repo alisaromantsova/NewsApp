@@ -12,12 +12,16 @@ export async function fetchPopularNews() {
   const markup = popularNews
     .map((article) => {
         const meta = 'media-metadata'
-      return `<h2>${article.title}</h2>
+      return `
+      <div class="news_card">
+      <p>123</p>
+        <h2>${article.title}</h2>
         <p>${article.abstract}</p>
         <img src="${
           article.media[0][meta][0].url ? article.media[0][meta][0].url : 'qwe'
         }"/>
-        <a href="${article.url}">read more</a>`;
+        <a href="${article.url}">read more</a>
+        </div>`;
     })
     .join('');
   div.insertAdjacentHTML('beforeend', markup);
