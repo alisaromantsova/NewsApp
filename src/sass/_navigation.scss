@@ -1,0 +1,75 @@
+.navigation {
+  padding-top: 24px;
+  @include tablet {
+    padding-top: 28px;
+  }
+}
+.navblock {
+  display: flex;
+  gap: 24px;
+  @include tablet {
+    gap: 40px;
+  }
+  @include desktop {
+    gap: 111px;
+  }
+}
+.navblock__mobile {
+  display: flex;
+
+  @include tablet {
+    display: none;
+  }
+}
+.navblock__tablet {
+  display: none;
+  @include tablet {
+    display: flex;
+    gap: 14px;
+  }
+  @include desktop {
+    display: none;
+  }
+}
+.navblock__desktop {
+  display: none;
+  @include desktop {
+    display: flex;
+    gap: 16px;
+  }
+}
+.category-item {
+  padding: 8px 13px;
+  border: 1px solid var(--markercolor);
+  border-radius: 20px;
+  background-color: var(--color-btn-white);
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--markercolor);
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  @include tablet {
+    padding: 8px 21px;
+  }
+}
+.category-item:hover,
+.category-item:focus,
+.category-item:active {
+  color: var(--color-btn-white);
+
+  background-color: var(--markercolor);
+}
+.calendar__label {
+  display: flex;
+  align-items: center;
+  gap: 37px;
+}
+.calendar__text {
+  display: none;
+  @include desktop {
+    display: block;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+  }
+}
