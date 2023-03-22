@@ -1,4 +1,5 @@
 import './js/fetches';
+import './js/render-markup';
 import './js/theme-btn';
 import './js/search-field';
 import './js/navigation';
