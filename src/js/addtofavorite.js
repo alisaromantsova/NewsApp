@@ -1,2 +1,2 @@
 import { fetchPopularNews, fetchNewsByCategory, fetchNewsBySearch } from './fetches';
-import {renderMarkup} from './render-markup'
+import { renderMarkup } from './render-markup'
