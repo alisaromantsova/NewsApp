@@ -71,6 +71,7 @@ export async function fetchNewsBySearch(search) {
   return array;
 }
 
+
 //  Запит на Weather API
 export async function getCurrentWeather(lat, lon) {
   const products = await axios.get(
@@ -78,3 +79,4 @@ export async function getCurrentWeather(lat, lon) {
   );
   return products;
 }
+
