@@ -1,7 +1,7 @@
 import axios, { isCancel, AxiosError } from 'axios';
 const KEY = 'l8KIk4PAFV2Lgtto4JKKNaM7Q53Z5QMa';
 
-const KEY_WEATHER_API = 'b45ce7b42bd659df434b4de28331d70c';
+const KEY_WEATHER_API = 'jeNm7rY37TemUh2AGcwUEtOAak9bew4U';
 
 const div = document.querySelector('.news');
 
