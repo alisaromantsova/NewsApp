@@ -10,13 +10,14 @@ export async function fetchPopularNews() {
   );
 
   const popularNews = await response.data.results;
+  console.log(popularNews)
   const array = popularNews.map(article => {
     const meta = 'media-metadata';
     const newsObject = {
       title: article.title,
       text: article.abstract,
-      imgSrc: article.media[0][meta][0].url
-        ? article.media[0][meta][0].url
+      imgSrc: article.media[0][meta][2].url
+        ? article.media[0][meta][2].url
         : 'qwe',
       link: article.url,
       category: article.section
@@ -33,12 +34,12 @@ export async function fetchNewsByCategory(category) {
   );
 
   const newsByCategory = await response.data.results;
-
+console.log(newsByCategory)
   const array = newsByCategory.map(article => {
     const newsObject = {
       title: article.title,
       text: article.abstract,
-      imgSrc: article.multimedia[0] ? article.multimedia[0].url : 'qwe',
+      imgSrc: article.multimedia ? article.multimedia[2].url : 'https://static01.nyt.com/images/2023/03/12/12vid-oscars-95910-cover/12vid-oscars-95910-cover-articleInline.jpg',
       link: article.url,
       category: article.section
     };
@@ -61,7 +62,7 @@ export async function fetchNewsBySearch(search) {
       title: article.headline.main,
       text: article.abstract,
        imgSrc: `https://static01.nyt.com/${
-       article.multimedia[0] ? article.multimedia[0].url : 'images/2023/02/21/multimedia/21skeleton-ukraine-01-zjwv/21skeleton-ukraine-01-zjwv-articleLarge.jpg'
+       article.multimedia[0] ? article.multimedia[2].url : 'images/2023/02/21/multimedia/21skeleton-ukraine-01-zjwv/21skeleton-ukraine-01-zjwv-articleLarge.jpg'
        }`,
       link: article.url,
       category: article.section_name
