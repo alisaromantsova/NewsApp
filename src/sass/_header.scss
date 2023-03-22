@@ -141,7 +141,9 @@
     }
   }
 }
-button {
+.mobile-button,
+.close__button,
+.search-field__btn {
   border: none;
   padding: 0;
   margin: 0;
