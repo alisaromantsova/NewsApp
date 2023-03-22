@@ -1,6 +1,8 @@
 import axios, { isCancel, AxiosError } from 'axios';
 const KEY = 'l8KIk4PAFV2Lgtto4JKKNaM7Q53Z5QMa';
+
 const KEY_WEATHER_API = 'jeNm7rY37TemUh2AGcwUEtOAak9bew4U';
+
 const div = document.querySelector('.news');
 
 // Фетч популярних
@@ -66,6 +68,7 @@ export async function fetchNewsBySearch(search) {
   return array;
 }
 
+
 //  Запит на Weather API
 export async function getCurrentWeather(lat, lon) {
   const products = await axios.get(
@@ -73,3 +76,4 @@ export async function getCurrentWeather(lat, lon) {
   );
   return products;
 }
+
