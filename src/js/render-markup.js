@@ -3,6 +3,8 @@ const div = document.querySelector('.news')
 export async function  renderMarkup(array){
 const markup = array.map((article)=>{
     return `<div class="new__card">
+    <p class="new__category-text">${article.category}</p>
+    <p class="is-read">Have read</p>
     <h2 class="news__title">${article.title}</h2>
        <p class="news__text">${article.text}</p>
      <img class="new__img" src="${ article.imgSrc}"/>

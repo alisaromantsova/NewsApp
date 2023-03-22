@@ -72,7 +72,7 @@ function renderNavigation(width) {
     const name = '<option hidden>Categories</option>';
     const markup = categoriesList
       .map(item => {
-        return `<option data-action="${item.section}">${item.display_name}</option>`;
+        return `<option data-action="${encodeURIComponent(item.section)}">${item.display_name}</option>`;
       })
       .join('');
     selectList.insertAdjacentHTML('beforeend', name);
@@ -84,10 +84,10 @@ function renderNavigation(width) {
 
     for (let i = 0; i < categoriesList.length; i++) {
         if(i<4){
-      const buttonsMarkup = `<button data-action="${categoriesList[i].section}" class="category-item">${categoriesList[i].display_name}</button>`;
+      const buttonsMarkup = `<button data-action="${encodeURIComponent(categoriesList[i].section)}" class="category-item">${categoriesList[i].display_name}</button>`;
       buttons.push(buttonsMarkup);
     }else{
-        const selectMarkup = `<option data-action="${categoriesList[i].section}">${categoriesList[i].display_name}</option>`;
+        const selectMarkup = `<option data-action="${encodeURIComponent(categoriesList[i].section)}">${categoriesList[i].display_name}</option>`;
         selections.push(selectMarkup);
     }
     }
@@ -104,10 +104,10 @@ function renderNavigation(width) {
 
     for (let i = 0; i < categoriesList.length; i++) {
         if(i<6){
-      const buttonsMarkup = `<button data-action="${categoriesList[i].section}" class="category-item">${categoriesList[i].display_name}</button>`;
+      const buttonsMarkup = `<button data-action="${encodeURIComponent(categoriesList[i].section)}" class="category-item">${categoriesList[i].display_name}</button>`;
       buttons.push(buttonsMarkup);
     }else{
-        const selectMarkup = `<option data-action="${categoriesList[i].section}">${categoriesList[i].display_name}</option>`;
+        const selectMarkup = `<option data-action="${encodeURIComponent(categoriesList[i].section)}">${categoriesList[i].display_name}</option>`;
         selections.push(selectMarkup);
     }
     }
