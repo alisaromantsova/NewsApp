@@ -1,5 +1,8 @@
 import axios, { isCancel, AxiosError } from 'axios';
 const KEY = 'l8KIk4PAFV2Lgtto4JKKNaM7Q53Z5QMa';
+
+const KEY_WEATHER_API = 'b45ce7b42bd659df434b4de28331d70c';
+
 const div = document.querySelector('.news');
 
 // Фетч популярних
@@ -64,3 +67,13 @@ export async function fetchNewsBySearch(search) {
   });
   return array;
 }
+
+
+//  Запит на Weather API
+export async function getCurrentWeather(lat, lon) {
+  const products = await axios.get(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${KEY_WEATHER_API}&units=metric`
+  );
+  return products;
+}
+

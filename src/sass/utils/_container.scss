@@ -1,17 +1,17 @@
 .container {
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 16px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
 
-    @include mobile {
-        max-width: 320px;
-    }
+  @include mobile {
+    max-width: 320px;
+  }
 
-    @include tablet {
-        max-width: 768px;
-    }
+  @include tablet {
+    max-width: 768px;
+  }
 
-    @include desktop {
-        max-width: 1280px;
-    }
+  @include desktop {
+    max-width: 1280px;
+  }
 }

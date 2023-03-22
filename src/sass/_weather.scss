@@ -1,0 +1,42 @@
+.weather {
+  width: 288px;
+  height: 469px;
+
+  background: var(--color-active-btn);
+  color: var(--color-btn-white);
+  font-family: var(--weather-font);
+  mix-blend-mode: normal;
+  border-radius: 4px;
+  padding-top: 37px;
+  padding-bottom: 32px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  &__temperature {
+    font-size: 55px;
+    line-height: 64px;
+  }
+  &__state {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  &__location {
+    font-size: 14px;
+    line-height: 16px;
+    background: rgba(254, 254, 255, 0.3);
+    border-radius: 10px;
+  }
+  &__btn {
+    background: rgba(254, 254, 255, 0.3);
+    border-radius: 10px;
+    font-style: normal;
+    line-height: 19px;
+
+    color: #ffffff;
+    display: block;
+    height: 34px;
+    width: 151px;
+  }
+}
