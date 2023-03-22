@@ -1,7 +1,6 @@
 import axios, { isCancel, AxiosError } from 'axios';
 const KEY = 'l8KIk4PAFV2Lgtto4JKKNaM7Q53Z5QMa';
-const div = document.querySelector('.news')
-
+const div = document.querySelector('.news');
 
 // Фетч популярних
 export async function fetchPopularNews() {
@@ -10,20 +9,20 @@ export async function fetchPopularNews() {
   );
 
   const popularNews = await response.data.results;
-  const array = popularNews.map((article)=>{
-    const meta = 'media-metadata'
-    const newsObject ={
+  const array = popularNews.map(article => {
+    const meta = 'media-metadata';
+    const newsObject = {
       title: article.title,
-      text:article.abstract,
-      imgSrc:article.media[0][meta][0].url ? article.media[0][meta][0].url : 'qwe',
-      link: article.url
-    }
-    return newsObject
-
-  })
-  return array
-  }
-
+      text: article.abstract,
+      imgSrc: article.media[0][meta][0].url
+        ? article.media[0][meta][0].url
+        : 'qwe',
+      link: article.url,
+    };
+    return newsObject;
+  });
+  return array;
+}
 
 //Фетч по категориям
 export async function fetchNewsByCategory(category) {
@@ -32,38 +31,36 @@ export async function fetchNewsByCategory(category) {
   );
 
   const newsByCategory = await response.data.results;
-  const array = newsByCategory.map((article)=>{
-    const newsObject ={
+  const array = newsByCategory.map(article => {
+    const newsObject = {
       title: article.title,
-      text:article.abstract,
-      imgSrc:article.multimedia[0] ? article.multimedia[0].url : 'qwe',
-      link: article.url
-    }
-    return newsObject
+      text: article.abstract,
+      imgSrc: article.multimedia[0] ? article.multimedia[0].url : 'qwe',
+      link: article.url,
+    };
+    return newsObject;
+  });
+  return array;
+}
 
-  })
-  return array
-  }
-
-
-
-//Фетч по поисковому запросу 
+//Фетч по поисковому запросу
 export async function fetchNewsBySearch(search) {
   const response = await axios.get(
     `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${search}&api-key=${KEY}`
   );
 
   const newsBySearch = await response.data.response.docs;
-  console.log(newsBySearch)
-  const array = newsBySearch.map((article)=>{
-    const newsObject ={
+  console.log(newsBySearch);
+  const array = newsBySearch.map(article => {
+    const newsObject = {
       title: article.headline.main,
-      text:article.abstract,
-      imgSrc:`https://static01.nyt.com/${article.multimedia[0].url ? article.multimedia[0].url : 'qwe'}`,
-      link: article.url
-    }
-    return newsObject
-
-  })
-  return array
-  }
+      text: article.abstract,
+      imgSrc: `https://static01.nyt.com/${
+        article.multimedia[0].url ? article.multimedia[0].url : 'qwe'
+      }`,
+      link: article.url,
+    };
+    return newsObject;
+  });
+  return array;
+}
