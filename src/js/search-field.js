@@ -1,8 +1,30 @@
 import { fetchPopularNews, fetchNewsByCategory, fetchNewsBySearch } from './fetches';
-import {renderMarkup} from './render-markup'
+import {renderMarkup} from './render-markup';
 
-async function onInput(){
-    const result = await fetchNewsBySearch("food")
-    renderMarkup(result)
+const categoryButtons = document.querySelectorAll('.navblock__tablet button');
+
+const searchForm = document.querySelector('#form-field')
+const div = document.querySelector('.news');
+
+console.log(searchForm);
+
+
+searchForm.addEventListener('submit', createNews);
+
+
+function createNews(event){
+    event.preventDefault();
+    const inputName = event.currentTarget.searchQuery.value.trim();
+    onInput();
+   async function onInput(){
+       const result = await fetchNewsBySearch(inputName);
+       if(inputName === ''){
+        return alert("OOPS")
+      } if(result.length === 0){
+         return alert("EMPTY")
+      }
+       div.innerHTML='';
+    renderMarkup(result);
 }
-// Функція, яка забирає з бекенду картки новин і робить розмітку. Замість food потрібно підставити значення з інпута
+
+}
