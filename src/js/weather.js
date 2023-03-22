@@ -4,7 +4,7 @@
 //   fetchNewsBySearch,
 // } from './fetches';
 // import { renderMarkup } from './render-markup';
-import { getCurrentWeather } from './js/weather-api';
+import { getCurrentWeather } from './fetches';
 
 // const body = document.body;
 // const weatherContainerRef = body.querySelector('.weather');
