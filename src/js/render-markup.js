@@ -23,6 +23,8 @@ export async function renderMarkup(array) {
     .map(article => {
       return `<div class="new__card">
       <div class="box">
+      <p class="new__category-text">${article.category}</p>
+      <p class="is-read">Have read</p>
       <img class="new__img" src="${article.imgSrc}" alt="" width="395" height="395"/>
       <button type="button" class="news__category">Job searching </button>
       <button class="news__addbtn" type="button"><span></span>Add to favorite</span><svg class="news__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
