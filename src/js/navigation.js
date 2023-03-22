@@ -4,6 +4,7 @@ import {
   fetchNewsBySearch,
 } from './fetches';
 import { renderMarkup } from './render-markup';
+const div = document.querySelector('.news');
 const categoriesList = [{section:"admin",display_name:"Admin"},
     {section:"arts",display_name:"Arts"},
     {section:"automobiles",display_name:"Automobiles"},
@@ -125,3 +126,15 @@ function renderNavigation(width) {
 // const result = await fetchNewsByCategory("food")
 // renderMarkup(result)
 // }
+
+const block = document.querySelector('.nav-buttons')
+block.addEventListener("click", onCategoryButtonClick)
+async function onCategoryButtonClick(e){
+    if (e.target.nodeName !== "BUTTON") {
+        return;
+      }
+      div.innerHTML=""
+      const chosenCategory = e.target.dataset.action;
+      const result =  await fetchNewsByCategory(chosenCategory)
+      renderMarkup(result)
+    }
