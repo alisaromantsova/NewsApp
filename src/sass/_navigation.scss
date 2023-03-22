@@ -14,27 +14,18 @@
     gap: 111px;
   }
 }
-.navblock__mobile {
+.nav-buttons{
   display: flex;
-
-  @include tablet {
-    display: none;
+  gap: 14px;
+  align-items: center;
+  @include tablet{
+    gap: 16px;
   }
 }
-.navblock__tablet {
-  display: none;
-  @include tablet {
-    display: flex;
-    gap: 14px;
-  }
-  @include desktop {
-    display: none;
-  }
-}
-.navblock__desktop {
-  display: none;
-  @include desktop {
-    display: flex;
+.nav-btnsel{
+  display: flex;
+  gap: 14px;
+  @include tablet{
     gap: 16px;
   }
 }
@@ -48,6 +39,7 @@
   line-height: 16px;
   color: var(--markercolor);
   transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
   @include tablet {
     padding: 8px 21px;
   }
