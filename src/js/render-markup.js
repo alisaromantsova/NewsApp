@@ -37,7 +37,7 @@ export async function renderMarkup(array) {
        <p class="news__text">${article.text}</p>
         <div class="news__details">
      <p class="news__date">${article.date}</p>
-  <a class="news__link" href="${article.url}">read more</a>
+  <a class="news__link" href="${article.link}">read more</a>
  </div>
  </div>`;
     })
