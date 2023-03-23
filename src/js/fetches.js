@@ -68,7 +68,7 @@ export async function fetchNewsByCategory(category) {
       imgSrc: article.multimedia ? article.multimedia[2].url : 'https://static01.nyt.com/images/2023/03/12/12vid-oscars-95910-cover/12vid-oscars-95910-cover-articleInline.jpg',
       link: article.url,
 
-      category: article.section
+      category: article.section,
        date: makeDate(article.published_date)
     }
 			return newsObject
@@ -109,7 +109,7 @@ export async function fetchNewsBySearch(search) {
        }`,
       link: article.url,
 
-      category: article.section_name
+      category: article.section_name,
         date: makeDate(article.pub_date)
     }
 			return newsObject
@@ -143,13 +143,12 @@ export async function getCurrentWeather(lat, lon) {
 function renderEmptyMarkup() {
 	const img404 = require('../images/haventFound.png')
   return `
-    <div style="
-								width: 100%;
-								display: flex;
-								flex-flow: column nowrap;
-								align-items: center;">
-      <p>We haven’t found news from this category</p>
-			<img src='${img404}' alt='' width="400px">
+    <div style="width: 100%;
+display: flex;
+flex-flow: column nowrap;
+align-items: center;">
+<p>We haven’t found news from this category</p>
+<img src='${img404}' alt='' width="400px">
     </div>
   `
 }
