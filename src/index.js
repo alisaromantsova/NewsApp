@@ -11,6 +11,10 @@ import './js/addtofavorite';
 import './js/addtoread';
 import './js/mobile-menu';
 
+import './js/current-page-underline';
+import './js/onmount'
+
+
 import axios, { isCancel, AxiosError } from 'axios';
 const CalendarDates = require('calendar-dates');
 const calendarDates = new CalendarDates();
