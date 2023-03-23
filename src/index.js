@@ -12,8 +12,8 @@ import './js/addtoread';
 import './js/mobile-menu';
 
 import './js/current-page-underline';
-import './js/onmount'
-
+import './js/onmount';
+//import './js/calendar';
 
 import axios, { isCancel, AxiosError } from 'axios';
 const CalendarDates = require('calendar-dates');
