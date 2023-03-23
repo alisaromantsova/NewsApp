@@ -16,7 +16,7 @@ export async function fetchPopularNews() {
     const newsObject = {
       title: article.title,
       text: article.abstract,
-      imgSrc: article.media[0][meta][2].url
+      imgSrc: article.media[0]
         ? article.media[0][meta][2].url
         : 'qwe',
       link: article.url,
