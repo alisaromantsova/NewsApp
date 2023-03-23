@@ -18,7 +18,7 @@ export async function fetchPopularNews() {
       text: article.abstract,
       imgSrc: article.media[0]
         ? article.media[0][meta][2].url
-        : 'qwe',
+        : 'https://static01.nyt.com/images/2023/03/12/12vid-oscars-95910-cover/12vid-oscars-95910-cover-articleInline.jpg',
       link: article.url,
       category: article.section
     };
