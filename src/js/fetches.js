@@ -12,11 +12,7 @@ export async function fetchPopularNews() {
   const popularNews = await response.data.results;
   console.log(popularNews)
   const array = popularNews.map(article => {
-    const date = new Date(article.published_date);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear().toString();
-    const result =`${day}-${month}-${year}`;
+ 
     const meta = 'media-metadata';
     const newsObject = {
       title: article.title,
@@ -26,7 +22,7 @@ export async function fetchPopularNews() {
         : 'https://static01.nyt.com/images/2023/03/12/12vid-oscars-95910-cover/12vid-oscars-95910-cover-articleInline.jpg',
       link: article.url,
       category: article.section,
-      date: result
+      date: makeDate(article.published_date)
 
     };
     return newsObject;
@@ -43,18 +39,14 @@ export async function fetchNewsByCategory(category) {
   const newsByCategory = await response.data.results;
 console.log(newsByCategory)
   const array = newsByCategory.map(article => {
-    const date = new Date(article.published_date);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear().toString();
-    const result =`${day}-${month}-${year}`;
+
     const newsObject = {
       title: article.title,
       text: article.abstract,
       imgSrc: article.multimedia ? article.multimedia[2].url : 'https://static01.nyt.com/images/2023/03/12/12vid-oscars-95910-cover/12vid-oscars-95910-cover-articleInline.jpg',
       link: article.url,
       category: article.section,
-      date: result
+      date: makeDate(article.published_date)
     };
     return newsObject;
   });
@@ -70,11 +62,6 @@ export async function fetchNewsBySearch(search) {
   const newsBySearch = await response.data.response.docs;
  console.log(newsBySearch)
   const array = newsBySearch.map(article => {
-    const date = new Date(article.pub_date);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear().toString();
-    const result =`${day}-${month}-${year}`;
     const newsObject = {
       title: article.headline.main,
       text: article.abstract,
@@ -83,14 +70,22 @@ export async function fetchNewsBySearch(search) {
        }`,
       link: article.url,
       category: article.section_name,
-      date: result
+      date: makeDate(article.pub_date)
     };
-    console.log(newsObject)
+
     return newsObject;
   });
   return array;
 }
 
+function makeDate(isodate){
+  const date = new Date(isodate);
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear().toString();
+  const result =`${day}-${month}-${year}`;
+  return result
+}
 
 //  Запит на Weather API
 export async function getCurrentWeather(lat, lon) {
