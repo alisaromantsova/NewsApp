@@ -71,7 +71,7 @@ window.onresize = function checkWindow(e) {
 function renderNavigation(width) {
   buttonsList.innerHTML = '';
   selectList.innerHTML = '';
-  console.log(width);
+  // console.log(width);
   if (width <= 768) {
     const name = '<option hidden>Categories</option>';
     const markup = categoriesList
@@ -153,12 +153,12 @@ async function onCategoryButtonClick(e) {
   renderMarkup(result);
 }
 
-const select = document.querySelector('.nav-select')
+const select = document.querySelector('.nav-select');
 
-select.addEventListener('change', onSelect)
-async function onSelect(){
-  const selectedOption = select.options[select.selectedIndex]
+select.addEventListener('change', onSelect);
+async function onSelect() {
+  const selectedOption = select.options[select.selectedIndex];
   const optionsValue = selectedOption.dataset.action;
-  const result = await fetchNewsByCategory(optionsValue)
-  renderMarkup(result)
+  const result = await fetchNewsByCategory(optionsValue);
+  renderMarkup(result);
 }
