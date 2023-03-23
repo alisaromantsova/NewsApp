@@ -1,7 +1,7 @@
 import { fetchPopularNews, fetchNewsByCategory, fetchNewsBySearch } from './fetches';
 import { renderMarkup } from './render-markup'
 
-// // const emptyPage = document.querySelector('.');Коли буде заготовка на немає новин
+ // const emptyPage = document.querySelector('.');Коли буде заготовка на немає новин
 // const container = document.querySelector('.favorite-container');
 
 // const objFromStorale = localStorage.getItem('cards');
@@ -16,8 +16,7 @@ import { renderMarkup } from './render-markup'
 
 
 
-
-// // Функція 
+// Функція 
 // function addRemoveToLocalStorage(evt) {
 //     if (
 //         evt.target.tagName !== 'BUTTON' &&
@@ -35,8 +34,8 @@ import { renderMarkup } from './render-markup'
 
 
 // let btnAddtoStorage = evt.target;
-// // const btnDiv = btnAddtoStorage.closest('div.article_flag'); розмітка яку додавала я для кнопок, зараз закоментовано в render-markup
-// // const btnDivID = evt.target.closest('     ').; Нам треба або id карток або дату, щоб розуміти, яку карточку ми тягнемо
+ // const btnDiv = btnAddtoStorage.closest('div.article_flag'); розмітка яку додавала я для кнопок, зараз закоментовано в render-markup
+// const btnDivID = evt.target.closest('     ').; Нам треба або id карток або дату, щоб розуміти, яку карточку ми тягнемо
 
 // let storage = localStorage.getItem('cards');
 //   let parseStorage = JSON.parse(storage);
