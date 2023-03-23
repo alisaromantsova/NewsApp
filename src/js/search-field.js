@@ -1,6 +1,6 @@
 import { fetchPopularNews, fetchNewsByCategory, fetchNewsBySearch, renderEmptyMarkup} from './fetches';
 import {renderMarkup} from './render-markup';
-
+import { categoryValue } from './navigation';
 
 const searchForm = document.querySelector('#form-field')
 const selectEl = document.querySelector('.nav-select ')
@@ -17,7 +17,9 @@ function createNews(event){
     const inputName = event.currentTarget.searchQuery.value.trim();
     onInput();
    async function onInput(){
+    categoryValue=''
        const result = await fetchNewsBySearch(inputName);
+
        if(inputName === ''){
         return alert("OOPS")
       } if(result.length === 0){

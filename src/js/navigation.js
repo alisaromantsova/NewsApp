@@ -73,7 +73,7 @@ window.onresize = function checkWindow(e) {
 function renderNavigation(width) {
   buttonsList.innerHTML = '';
   selectList.innerHTML = '';
-  // console.log(width);
+  
   if (width <= 768) {
     const name = '<option hidden>Categories</option>';
     const markup = categoriesList
@@ -140,6 +140,7 @@ function renderNavigation(width) {
 const block = document.querySelector('.nav-buttons');
 block.addEventListener('click', onCategoryButtonClick);
 async function onCategoryButtonClick(e) {
+  removeActiveClass()
   if (e.target.nodeName !== 'BUTTON') {
     return;
   }
@@ -148,17 +149,31 @@ async function onCategoryButtonClick(e) {
   const chosenCategory = e.target.dataset.action;
   const result = await fetchNewsByCategory(chosenCategory);
   categoryValue = chosenCategory;
+  addActiveClass(e.target)
   renderMarkup(result);
 }
 const select = document.querySelector('.nav-select');
 
 select.addEventListener('change', onSelect);
-async function onSelect() {
+async function onSelect(e) {
+  removeActiveClass()
   categoryValue = '';
   div.innerHTML = '';
   const selectedOption = select.options[select.selectedIndex];
   const optionsValue = selectedOption.dataset.action;
   const result = await fetchNewsByCategory(optionsValue);
   categoryValue = optionsValue;
+  addActiveClass(e.target)
   renderMarkup(result);
+}
+const items = [...document.querySelectorAll('.category-item')]
+
+export function removeActiveClass(){
+items.forEach(item=>{
+    if(item.classList.contains("category-item--active")){
+      item.classList.remove("category-item--active")}
+})
+}
+function addActiveClass(btn){
+btn.classList.add("category-item--active")
 }

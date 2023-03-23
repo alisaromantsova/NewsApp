@@ -5,7 +5,6 @@ const div = document.querySelector('.news');
 
 // Фетч популярних
 export async function fetchPopularNews() {
-
   try {
     const response = await axios
       .get(
@@ -20,7 +19,6 @@ export async function fetchPopularNews() {
     }
 
     const popularNews = await response.data.results;
-    console.log(popularNews);
     const array = popularNews.map(article => {
       const meta = 'media-metadata';
       const newsObject = {
@@ -44,7 +42,6 @@ export async function fetchPopularNews() {
 
 //Фетч по категориям
 export async function fetchNewsByCategory(category) {
-
   try {
     const response = await axios
       .get(
@@ -56,7 +53,6 @@ export async function fetchNewsByCategory(category) {
 
     if (!response.data.results) {
       div.innerHTML = renderEmptyMarkup();
-
     }
 
     const newsByCategory = await response.data.results;
@@ -136,9 +132,8 @@ export async function getCurrentWeather(lat, lon) {
   return products;
 }
 
-
 export function renderEmptyMarkup() {
-	const img404 = require('../images/haventFound.png')
+  const img404 = require('../images/haventFound.png');
 
   return `
     <div style="width: 100%;
@@ -152,16 +147,17 @@ align-items: center;">
 }
 
 export async function fetchNewsByCategoryAndDate(
-  date = '20220310',
-  category = 'sports'
+  date = '20220110',
+  category = 'Sports'
 ) {
   try {
     const response = await axios
       .get(
-        `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:(${category})&begin_date=${date}&end_date=${date}&api-key=${KEY}`
+        `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("${category}")&begin_date=${date}&end_date=${date}&api-key=${KEY}`
       )
       .catch(function (err) {
         div.innerHTML = renderEmptyMarkup();
+        console.log('error1');
       });
 
     if (!response.data.response.docs) {
@@ -169,7 +165,6 @@ export async function fetchNewsByCategoryAndDate(
     }
 
     const newsBySearch = await response.data.response.docs;
-
     const array = newsBySearch.map(article => {
       const newsObject = {
         title: article.headline.main,
