@@ -1,9 +1,9 @@
 import { fetchPopularNews, fetchNewsByCategory, fetchNewsBySearch } from './fetches';
 import {renderMarkup} from './render-markup';
 
-const categoryButtons = document.querySelectorAll('.navblock__tablet button');
 
 const searchForm = document.querySelector('#form-field')
+const selectEl = document.querySelector('.nav-select ')
 const div = document.querySelector('.news');
 
 console.log(searchForm);
@@ -23,6 +23,10 @@ function createNews(event){
       } if(result.length === 0){
          return alert("EMPTY")
       }
+      if (inputName) {
+        selectEl.setAttribute("disabled", true);
+      }
+
        div.innerHTML='';
     renderMarkup(result);
 }
