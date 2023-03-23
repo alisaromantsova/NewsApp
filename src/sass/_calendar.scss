@@ -1,0 +1,203 @@
+.calendar2 {
+  position: relative;
+  margin-left: 50px;
+  // display: inline-block;
+  margin-left: auto;
+  margin-right: 30px;
+  @include desktop {
+    //width: 360px;
+  }
+  // @media screen and (min-width: 1248px) {
+  //   width: 360px;
+  // }
+}
+.calendar2__search-info {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  @include desktop {
+    width: 360px;
+  }
+  @media screen and (min-width: 1248px) {
+    width: 360px;
+  }
+}
+.calendar2__search {
+  margin: 0;
+  margin-left: 10px;
+  display: none;
+  @include desktop {
+    display: block;
+  }
+  // @media screen and (min-width: 1248px) {
+  //   display: block;
+  // }
+}
+
+.calendar2__current-date-container {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 152px;
+  @include tablet {
+    width: 168px;
+  }
+  // @media screen and(min-width: 767px) {
+  //   width: 168px;
+  // }
+}
+.calendar2__current-date {
+  padding: 5px 5px;
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  line-height: calc(21 / 14);
+  margin: 0;
+  background-color: var(--color-btn-white);
+  color: #111321;
+  opacity: 40%;
+  border: 1px solid #111321;
+  border-radius: 20px;
+
+  cursor: pointer;
+
+  &.js-date-show {
+    background-color: var(--color-active-btn);
+    color: var(--color-btn-white);
+    opacity: 100%;
+    border: 1px solid var(--color-active-btn);
+  }
+}
+.calendar2__current-date-before {
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  fill: var(--color-active-btn);
+  cursor: pointer;
+  transition: color, fill 500ms linear;
+  pointer-events: none;
+  &--active {
+    fill: ar(--color-btn-white);
+  }
+}
+.calendar2__current-date-after {
+  position: absolute;
+  top: 9px;
+  right: 12px;
+  fill: #a2a2a2;
+  cursor: pointer;
+  transition: color, fill 500ms linear;
+  pointer-events: none;
+  &--active {
+    fill: ar(--color-btn-white);
+  }
+}
+.calendar2__container {
+  position: absolute;
+  top: -210px;
+
+  overflow: hidden;
+  pointer-events: none;
+  right: 0;
+  outline: 1px solid var(--color-active-btn);
+  width: 250px;
+  border-radius: 10px;
+  transition: transform 500ms linear;
+  z-index: -1;
+  pointer-events: none;
+  &.js-calendar-show {
+    transform: translateY(245px);
+    pointer-events: all;
+    opacity: 1;
+  }
+}
+
+.calendar2__manager-container {
+  display: flex;
+  padding: 5px 10px;
+}
+.calendar2__month-year-container {
+  padding: 0;
+  margin: 0;
+  flex-grow: 2;
+}
+.calendar2__month-year {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+.calendar2__month-year-button-right {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.calendar2__month-year-right {
+  fill: var(--color-active-btn);
+}
+.calendar2__button-left {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.calendar2__current-month-left {
+  fill: var(--color-active-btn);
+}
+.calendar2__button-right {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-left: 20px;
+}
+.calendar2__current-month-right {
+  fill: var(--color-active-btn);
+}
+.calendar2__weekDays {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  color: rgba(60, 60, 67, 0.3);
+  margin: 0;
+  padding: 0 10px;
+}
+.calendar2__dates {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 3px;
+  list-style: none;
+  margin: 0;
+  padding: 5px;
+}
+.date {
+  text-align: center;
+  flex-basis: calc((100% - 20px) / 7);
+  height: 28px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.date.previous-month,
+.date.next-month {
+  color: var(--dark-text);
+}
+.date.current-month:hover {
+  background-color: var(--color-active-btn);
+  color: var(--color-btn-white);
+}
+.date.current-date {
+  background-color: var(--color-active-btn);
+  color: var(--color-btn-white);
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}

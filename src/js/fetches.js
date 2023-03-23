@@ -21,6 +21,7 @@ export async function fetchPopularNews() {
 		const popularNews = await response.data.results;
   console.log(popularNews)
   const array = popularNews.map(article => {
+ 
     const meta = 'media-metadata';
     const newsObject = {
       title: article.title,
@@ -29,7 +30,9 @@ export async function fetchPopularNews() {
         ? article.media[0][meta][2].url
         : 'https://static01.nyt.com/images/2023/03/12/12vid-oscars-95910-cover/12vid-oscars-95910-cover-articleInline.jpg',
       link: article.url,
-      category: article.section
+
+      category: article.section,
+        date: makeDate(article.published_date)
     }
 		return newsObject
 		})
@@ -37,6 +40,7 @@ export async function fetchPopularNews() {
 	} catch (e) {
 		div.innerHTML = renderEmptyMarkup()
 	}
+
 }
 
 
@@ -57,12 +61,15 @@ export async function fetchNewsByCategory(category) {
 
 		const newsByCategory = await response.data.results;
   const array = newsByCategory.map(article => {
+
     const newsObject = {
       title: article.title,
       text: article.abstract,
       imgSrc: article.multimedia ? article.multimedia[2].url : 'https://static01.nyt.com/images/2023/03/12/12vid-oscars-95910-cover/12vid-oscars-95910-cover-articleInline.jpg',
       link: article.url,
+
       category: article.section
+       date: makeDate(article.published_date)
     }
 			return newsObject
 
@@ -72,6 +79,7 @@ export async function fetchNewsByCategory(category) {
 	} catch (e) {
 		div.innerHTML = renderEmptyMarkup()
 	}
+
 }
 
 //Фетч по поисковому запросу
@@ -84,14 +92,15 @@ export async function fetchNewsBySearch(search) {
 			div.innerHTML = renderEmptyMarkup()
 		});
 
+
 		if (!response.data.response.docs) {
 			div.innerHTML = renderEmptyMarkup()
 		};
 
 		const newsBySearch = await response.data.response.docs;
  
+
   const array = newsBySearch.map(article => {
-    
     const newsObject = {
       title: article.headline.main,
       text: article.abstract,
@@ -99,7 +108,9 @@ export async function fetchNewsBySearch(search) {
        article.multimedia[0] ? article.multimedia[2].url : 'images/2023/02/21/multimedia/21skeleton-ukraine-01-zjwv/21skeleton-ukraine-01-zjwv-articleLarge.jpg'
        }`,
       link: article.url,
+
       category: article.section_name
+        date: makeDate(article.pub_date)
     }
 			return newsObject
 		})
@@ -107,8 +118,17 @@ export async function fetchNewsBySearch(search) {
 	} catch (e) {
 	div.innerHTML = renderEmptyMarkup()
 	}
+
 }
 
+function makeDate(isodate){
+  const date = new Date(isodate);
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear().toString();
+  const result =`${day}-${month}-${year}`;
+  return result
+}
 
 //  Запит на Weather API
 export async function getCurrentWeather(lat, lon) {
