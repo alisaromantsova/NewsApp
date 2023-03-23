@@ -2,6 +2,7 @@
 //   fetchPopularNews,
 //   fetchNewsByCategory,
 //   fetchNewsBySearch,
+// renderEmptyMarkup,
 // } from './fetches';
 // import { renderMarkup } from './render-markup';
 import { getCurrentWeather } from './fetches';

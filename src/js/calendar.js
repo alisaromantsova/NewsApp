@@ -2,6 +2,7 @@ import {
   fetchPopularNews,
   fetchNewsByCategory,
   fetchNewsBySearch,
+  renderEmptyMarkup,
 } from './fetches';
 import { categoryValue } from './navigation';
 import { renderMarkup } from './render-markup';
