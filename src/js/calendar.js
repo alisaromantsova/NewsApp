@@ -196,10 +196,10 @@ class Calendar {
     this.ref.calendarCurrentDateSvgDown.classList.remove('visually-hidden');
     this.ref.calendarCurrentDateSvgUp.classList.add('visually-hidden');
 
-    const dateForFetch = fullFormatCurrentDate[0].iso.split('-').join('');
-    if (categoryValue) {
-      this.#renderNews(dateForFetch, categoryValue);
-    }
+    // const dateForFetch = fullFormatCurrentDate[0].iso.split('-').join('');
+    // if (categoryValue) {
+    //   this.#renderNews(dateForFetch, categoryValue);
+    // }
   }
 
   async #renderNews(date, category) {
