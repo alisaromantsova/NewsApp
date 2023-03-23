@@ -10,7 +10,7 @@ import { successCallback, failureCallback } from './weather';
 onMount();
 async function onMount() {
   removeActiveClass();
-  categoryValue = '';
+  categoryValue.value = '';
   const result = await fetchPopularNews();
   renderMarkup(result);
   navigator.geolocation.getCurrentPosition(successCallback, failureCallback);

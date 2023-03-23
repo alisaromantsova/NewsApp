@@ -5,7 +5,7 @@ import {
   renderEmptyMarkup,
 } from './fetches';
 import { renderMarkup } from './render-markup';
-export let categoryValue = '';
+export let categoryValue = {value:''};
 const div = document.querySelector('.news');
 const categoriesList = [
   { section: 'admin', display_name: 'Admin' },
@@ -144,11 +144,11 @@ async function onCategoryButtonClick(e) {
   if (e.target.nodeName !== 'BUTTON') {
     return;
   }
-  categoryValue = '';
+  categoryValue.value= '';
   div.innerHTML = '';
   const chosenCategory = e.target.dataset.action;
   const result = await fetchNewsByCategory(chosenCategory);
-  categoryValue = chosenCategory;
+  categoryValue.value = chosenCategory;
   addActiveClass(e.target)
   renderMarkup(result);
 }
@@ -157,12 +157,12 @@ const select = document.querySelector('.nav-select');
 select.addEventListener('change', onSelect);
 async function onSelect(e) {
   removeActiveClass()
-  categoryValue = '';
+  categoryValue.value = '';
   div.innerHTML = '';
   const selectedOption = select.options[select.selectedIndex];
   const optionsValue = selectedOption.dataset.action;
   const result = await fetchNewsByCategory(optionsValue);
-  categoryValue = optionsValue;
+  categoryValue.value = optionsValue;
   addActiveClass(e.target)
   renderMarkup(result);
 }
