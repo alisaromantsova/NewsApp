@@ -11,7 +11,7 @@ if (objFromStorale === '[]') {
 }
 const objParse = JSON.parse(objFromStorale);
 
-const newsWrapper = document.querySelector('.list-news');
+const newsWrapper = document.querySelector('.news');
 newsWrapper.addEventListener('click', addRemoveToLocalStorage);
 
 
