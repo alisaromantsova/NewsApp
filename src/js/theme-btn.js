@@ -3,7 +3,8 @@ import {renderMarkup} from './render-markup'
 
 const spanEl = document.querySelector('.ball');
 spanEl.addEventListener('click', ChangeTheme);
-document.body.classList.add('light');
+let activeTheme = localStorage.getItem('theme'); 
+document.body.classList.add(activeTheme);
 function ChangeTheme(){
     if(document.body.classList.contains('light')){
         document.body.classList.remove('light');
@@ -12,4 +13,6 @@ function ChangeTheme(){
         document.body.classList.remove('dark');
         document.body.classList.add('light');
     }
+    let theme = document.body.getAttribute("class");
+    localStorage.setItem('theme', theme);
 };
