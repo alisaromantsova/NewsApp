@@ -13,7 +13,6 @@ export function setEventAfterRender() {
   const removeBtns = document.querySelectorAll('.news__removebtn');
 
   addBtns.forEach((addBtn, i) => {
-    console.log(addBtn, i);
     addBtn.addEventListener('click', () => {
       const removeBtn = removeBtns[i];
       addBtn.classList.add('is-hidden');
@@ -22,7 +21,6 @@ export function setEventAfterRender() {
   });
 
   removeBtns.forEach((removeBtn, i) => {
-    console.log(removeBtn, i);
     removeBtn.addEventListener('click', () => {
       const addBtn = addBtns[i];
       addBtn.classList.remove('is-hidden');
@@ -38,7 +36,6 @@ export function setEventAfterRead() {
   const readsMarks = document.querySelectorAll('.is-read');
 
   newsLinks.forEach((newsLink, i) => {
-    console.log(newsLink, i);
     newsLink.addEventListener('click', () => {
       const readsMark = readsMarks[i];
       readsMark.classList.remove('is-hidden');
