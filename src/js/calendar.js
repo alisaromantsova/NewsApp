@@ -195,12 +195,14 @@ class Calendar {
     this.ref.calendarContainer.classList.remove('js-calendar-show');
     this.ref.calendarCurrentDateSvgDown.classList.remove('visually-hidden');
     this.ref.calendarCurrentDateSvgUp.classList.add('visually-hidden');
-
+    this.ref.calendarCurrentDateSvgUp.classList.add('visually-hidden');
+    //===========
     // const dateForFetch = fullFormatCurrentDate[0].iso.split('-').join('');
     // if (categoryValue) {
     //   this.#renderNews(dateForFetch, categoryValue);
     // }
   }
+  // =======
 
   async #renderNews(date, category) {
     const result = await fetchNewsByCategoryAndDate(date, category);
