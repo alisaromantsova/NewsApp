@@ -6,14 +6,8 @@
 // } from './fetches';
 // import { renderMarkup } from './render-markup';
 import { getCurrentWeather } from './fetches';
-const newsContainerRef = document.querySelector('.news');
 let page = 1;
-
-// const weatherContainerRef = document.querySelector('.weather');
-
-navigator.geolocation.getCurrentPosition(successCallback, failureCallback);
-
-async function successCallback(position) {
+export async function successCallback(position) {
   const { data } = await getCurrentWeather(
     position.coords.latitude,
     position.coords.longitude
@@ -21,7 +15,7 @@ async function successCallback(position) {
   renderWeather(data);
 }
 
-async function failureCallback() {
+export async function failureCallback() {
   const { data } = await getCurrentWeather(40.748488, -73.985508);
   renderWeather(data);
 }
@@ -52,7 +46,6 @@ function renderWeather(data) {
       <p class="weather__date"> ${currentDayName} <br>${currentDay} ${currentMonth} ${currentYear}</p>
     </div>
 `;
-  // newsContainerRef.insertAdjacentHTML('afterbegin', weatherMarkup);
 
   insertMarkup(weatherMarkup);
 }
