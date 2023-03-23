@@ -1,15 +1,24 @@
 import axios, { isCancel, AxiosError } from 'axios';
 const KEY = 'jeNm7rY37TemUh2AGcwUEtOAak9bew4U';
 const KEY_WEATHER_API = 'b45ce7b42bd659df434b4de28331d70c';
+const div = document.querySelector('.news');
 
 
 // Фетч популярних
 export async function fetchPopularNews() {
-  const response = await axios.get(
+	try {
+		const response = await axios.get(
     `https://api.nytimes.com/svc/mostpopular/v2/emailed/7.json?api-key=${KEY}`
-  );
-
-  const popularNews = await response.data.results;
+		)
+			.catch(function (err) {
+			div.innerHTML = renderEmptyMarkup()
+			});
+		
+		if (!response.data.results) {
+			div.innerHTML = renderEmptyMarkup()
+		}
+		
+		const popularNews = await response.data.results;
   console.log(popularNews)
   const array = popularNews.map(article => {
     const meta = 'media-metadata';
@@ -21,20 +30,32 @@ export async function fetchPopularNews() {
         : 'https://static01.nyt.com/images/2023/03/12/12vid-oscars-95910-cover/12vid-oscars-95910-cover-articleInline.jpg',
       link: article.url,
       category: article.section
-    };
-    return newsObject;
-  });
-  return array;
+    }
+		return newsObject
+		})
+		return array
+	} catch (e) {
+		div.innerHTML = renderEmptyMarkup()
+	}
 }
+
 
 //Фетч по категориям
 export async function fetchNewsByCategory(category) {
-  const response = await axios.get(
+	try {
+		const response = await axios.get(
     `https://api.nytimes.com/svc/news/v3/content/nyt/${category}.json?api-key=${KEY}`
-  );
+		)
+			.catch(function (err) {
+				div.innerHTML = renderEmptyMarkup()
+			});
 
-  const newsByCategory = await response.data.results;
-console.log(newsByCategory)
+		if (!response.data.results) {
+			div.innerHTML = renderEmptyMarkup()
+		}
+
+
+		const newsByCategory = await response.data.results;
   const array = newsByCategory.map(article => {
     const newsObject = {
       title: article.title,
@@ -42,19 +63,32 @@ console.log(newsByCategory)
       imgSrc: article.multimedia ? article.multimedia[2].url : 'https://static01.nyt.com/images/2023/03/12/12vid-oscars-95910-cover/12vid-oscars-95910-cover-articleInline.jpg',
       link: article.url,
       category: article.section
-    };
-    return newsObject;
-  });
-  return array;
+    }
+			return newsObject
+
+		})
+		return array
+
+	} catch (e) {
+		div.innerHTML = renderEmptyMarkup()
+	}
 }
 
 //Фетч по поисковому запросу
 export async function fetchNewsBySearch(search) {
-  const response = await axios.get(
+	try {
+		 const response = await axios.get(
     `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${search}&api-key=${KEY}`
-  );
+		 )
+			 .catch(function (err) {
+			div.innerHTML = renderEmptyMarkup()
+		});
 
-  const newsBySearch = await response.data.response.docs;
+		if (!response.data.response.docs) {
+			div.innerHTML = renderEmptyMarkup()
+		};
+
+		const newsBySearch = await response.data.response.docs;
  
   const array = newsBySearch.map(article => {
     
@@ -66,18 +100,41 @@ export async function fetchNewsBySearch(search) {
        }`,
       link: article.url,
       category: article.section_name
-    };
-    return newsObject;
-  });
-  return array;
+    }
+			return newsObject
+		})
+		return array
+	} catch (e) {
+	div.innerHTML = renderEmptyMarkup()
+	}
 }
 
 
 //  Запит на Weather API
 export async function getCurrentWeather(lat, lon) {
+  try { 
   const products = await axios.get(
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${KEY_WEATHER_API}&units=metric`
-  );
+  )
+} catch (e) {
+	div.innerHTML = renderEmptyMarkup()
+	}
   return products;
 }
+
+
+function renderEmptyMarkup() {
+	const img404 = require('../images/haventFound.png')
+  return `
+    <div style="
+								width: 100%;
+								display: flex;
+								flex-flow: column nowrap;
+								align-items: center;">
+      <p>We haven’t found news from this category</p>
+			<img src='${img404}' alt='' width="400px">
+    </div>
+  `
+}
+
 
