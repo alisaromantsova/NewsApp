@@ -112,13 +112,10 @@ export async function fetchNewsBySearch(search) {
 
 //  Запит на Weather API
 export async function getCurrentWeather(lat, lon) {
-  try { 
+  
   const products = await axios.get(
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${KEY_WEATHER_API}&units=metric`
   )
-} catch (e) {
-	div.innerHTML = renderEmptyMarkup()
-	}
   return products;
 }
 
