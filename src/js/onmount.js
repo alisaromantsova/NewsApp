@@ -6,6 +6,7 @@ import {
 } from './fetches';
 import { renderMarkup } from './render-markup';
 import { categoryValue, removeActiveClass } from './navigation';
+import { successCallback, failureCallback } from './weather';
 onMount();
 async function onMount() {
   removeActiveClass();
