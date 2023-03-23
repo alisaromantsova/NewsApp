@@ -5,7 +5,7 @@ import {
   renderEmptyMarkup,
 } from './fetches';
 import { renderMarkup } from './render-markup';
-export let categoryValue=''
+export let categoryValue = '';
 const div = document.querySelector('.news');
 const categoriesList = [
   { section: 'admin', display_name: 'Admin' },
@@ -73,7 +73,7 @@ window.onresize = function checkWindow(e) {
 function renderNavigation(width) {
   buttonsList.innerHTML = '';
   selectList.innerHTML = '';
-
+  // console.log(width);
   if (width <= 768) {
     const name = '<option hidden>Categories</option>';
     const markup = categoriesList
@@ -143,24 +143,22 @@ async function onCategoryButtonClick(e) {
   if (e.target.nodeName !== 'BUTTON') {
     return;
   }
-  categoryValue=''
+  categoryValue = '';
   div.innerHTML = '';
   const chosenCategory = e.target.dataset.action;
   const result = await fetchNewsByCategory(chosenCategory);
-  categoryValue=chosenCategory
+  categoryValue = chosenCategory;
   renderMarkup(result);
-
 }
 const select = document.querySelector('.nav-select');
 
 select.addEventListener('change', onSelect);
 async function onSelect() {
-  categoryValue=''
+  categoryValue = '';
   div.innerHTML = '';
   const selectedOption = select.options[select.selectedIndex];
   const optionsValue = selectedOption.dataset.action;
   const result = await fetchNewsByCategory(optionsValue);
- categoryValue=optionsValue
+  categoryValue = optionsValue;
   renderMarkup(result);
-
 }
