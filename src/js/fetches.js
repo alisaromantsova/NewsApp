@@ -5,6 +5,7 @@ const div = document.querySelector('.news');
 
 // Фетч популярних
 export async function fetchPopularNews() {
+
   try {
     const response = await axios
       .get(
@@ -43,6 +44,7 @@ export async function fetchPopularNews() {
 
 //Фетч по категориям
 export async function fetchNewsByCategory(category) {
+
   try {
     const response = await axios
       .get(
@@ -54,6 +56,7 @@ export async function fetchNewsByCategory(category) {
 
     if (!response.data.results) {
       div.innerHTML = renderEmptyMarkup();
+
     }
 
     const newsByCategory = await response.data.results;
@@ -132,7 +135,6 @@ export async function getCurrentWeather(lat, lon) {
   );
   return products;
 }
-
 
 
 export function renderEmptyMarkup() {

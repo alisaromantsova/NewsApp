@@ -8,6 +8,7 @@ const div = document.querySelector('.news');
 
 
 
+
 searchForm.addEventListener('submit', createNews);
 
 
