@@ -5,7 +5,7 @@ import {
   renderEmptyMarkup,
   fetchNewsByCategoryAndDate,
 } from './fetches';
-import { categoryValue } from './navigation';
+import categoryValue from './navigation';
 import { renderMarkup } from './render-markup';
 import CalendarDates from 'calendar-dates';
 const calendarDates = new CalendarDates();
