@@ -1,4 +1,4 @@
-import { fetchPopularNews, fetchNewsByCategory, fetchNewsBySearch } from './fetches';
+import { fetchPopularNews, fetchNewsByCategory, fetchNewsBySearch, renderEmptyMarkup } from './fetches';
 import {renderMarkup} from './render-markup'
 onMount()
 async function onMount(){

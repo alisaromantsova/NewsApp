@@ -1,4 +1,4 @@
-import { fetchPopularNews, fetchNewsByCategory, fetchNewsBySearch } from './fetches';
+import { fetchPopularNews, fetchNewsByCategory, fetchNewsBySearch, renderEmptyMarkup } from './fetches';
 import { renderMarkup } from './render-markup'
 
  // const emptyPage = document.querySelector('.');Коли буде заготовка на немає новин
@@ -35,7 +35,7 @@ import { renderMarkup } from './render-markup'
 
 // let btnAddtoStorage = evt.target;
  // const btnDiv = btnAddtoStorage.closest('div.article_flag'); розмітка яку додавала я для кнопок, зараз закоментовано в render-markup
-// const btnDivID = evt.target.closest('     ').; Нам треба або id карток або дату, щоб розуміти, яку карточку ми тягнемо
+// // const btnDivID = evt.target.closest('     ').; Нам треба або id карток або дату, щоб розуміти, яку карточку ми тягнемо
 
 // let storage = localStorage.getItem('cards');
 //   let parseStorage = JSON.parse(storage);

@@ -2,8 +2,10 @@ import {
   fetchPopularNews,
   fetchNewsByCategory,
   fetchNewsBySearch,
+  renderEmptyMarkup,
 } from './fetches';
 import { renderMarkup } from './render-markup';
+export let categoryValue = '';
 const div = document.querySelector('.news');
 const categoriesList = [
   { section: 'admin', display_name: 'Admin' },
@@ -134,12 +136,6 @@ function renderNavigation(width) {
     selectList.insertAdjacentHTML('beforeend', markupSelection);
   }
 }
-// button.addEventListener('click', onClick)
-
-// async function onClick(){
-// const result = await fetchNewsByCategory("food")
-// renderMarkup(result)
-// }
 
 const block = document.querySelector('.nav-buttons');
 block.addEventListener('click', onCategoryButtonClick);
@@ -147,18 +143,22 @@ async function onCategoryButtonClick(e) {
   if (e.target.nodeName !== 'BUTTON') {
     return;
   }
+  categoryValue = '';
   div.innerHTML = '';
   const chosenCategory = e.target.dataset.action;
   const result = await fetchNewsByCategory(chosenCategory);
+  categoryValue = chosenCategory;
   renderMarkup(result);
 }
-
 const select = document.querySelector('.nav-select');
 
 select.addEventListener('change', onSelect);
 async function onSelect() {
+  categoryValue = '';
+  div.innerHTML = '';
   const selectedOption = select.options[select.selectedIndex];
   const optionsValue = selectedOption.dataset.action;
   const result = await fetchNewsByCategory(optionsValue);
+  categoryValue = optionsValue;
   renderMarkup(result);
 }
