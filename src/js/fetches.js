@@ -20,7 +20,6 @@ export async function fetchPopularNews() {
     }
 
     const popularNews = await response.data.results;
-    console.log(popularNews);
     const array = popularNews.map(article => {
       const meta = 'media-metadata';
       const newsObject = {
