@@ -6,7 +6,7 @@ const searchForm = document.querySelector('#form-field')
 const selectEl = document.querySelector('.nav-select ')
 const div = document.querySelector('.news');
 
-console.log(searchForm);
+
 
 
 searchForm.addEventListener('submit', createNews);

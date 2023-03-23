@@ -3,6 +3,7 @@ import {
   fetchNewsByCategory,
   fetchNewsBySearch,
 } from './fetches';
+import { categoryValue } from './navigation';
 import { renderMarkup } from './render-markup';
 import CalendarDates from 'calendar-dates';
 const calendarDates = new CalendarDates();
@@ -194,7 +195,7 @@ class Calendar {
     this.ref.calendarCurrentDateSvgUp.classList.add('visually-hidden');
 
     const dateForFetch = fullFormatCurrentDate[0].iso.split('-').join('');
-    console.log(dateForFetch);
+ 
   }
 
   #deleteAndAddCurrentClass(element) {

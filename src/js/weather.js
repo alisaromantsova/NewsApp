@@ -16,13 +16,13 @@ async function successCallback(position) {
     position.coords.latitude,
     position.coords.longitude
   );
-  console.log('data:', data);
+
   renderWeather(data);
 }
 
 async function failureCallback() {
   const { data } = await getCurrentWeather(40.748488, -73.985508);
-  console.log({ data });
+
   renderWeather(data);
 }
 

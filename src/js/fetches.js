@@ -19,7 +19,7 @@ export async function fetchPopularNews() {
 		}
 		
 		const popularNews = await response.data.results;
-  console.log(popularNews)
+  
   const array = popularNews.map(article => {
  
     const meta = 'media-metadata';
@@ -61,11 +61,10 @@ export async function fetchNewsByCategory(category) {
 
 		const newsByCategory = await response.data.results;
   const array = newsByCategory.map(article => {
-
     const newsObject = {
       title: article.title,
       text: article.abstract,
-      imgSrc: article.multimedia ? article.multimedia[2].url : 'https://static01.nyt.com/images/2023/03/12/12vid-oscars-95910-cover/12vid-oscars-95910-cover-articleInline.jpg',
+      imgSrc: article.multimedia&&article.multimedia[2].url ? article.multimedia[2].url : 'https://static01.nyt.com/images/2023/03/12/12vid-oscars-95910-cover/12vid-oscars-95910-cover-articleInline.jpg',
       link: article.url,
 
       category: article.section,
@@ -140,7 +139,7 @@ export async function getCurrentWeather(lat, lon) {
 }
 
 
-function renderEmptyMarkup() {
+export function renderEmptyMarkup() {
 	const img404 = require('../images/haventFound.png')
   return `
     <div style="width: 100%;
