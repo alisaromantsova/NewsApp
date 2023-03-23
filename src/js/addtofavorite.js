@@ -1,4 +1,4 @@
-import { fetchPopularNews, fetchNewsByCategory, fetchNewsBySearch } from './fetches';
+import { fetchPopularNews, fetchNewsByCategory, fetchNewsBySearch, renderEmptyMarkup } from './fetches';
 import { renderMarkup } from './render-markup'
 
  // const emptyPage = document.querySelector('.');Коли буде заготовка на немає новин

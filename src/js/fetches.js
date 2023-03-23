@@ -140,7 +140,7 @@ export async function getCurrentWeather(lat, lon) {
 }
 
 
-function renderEmptyMarkup() {
+export function renderEmptyMarkup() {
 	const img404 = require('../images/haventFound.png')
   return `
     <div style="width: 100%;
