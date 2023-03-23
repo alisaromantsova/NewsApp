@@ -10,8 +10,10 @@ refs.closeMenuBtn.addEventListener('click', menuToggle);
 function menuToggle() {
   refs.mobileMenu.classList.toggle('is-open');
   if (refs.mobileMenu.classList.contains('is-open')) {
-    document.body.style.position = 'fixed';
+    document.body.style.overflow = 'hidden';
+    disableScroll.on();
   } else {
-    document.body.style.position = 'relative';
+    document.body.style.overflow = 'scroll';
+    disableScroll.off();
   }
 }
