@@ -133,8 +133,11 @@ export async function getCurrentWeather(lat, lon) {
   return products;
 }
 
-function renderEmptyMarkup() {
-  const img404 = require('../images/haventFound.png');
+
+
+export function renderEmptyMarkup() {
+	const img404 = require('../images/haventFound.png')
+
   return `
     <div style="width: 100%;
 display: flex;
