@@ -430,4 +430,10 @@ input:checked + .ball:before {
   & .moon {
     fill: var(--markercolor);
   }
+  & .menu__container{
+    background-color: var(--background-color-dark);
+  }
+  & .close__button-icon{
+    fill: var(--text-color-dark-theme);
+  }
 }

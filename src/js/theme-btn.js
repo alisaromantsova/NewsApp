@@ -1,10 +1,17 @@
 import { fetchPopularNews, fetchNewsByCategory, fetchNewsBySearch, renderEmptyMarkup } from './fetches';
 import {renderMarkup} from './render-markup'
 
-const checkboxEl = document.querySelector('.chose-checkbox');
+let checkboxEl = document.querySelector('.chose-checkbox');
+const screenWidth = window.screen.width;
+const isTrue = screenWidth <= 767;
+
+if(!isTrue === true){
+     checkboxEl = document.querySelector('.choseTheme .chose-checkbox');
+} else if(isTrue === true){
+    checkboxEl = document.querySelector('.js-menu-container .menu__choseTheme .chose-checkbox');
+}
+
 checkboxEl.addEventListener('click', changeTheme);
-
-
 
 window.onload = function() {
     let selectedTheme = localStorage.getItem('selectedTheme');
