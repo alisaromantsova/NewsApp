@@ -28,6 +28,9 @@ function createNews(event){
       } 
       if (inputName) {
            selectEl.setAttribute("disabled", true);
+           const buttons = document.querySelectorAll('.nav-buttons .category-item');
+         buttons.forEach((button) => {
+         button.disabled = true;});
          }
             div.innerHTML='';
          renderMarkup(result);
