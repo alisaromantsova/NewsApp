@@ -5,7 +5,7 @@ import {
   renderEmptyMarkup,
   fetchNewsByCategoryAndDate,
 } from './fetches';
-import {categoryValue} from './navigation';
+import { categoryValue } from './navigation';
 import { renderMarkup } from './render-markup';
 import CalendarDates from 'calendar-dates';
 const calendarDates = new CalendarDates();
@@ -14,6 +14,7 @@ class Calendar {
     calendar: document.querySelector('.calendar2'),
     searchInfo: document.querySelector('.calendar2__search-info'),
     yearForward: document.querySelector('.calendar2__month-year-button-right'),
+    yearBackward: document.querySelector('.calendar2__month-year-button-left'),
     currentDate: document.querySelector('.calendar2__current-date'),
     calendarCurrentDateBefore: document.querySelector(
       '.calendar2__current-date-before'
@@ -134,6 +135,10 @@ class Calendar {
       'click',
       this.#yearForwardOnClick.bind(this)
     );
+    this.ref.yearBackward.addEventListener(
+      'click',
+      this.#yearBackWardOnClick.bind(this)
+    );
   }
 
   #adoptCalendarForCurrentFirstDay(calendarData, monthLength) {
@@ -167,13 +172,13 @@ class Calendar {
 
   #currentDateOnClick() {
     this.ref.calendarContainer.classList.toggle('js-calendar-show');
-    this.ref.currentDate.classList.add('js-date-show');
-    this.ref.calendarCurrentDateBefore.classList.add(
+    this.ref.currentDate.classList.toggle('js-date-show'); // change
+    this.ref.calendarCurrentDateBefore.classList.toggle(
       'calendar2__current-date-before--active'
-    );
-    this.ref.calendarCurrentDateAfter.classList.add(
+    ); //change
+    this.ref.calendarCurrentDateAfter.classList.toggle(
       'calendar2__current-date-after--active'
-    );
+    ); //change
     this.ref.calendarCurrentDateSvgDown.classList.toggle('visually-hidden');
     this.ref.calendarCurrentDateSvgUp.classList.toggle('visually-hidden');
   }
@@ -192,9 +197,12 @@ class Calendar {
     this.#currentDate.year = fullDateArray[0];
     this.#deleteAndAddCurrentClass(event.target);
     this.#getHTMLCurrentDateInfo();
+
+    //this.ref.currentDate.remove('js-date-show'); //add
+    this.#currentDateOnClick();
     this.ref.calendarContainer.classList.remove('js-calendar-show');
-    this.ref.calendarCurrentDateSvgDown.classList.remove('visually-hidden');
-    this.ref.calendarCurrentDateSvgUp.classList.add('visually-hidden');
+    // this.ref.calendarCurrentDateSvgDown.classList.remove('visually-hidden');
+    // this.ref.calendarCurrentDateSvgUp.classList.add('visually-hidden');
 
     const dateForFetch = fullFormatCurrentDate[0].iso.split('-').join('');
     if (categoryValue.value) {
@@ -260,6 +268,18 @@ class Calendar {
   #yearForwardOnClick(event) {
     let chosenDate = '';
     this.#currentDate.year = Number(this.#currentDate.year) + 1;
+    chosenDate = `${this.#currentDate.year}/${this.#currentDate.month}/${
+      this.#currentDate.date
+    }`;
+    this.#calendarArray = [];
+    this.#calendarArrayHTML = [];
+    this.#calendarArrayDates = [];
+
+    this.futureDate(new Date(chosenDate));
+  }
+  #yearBackWardOnClick(event) {
+    let chosenDate = '';
+    this.#currentDate.year = Number(this.#currentDate.year) - 1;
     chosenDate = `${this.#currentDate.year}/${this.#currentDate.month}/${
       this.#currentDate.date
     }`;
