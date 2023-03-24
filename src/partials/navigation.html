@@ -6,7 +6,7 @@
 
        
         <div class="custom-select" style="position:relative;">
-          <button class="custom-select-btn">
+          <button aria-label="chose-category-button" class="custom-select-btn">
             <span class="custom-select-btn-textContent">Others</span> 
             <span class="custom-select-arrow">></span>
           </button>
@@ -40,7 +40,7 @@
           <div class="calendar2__container">
             <div class="calendar2__manager-container">
               <div class="calendar2__month-year-container">
-                <button type="button" class="calendar2__month-year-button-left">
+                <button aria-label="previous-year" type="button" class="calendar2__month-year-button-left">
                   <svg class="calendar2__month-year-left" width="7" height="12">
                     <use
                       href="./images/symbol-defs.svg#icon-arrowbackward"
@@ -51,6 +51,7 @@
                 <p class="calendar2__month-year">February 2021</p>
                 <button
                   type="button"
+                  aria-label="next-year"
                   class="calendar2__month-year-button-right"
                 >
                   <svg
@@ -68,6 +69,7 @@
 
               <button
                 type="button"
+                aria-label="previous-month"
                 class="calendar2__button-left"
                 data-button="left"
               >
@@ -84,6 +86,7 @@
               </button>
               <button
                 type="button"
+                aria-label="next-month"
                 class="calendar2__button-right"
                 data-button="right"
               >

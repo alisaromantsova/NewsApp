@@ -100,7 +100,7 @@ function renderNavigation(width) {
 
     for (let i = 0; i < categoriesList.length; i++) {
       if (i < 4) {
-        const buttonsMarkup = `<button data-action="${encodeURIComponent(
+        const buttonsMarkup = `<button aria-label="chose-category" data-action="${encodeURIComponent(
           categoriesList[i].section
         )}" class="category-item">${categoriesList[i].display_name}</button>`;
         buttons.push(buttonsMarkup);
@@ -127,7 +127,7 @@ function renderNavigation(width) {
 
     for (let i = 0; i < categoriesList.length; i++) {
       if (i < 6) {
-        const buttonsMarkup = `<button data-action="${encodeURIComponent(
+        const buttonsMarkup = `<button aria-label="chose-category" data-action="${encodeURIComponent(
           categoriesList[i].section
         )}" class="category-item">${categoriesList[i].display_name}</button>`;
         buttons.push(buttonsMarkup);
