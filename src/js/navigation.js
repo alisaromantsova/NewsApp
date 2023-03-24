@@ -5,7 +5,7 @@ import {
   renderEmptyMarkup,
 } from './fetches';
 import { renderMarkup } from './render-markup';
-export let categoryValue = {value:''};
+export let categoryValue = { value: '' };
 const div = document.querySelector('.news');
 const categoriesList = [
   { section: 'admin', display_name: 'Admin' },
@@ -60,34 +60,41 @@ const categoriesList = [
   { section: 'your money', display_name: 'Your Money' },
 ];
 const buttonsList = document.querySelector('.nav-buttons');
-const selectList = document.querySelector('.nav-select');
-if(window.location.pathname==='/index.html'||window.location.pathname==="/NewsApp/"){
-renderNavigation(window.screen.width);
+const selectList = document.querySelector('.custom-select-list');
+if (
+  window.location.pathname === '/index.html' ||
+  window.location.pathname === '/NewsApp/' ||
+  window.location.pathname === '/'
+) {
+  renderNavigation(window.screen.width);
 }
-if(window.location.pathname==='/index.html'||window.location.pathname==="/NewsApp/"){
-window.onresize = function checkWindow(e) {
-  const width = e.target.outerWidth;
-  renderNavigation(width);
-};
+if (
+  window.location.pathname === '/index.html' ||
+  window.location.pathname === '/NewsApp/' ||
+  window.location.pathname === '/'
+) {
+  window.onresize = function checkWindow(e) {
+    const width = e.target.outerWidth;
+    renderNavigation(width);
+  };
 }
 function renderNavigation(width) {
   buttonsList.innerHTML = '';
   selectList.innerHTML = '';
-  
+
   if (width <= 768) {
-    const name = '<option hidden>Categories</option>';
-    const markup = categoriesList
-      .map(item => {
-        return `<option data-action="${encodeURIComponent(item.section)}">${
-          item.display_name
-        }</option>`;
-      })
+    // const name = '<option hidden>Categories</option>';
+    const markup = categoriesList.map(item => {
+      return `<li class="custom-select-list-item js-custom-select-item" data-action="${encodeURIComponent(
+        item.section
+      )}">${item.display_name}</li>`;
+    })
       .join('');
 
-    selectList.insertAdjacentHTML('beforeend', name);
+    // selectList.insertAdjacentHTML('beforeend', name);
     selectList.insertAdjacentHTML('beforeend', markup);
   } else if (width > 768 && width < 1280) {
-    const name = '<option hidden>Others</option>';
+    // const name = '<option hidden>Others</option>';
     const buttons = [];
     const selections = [];
 
@@ -98,9 +105,12 @@ function renderNavigation(width) {
         )}" class="category-item">${categoriesList[i].display_name}</button>`;
         buttons.push(buttonsMarkup);
       } else {
-        const selectMarkup = `<option data-action="${encodeURIComponent(
-          categoriesList[i].section
-        )}">${categoriesList[i].display_name}</option>`;
+        // const selectMarkup = `<option data-action="${encodeURIComponent(
+        //   categoriesList[i].section
+        // )}">${categoriesList[i].display_name}</option>`;
+        const selectMarkup=`<li class="custom-select-list-item js-custom-select-item" data-action="${encodeURIComponent(
+            categoriesList[i].section
+           )}">${categoriesList[i].display_name}</li>`
         selections.push(selectMarkup);
       }
     }
@@ -108,10 +118,10 @@ function renderNavigation(width) {
     buttonsList.innerHTML = markup;
     const markupSelection = selections.join('');
 
-    selectList.insertAdjacentHTML('beforeend', name);
+    // selectList.insertAdjacentHTML('beforeend', name);
     selectList.insertAdjacentHTML('beforeend', markupSelection);
   } else {
-    const name = '<option hidden>Others</option>';
+    // const name = '<option hidden>Others</option>';
     const buttons = [];
     const selections = [];
 
@@ -122,9 +132,12 @@ function renderNavigation(width) {
         )}" class="category-item">${categoriesList[i].display_name}</button>`;
         buttons.push(buttonsMarkup);
       } else {
-        const selectMarkup = `<option data-action="${encodeURIComponent(
+        const selectMarkup=`<li class="custom-select-list-item js-custom-select-item" data-action="${encodeURIComponent(
           categoriesList[i].section
-        )}">${categoriesList[i].display_name}</option>`;
+         )}">${categoriesList[i].display_name}</li>`
+        // const selectMarkup = `<option data-action="${encodeURIComponent(
+        //   categoriesList[i].section
+        // )}">${categoriesList[i].display_name}</option>`;
         selections.push(selectMarkup);
       }
     }
@@ -132,51 +145,123 @@ function renderNavigation(width) {
     buttonsList.innerHTML = markup;
     const markupSelection = selections.join('');
 
-    selectList.insertAdjacentHTML('beforeend', name);
+    // selectList.insertAdjacentHTML('beforeend', name);
     selectList.insertAdjacentHTML('beforeend', markupSelection);
   }
 }
-
+console.log(window);
 const block = document.querySelector('.nav-buttons');
-if(window.location.pathname==='/index.html'||window.location.pathname==="/NewsApp/"){
-block.addEventListener('click', onCategoryButtonClick);
+if (
+  window.location.pathname === '/index.html' ||
+  window.location.pathname === '/NewsApp/' ||
+  window.location.pathname === '/'
+) {
+  block.addEventListener('click', onCategoryButtonClick);
 }
 async function onCategoryButtonClick(e) {
-  removeActiveClass()
+  removeActiveClass();
   if (e.target.nodeName !== 'BUTTON') {
     return;
   }
-  categoryValue.value= '';
+  categoryValue.value = '';
   div.innerHTML = '';
   const chosenCategory = e.target.dataset.action;
   const result = await fetchNewsByCategory(chosenCategory);
   categoryValue.value = chosenCategory;
-  addActiveClass(e.target)
+  addActiveClass(e.target);
   renderMarkup(result);
 }
-const select = document.querySelector('.nav-select');
-if(window.location.pathname==='/index.html'||window.location.pathname==="/NewsApp/"){
-select.addEventListener('change', onSelect);
+// const select = document.querySelector('.nav-select');
+// if (
+//   window.location.pathname === '/index.html' ||
+//   window.location.pathname === '/NewsApp/' ||
+//   window.location.pathname === '/'
+// ) {
+//   select.addEventListener('change', onSelect);
+// }
+// async function onSelect(e) {
+//   removeActiveClass();
+//   categoryValue.value = '';
+//   div.innerHTML = '';
+//   const selectedOption = select.options[select.selectedIndex];
+//   const optionsValue = selectedOption.dataset.action;
+//   const result = await fetchNewsByCategory(optionsValue);
+//   categoryValue.value = optionsValue;
+//   addActiveClass(e.target);
+//   renderMarkup(result);
+// }
+const items = [...document.querySelectorAll('.category-item')];
+
+export function removeActiveClass() {
+  items.forEach(item => {
+    if (item.classList.contains('category-item--active')) {
+      item.classList.remove('category-item--active');
+    }
+  });
 }
-async function onSelect(e) {
-  removeActiveClass()
+function addActiveClass(btn) {
+  btn.classList.add('category-item--active');
+}
+
+//custom
+const customSelectList = document.querySelector('.custom-select-list');
+const custonmSelectListItem = document.querySelector('.js-custom-select-item');
+const customSelectBtn = document.querySelector('.custom-select-btn');
+
+const onClickCustomSelectBtn = e => {
+  e.preventDefault();
+  customSelectList.classList.toggle('is-hidden');
+  customSelectBtn.children[1].classList.toggle('custom-select-is-open');
+};
+const onClickCustonListItem = async e => {
+  e.preventDefault();
+  removeActiveClass();
   categoryValue.value = '';
   div.innerHTML = '';
-  const selectedOption = select.options[select.selectedIndex];
-  const optionsValue = selectedOption.dataset.action;
-  const result = await fetchNewsByCategory(optionsValue);
-  categoryValue.value = optionsValue;
-  addActiveClass(e.target)
+  if (e.target === customSelectList) {
+    return;
+  }
+  customSelectBtn.children[0].textContent = e.target.textContent;
+  customSelectBtn.children[1].classList.remove('custom-select-is-open');
+  customSelectList.classList.add('is-hidden');
+  const result = await fetchNewsByCategory(e.target.dataset.action);
+  categoryValue.value = e.target.dataset.action;
+  addActiveClass(e.target);
   renderMarkup(result);
-}
-const items = [...document.querySelectorAll('.category-item')]
+};
+const onClickOutsideCustomSelect = e => {
+  if (
+    e.target === customSelectBtn ||
+    e.target === customSelectBtn.children[0] ||
+    e.target === customSelectBtn.children[1]
+  ) {
+    return;
+  }
+  console.log(e.target);
+  if (e.target !== custonmSelectListItem) {
+    customSelectList.classList.add('is-hidden');
+    customSelectBtn.children[1].classList.remove('custom-select-is-open');
+  }
+};
 
-export function removeActiveClass(){
-items.forEach(item=>{
-    if(item.classList.contains("category-item--active")){
-      item.classList.remove("category-item--active")}
-})
-}
-function addActiveClass(btn){
-btn.classList.add("category-item--active")
-}
+const addListenersOnCustomSelect = () => {
+  customSelectList.addEventListener('click', onClickCustonListItem);
+  window.addEventListener('click', onClickOutsideCustomSelect);
+};
+
+const customSelectFn = () => {
+  customSelectBtn.addEventListener('click', onClickCustomSelectBtn);
+
+  const markup = categoriesList
+    .map(item => {
+      return `<li class="custom-select-list-item js-custom-select-item" data-action="${encodeURIComponent(
+        item.section
+      )}">${item.display_name}</li>`;
+    })
+    .join('');
+
+  customSelectList.insertAdjacentHTML('beforeend', markup);
+  addListenersOnCustomSelect();
+};
+
+customSelectFn();

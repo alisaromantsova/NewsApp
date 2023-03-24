@@ -3,7 +3,7 @@
   margin-left: 50px;
   // display: inline-block;
   margin-left: auto;
-  margin-right: 30px;
+  margin-right: 0;
   @include desktop {
     //width: 360px;
   }
@@ -33,7 +33,15 @@
   //   display: block;
   // }
 }
-
+.calendar__wrapper {
+  position: absolute;
+  width: 252px;
+  height: 242px;
+  overflow: hidden;
+  top: 0;
+  right: -30px;
+  pointer-events: none;
+}
 .calendar2__current-date-container {
   position: relative;
   margin: 0;
@@ -107,7 +115,7 @@
   width: 250px;
   border-radius: 10px;
   transition: transform 500ms linear;
-  z-index: -1;
+  z-index: 1;
   pointer-events: none;
   &.js-calendar-show {
     transform: translateY(245px);
@@ -240,14 +248,13 @@
   }
 }
 
-.dark{
-  & .calendar2__current-date{
+.dark {
+  & .calendar2__current-date {
     background-color: var(--background-color-dark);
     color: var(--text-color-dark-theme);
     border: 1px solid var(--text-color-dark-theme);
   }
-  & .calendar2__container{
+  & .calendar2__container {
     color: var(--text-color);
   }
 }
-
