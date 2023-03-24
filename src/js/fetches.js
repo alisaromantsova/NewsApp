@@ -139,17 +139,12 @@ export async function getCurrentWeather(lat, lon) {
 }
 
 export function renderEmptyMarkup() {
-
-
   return `
-    <div style="width: 100%;
-display: flex;
-flex-flow: column nowrap;
-align-items: center;">
-<p>We haven’t found news from this category</p>
+  <div class="error-box">
+<p class="text-error">We haven’t found news from this category</p>
 <img src='${img404}' alt='' width="400px">
-    </div>
-  `;
+  </div>
+`;
 }
 
 export async function fetchNewsByCategoryAndDate(

@@ -1,0 +1,34 @@
+.text-error{
+    padding-bottom: 40px;
+    font-size: 40px;
+    font-weight: 700;
+    width: 548px;
+    text-align: center;
+    @include mobile {
+        font-size: 20px;
+        width: 276px;
+    font-size: 20px;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+      }
+}
+.error-box{
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+@include mobile {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  @include tablet {
+    padding-top: 40px;
+    padding-bottom: 53px;
+  }
+
+  @include desktop {
+    padding-top: 61px;
+    padding-bottom: 166px;
+  }
+}
