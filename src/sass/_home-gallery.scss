@@ -276,3 +276,8 @@
    top: 40px;
    right: 0;
 }
+.dark{
+   & .news__text{
+      color: var(--text-color-dark-theme);
+   }
+}

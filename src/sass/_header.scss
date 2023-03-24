@@ -405,3 +405,29 @@ input:checked + .ball:before {
   position: absolute;
   display: none;
 }
+.dark{
+  & .search-field{
+    border:  1px solid var(--text-color-dark-theme);
+  }
+  & #search-field__input{
+    color: var(--text-color-dark-theme);
+  }
+  & .header{
+    border-bottom: 1px solid rgba(244, 244, 244, 0.2);;
+  }
+  & .search__icon{
+    fill: var(--text-color-dark-theme);
+  }
+  & .choseTheme__light{
+    color: var(--text-color-dark-theme);
+  }
+  & .choseTheme__dark{
+    color: var(--secondary-text-color);
+  }
+  & .sun{
+    fill: var(--dark-text);
+  }
+  & .moon {
+    fill: var(--markercolor);
+  }
+}

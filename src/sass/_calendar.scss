@@ -238,3 +238,10 @@
     opacity: 1;
   }
 }
+.dark{
+  & .calendar2__current-date{
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark-theme);
+    border: 1px solid var(--text-color-dark-theme);
+  }
+}
