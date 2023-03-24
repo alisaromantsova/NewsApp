@@ -1,11 +1,30 @@
 import { fetchPopularNews, fetchNewsByCategory, fetchNewsBySearch, renderEmptyMarkup } from './fetches';
 import {renderMarkup} from './render-markup'
 
-const spanEl = document.querySelector('.ball');
-spanEl.addEventListener('click', ChangeTheme);
-let activeTheme = localStorage.getItem('theme'); 
-document.body.classList.add(activeTheme);
+const checkboxEl = document.querySelector('.chose-checkbox');
+checkboxEl.addEventListener('click', ChangeTheme);
+
+
+
+window.onload = function() {
+    let selectedTheme = localStorage.getItem('selectedTheme');
+    if (selectedTheme) {
+      document.body.classList.add(selectedTheme);
+    } else{
+        document.body.classList.add('light');
+    }
+  }
+
+
+let activeCheckbox = localStorage.getItem('isChecked');
+if(activeCheckbox === "true"){
+    checkboxEl.setAttribute('checked', true);
+}
+
+
+
 function ChangeTheme(){
+
     if(document.body.classList.contains('light')){
         document.body.classList.remove('light');
         document.body.classList.add('dark'); 
@@ -13,6 +32,12 @@ function ChangeTheme(){
         document.body.classList.remove('dark');
         document.body.classList.add('light');
     }
+
     let theme = document.body.getAttribute("class");
-    localStorage.setItem('theme', theme);
+    localStorage.setItem('selectedTheme',theme);
+
+    let isChecked = checkboxEl.checked;
+    localStorage.setItem('isChecked', isChecked);
 };
+
+
