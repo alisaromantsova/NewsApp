@@ -42,3 +42,12 @@ export function setEventAfterRead() {
     });
   });
 }
+
+// export function checkedString() {
+//   const MAX_LENGTH = 140;
+//   const articleTexts = document.querySelectorAll('.article.text');
+//   const articleText = articleTexts[i];
+//   if (articleText.length > MAX_LENGTH) {
+//     articleText = articleText.slice(0, MAX_LENGTH - 3) + '...';
+//   }
+// }

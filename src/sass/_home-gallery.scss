@@ -28,7 +28,7 @@
 }
 
 .new__card {
-   // height temporary
+
    height: 630px;
 
    @include tablet {
@@ -43,9 +43,9 @@
 
    }
 
-   &:hover {
-      scale: 1.03;
-   }
+   // &:hover {
+   //    scale: 1.03;
+   // }
 }
 
 .new__img {
@@ -113,7 +113,6 @@
    bottom: 12px;
 
    background-color: var(--color-btn-white);
-   ;
    border-radius: 20px;
    border-color: transparent;
 
@@ -125,20 +124,6 @@
 
    color: var(--text-color);
 
-   &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      right: 0;
-      top: 0;
-      border-radius: 20px;
-      height: 28px;
-      width: 126px;
-      z-index: -1;
-
-      background: var(--color-btn-white);
-      ;
-   }
 
 }
 
@@ -153,7 +138,7 @@
    min-width: 40px;
    min-height: 10px;
    margin: 0;
-   padding: 6px 32px 6px 12px;
+   padding: 6px 12px 6px 12px;
    right: 12px;
    bottom: 12px;
 
@@ -168,21 +153,7 @@
    opacity: 1;
 
 
-   padding: 6px 12px;
-
-
-
    color: var(--text-color);
-
-   &::after {
-      content: "";
-      width: 16px;
-      height: 16px;
-      position: absolute;
-      top: 50%;
-      right: 12px;
-      transform: translateY(-50%);
-   }
 
 }
 
@@ -196,7 +167,7 @@
    font-style: normal;
    font-weight: 700;
    font-size: 24px;
-   line-height: calc(33 / 24);
+   line-height: 1.36;
    letter-spacing: -0.01em;
 
    color: var(----text-color);
@@ -213,7 +184,7 @@
    font-style: normal;
    font-weight: 400;
    font-size: 14px;
-   line-height: calc(19 / 14);
+   line-height: 1.36;
 
    color: var(--text-color);
    height: 57px;
@@ -234,7 +205,7 @@
    font-style: normal;
    font-weight: 400;
    font-size: 14px;
-   line-height: 19px;
+   line-height: 1.36;
    text-align: right;
 
    color: var(--additional-text-color);
@@ -244,9 +215,14 @@
    font-style: normal;
    font-weight: 400;
    font-size: 14px;
-   line-height: 19px;
+   line-height: 1.36;
 
    color: var(--color-active-btn);
+
+   &:hover,
+   &:focus {
+      text-decoration: underline;
+   }
 }
 
 .news__icon {
@@ -261,7 +237,7 @@
    color: var(--green-text);
    font-family: 'Manrope500', sans-serif;
    font-size: 14px;
-   line-height: 1, 36;
+   line-height: 1.36;
    opacity: 1;
    min-width: 112px;
    height: 24px;
@@ -276,8 +252,9 @@
    top: 40px;
    right: 0;
 }
-.dark{
-   & .news__text{
+
+.dark {
+   & .news__text {
       color: var(--text-color-dark-theme);
    }
 }
