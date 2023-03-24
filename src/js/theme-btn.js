@@ -2,7 +2,7 @@ import { fetchPopularNews, fetchNewsByCategory, fetchNewsBySearch, renderEmptyMa
 import {renderMarkup} from './render-markup'
 
 const checkboxEl = document.querySelector('.chose-checkbox');
-checkboxEl.addEventListener('click', ChangeTheme);
+checkboxEl.addEventListener('click', changeTheme);
 
 
 
@@ -23,7 +23,7 @@ if(activeCheckbox === "true"){
 
 
 
-function ChangeTheme(){
+function changeTheme(){
 
     if(document.body.classList.contains('light')){
         document.body.classList.remove('light');
