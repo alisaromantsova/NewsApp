@@ -5,7 +5,7 @@ import {
   renderEmptyMarkup,
   fetchNewsByCategoryAndDate,
 } from './fetches';
-import {categoryValue} from './navigation';
+import { categoryValue } from './navigation';
 import { renderMarkup } from './render-markup';
 import CalendarDates from 'calendar-dates';
 const calendarDates = new CalendarDates();
@@ -167,13 +167,13 @@ class Calendar {
 
   #currentDateOnClick() {
     this.ref.calendarContainer.classList.toggle('js-calendar-show');
-    this.ref.currentDate.classList.add('js-date-show');
-    this.ref.calendarCurrentDateBefore.classList.add(
+    this.ref.currentDate.classList.toggle('js-date-show'); // change
+    this.ref.calendarCurrentDateBefore.classList.toggle(
       'calendar2__current-date-before--active'
-    );
-    this.ref.calendarCurrentDateAfter.classList.add(
+    ); //change
+    this.ref.calendarCurrentDateAfter.classList.toggle(
       'calendar2__current-date-after--active'
-    );
+    ); //change
     this.ref.calendarCurrentDateSvgDown.classList.toggle('visually-hidden');
     this.ref.calendarCurrentDateSvgUp.classList.toggle('visually-hidden');
   }
@@ -192,9 +192,12 @@ class Calendar {
     this.#currentDate.year = fullDateArray[0];
     this.#deleteAndAddCurrentClass(event.target);
     this.#getHTMLCurrentDateInfo();
+
+    //this.ref.currentDate.remove('js-date-show'); //add
+    this.#currentDateOnClick();
     this.ref.calendarContainer.classList.remove('js-calendar-show');
-    this.ref.calendarCurrentDateSvgDown.classList.remove('visually-hidden');
-    this.ref.calendarCurrentDateSvgUp.classList.add('visually-hidden');
+    // this.ref.calendarCurrentDateSvgDown.classList.remove('visually-hidden');
+    // this.ref.calendarCurrentDateSvgUp.classList.add('visually-hidden');
 
     const dateForFetch = fullFormatCurrentDate[0].iso.split('-').join('');
     if (categoryValue.value) {
