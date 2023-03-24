@@ -39,6 +39,8 @@
   margin: 0;
   padding: 0;
   width: 152px;
+  background-color: var(--color-btn-white);
+  border-radius: 20px;
   @include tablet {
     width: 168px;
   }
@@ -54,19 +56,19 @@
   line-height: calc(21 / 14);
   margin: 0;
   background-color: var(--color-btn-white);
-  color: #111321;
+  color: var(--text-color);
   opacity: 40%;
-  border: 1px solid #111321;
+  border: 1px solid var(--text-color);
   border-radius: 20px;
 
   cursor: pointer;
-  pointer-events: all; //add
+  //pointer-events: all; //add
   &.js-date-show {
     background-color: var(--color-active-btn);
     color: var(--color-btn-white);
     opacity: 100%;
     border: 1px solid var(--color-active-btn);
-    pointer-events: none; // add
+    //pointer-events: none; // add
   }
 }
 .calendar2__current-date-before {
@@ -91,7 +93,7 @@
   transition: color, fill 500ms linear;
   pointer-events: none;
   &--active {
-    fill: ar(--color-btn-white);
+    fill: var(--color-btn-white);
   }
 }
 .calendar2__container {
@@ -127,6 +129,7 @@
   display: inline-block;
   padding: 0;
   margin: 0;
+  color: var(--text-color);
 }
 .calendar2__month-year-button-left {
   padding: 1px 7px;
@@ -192,6 +195,9 @@
 .date.next-month {
   color: var(--dark-text);
 }
+.date.current-month {
+  color: var(--text-color);
+}
 .date.current-month:hover {
   background-color: var(--color-active-btn);
   color: var(--color-btn-white);
@@ -215,10 +221,8 @@
 }
 .calendar2__container {
   position: absolute;
-  // top: -210px;
-  top: 40px; //add
-
-  // overflow: hidden;
+  top: -210px;
+  //top: 40px; //before
   overflow: all; //add
   background-color: var(--color-btn-white); //add
   pointer-events: none;
@@ -226,18 +230,16 @@
   outline: 1px solid var(--color-active-btn);
   width: 250px;
   border-radius: 10px;
-  transform: scale(0, 0); //add
+  //transform: scale(0, 0); //before
   transition: transform 500ms linear;
-  //z-index: -1;
-  z-index: 2;
   pointer-events: none;
   &.js-calendar-show {
-    //transform: translateY(245px);
-    transform: scale(1, 1);
+    transform: translateY(250px); //add
+    //transform: scale(1, 1); //before
     pointer-events: all;
-    opacity: 1;
   }
 }
+
 .dark{
   & .calendar2__current-date{
     background-color: var(--background-color-dark);
@@ -248,3 +250,4 @@
     color: var(--text-color);
   }
 }
+
