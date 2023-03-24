@@ -8,29 +8,36 @@ const div = document.querySelector('.news');
 
 
 
-
 searchForm.addEventListener('submit', createNews);
 
 
 function createNews(event){
-    event.preventDefault();
-    const inputName = event.currentTarget.searchQuery.value.trim();
+   event.preventDefault();
+   const inputName = event.currentTarget.searchQuery.value.trim();
     onInput();
    async function onInput(){
     categoryValue.value=''
-       const result = await fetchNewsBySearch(inputName);
-
-       if(inputName === ''){
-        return alert("OOPS")
-      } if(result.length === 0){
-         return alert("EMPTY")
-      }
+   try{
+      const result = await fetchNewsBySearch(inputName);
+      if(inputName === ""){
+        div.innerHTML = renderEmptyMarkup()
+        return alert("Please enter a category")
+      } 
+      if(result.length === 0){
+         return div.innerHTML = renderEmptyMarkup()
+      } 
       if (inputName) {
-        selectEl.setAttribute("disabled", true);
-      }
+           selectEl.setAttribute("disabled", true);
+           const buttons = document.querySelectorAll('.nav-buttons .category-item');
+         buttons.forEach((button) => {
+         button.disabled = true;});
+         }
+            div.innerHTML='';
+         renderMarkup(result);
 
-       div.innerHTML='';
-    renderMarkup(result);
+   } catch(error){
+      console.log(error);
+    }
+
 }
-
 }
