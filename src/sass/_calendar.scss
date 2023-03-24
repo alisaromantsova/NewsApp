@@ -128,7 +128,17 @@
   padding: 0;
   margin: 0;
 }
+.calendar2__month-year-button-left {
+  padding: 1px 7px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.calendar2__month-year-left {
+  fill: var(--color-active-btn);
+}
 .calendar2__month-year-button-right {
+  padding: 1px 7px;
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -148,7 +158,7 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  margin-left: 20px;
+  margin-left: 18px;
 }
 .calendar2__current-month-right {
   fill: var(--color-active-btn);

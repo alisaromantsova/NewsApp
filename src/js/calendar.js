@@ -14,6 +14,7 @@ class Calendar {
     calendar: document.querySelector('.calendar2'),
     searchInfo: document.querySelector('.calendar2__search-info'),
     yearForward: document.querySelector('.calendar2__month-year-button-right'),
+    yearBackward: document.querySelector('.calendar2__month-year-button-left'),
     currentDate: document.querySelector('.calendar2__current-date'),
     calendarCurrentDateBefore: document.querySelector(
       '.calendar2__current-date-before'
@@ -133,6 +134,10 @@ class Calendar {
     this.ref.yearForward.addEventListener(
       'click',
       this.#yearForwardOnClick.bind(this)
+    );
+    this.ref.yearBackward.addEventListener(
+      'click',
+      this.#yearBackWardOnClick.bind(this)
     );
   }
 
@@ -263,6 +268,18 @@ class Calendar {
   #yearForwardOnClick(event) {
     let chosenDate = '';
     this.#currentDate.year = Number(this.#currentDate.year) + 1;
+    chosenDate = `${this.#currentDate.year}/${this.#currentDate.month}/${
+      this.#currentDate.date
+    }`;
+    this.#calendarArray = [];
+    this.#calendarArrayHTML = [];
+    this.#calendarArrayDates = [];
+
+    this.futureDate(new Date(chosenDate));
+  }
+  #yearBackWardOnClick(event) {
+    let chosenDate = '';
+    this.#currentDate.year = Number(this.#currentDate.year) - 1;
     chosenDate = `${this.#currentDate.year}/${this.#currentDate.month}/${
       this.#currentDate.date
     }`;
