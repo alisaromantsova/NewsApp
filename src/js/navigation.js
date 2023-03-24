@@ -62,10 +62,10 @@ const categoriesList = [
 console.log(window.location.pathname)
 const buttonsList = document.querySelector('.nav-buttons');
 const selectList = document.querySelector('.nav-select');
-if(window.location.pathname==='/index.html'){
+if(window.location.pathname==='/index.html'||window.location.pathname==="/NewsApp/"){
 renderNavigation(window.screen.width);
 }
-if(window.location.pathname==='/index.html'){
+if(window.location.pathname==='/index.html'||window.location.pathname==="/NewsApp/"){
 window.onresize = function checkWindow(e) {
   const width = e.target.outerWidth;
   renderNavigation(width);
@@ -139,7 +139,7 @@ function renderNavigation(width) {
 }
 
 const block = document.querySelector('.nav-buttons');
-if(window.location.pathname==='/index.html'){
+if(window.location.pathname==='/index.html'||window.location.pathname==="/NewsApp/"){
 block.addEventListener('click', onCategoryButtonClick);
 }
 async function onCategoryButtonClick(e) {
@@ -156,7 +156,7 @@ async function onCategoryButtonClick(e) {
   renderMarkup(result);
 }
 const select = document.querySelector('.nav-select');
-if(window.location.pathname==='/index.html'){
+if(window.location.pathname==='/index.html'||window.location.pathname==="/NewsApp/"){
 select.addEventListener('change', onSelect);
 }
 async function onSelect(e) {
