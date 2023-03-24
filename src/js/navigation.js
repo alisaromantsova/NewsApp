@@ -59,7 +59,7 @@ const categoriesList = [
   { section: 'world', display_name: 'World' },
   { section: 'your money', display_name: 'Your Money' },
 ];
-
+console.log(window.location.pathname)
 const buttonsList = document.querySelector('.nav-buttons');
 const selectList = document.querySelector('.nav-select');
 if(window.location.pathname==='/index.html'){
