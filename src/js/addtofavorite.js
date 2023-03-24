@@ -1,12 +1,12 @@
-import { fetchPopularNews, fetchNewsByCategory, fetchNewsBySearch, renderEmptyMarkup } from './fetches';
-import { renderMarkup } from './render-markup'
+// import { fetchPopularNews, fetchNewsByCategory, fetchNewsBySearch, renderEmptyMarkup } from './fetches';
+// import { renderMarkup } from './render-markup'
 
- // const emptyPage = document.querySelector('.');Коли буде заготовка на немає новин
+ 
 // const container = document.querySelector('.favorite-container');
 
-// const objFromStorale = localStorage.getItem('cards');
+// const objFromStorale = localStorage.getItem('favorite-cards');
 // if (objFromStorale === '[]') {
-//   emptyPage.style.display = 'block';
+// renderEmptyMarkup()
 //   container.style.padding = 0;
 // }
 // const objParse = JSON.parse(objFromStorale);
@@ -16,7 +16,7 @@ import { renderMarkup } from './render-markup'
 
 
 
-// Функція 
+// // Функція 
 // function addRemoveToLocalStorage(evt) {
 //     if (
 //         evt.target.tagName !== 'BUTTON' &&
@@ -27,6 +27,8 @@ import { renderMarkup } from './render-markup'
 //     }
 
 
+
+//
 
 // }
 

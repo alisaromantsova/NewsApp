@@ -1,10 +1,10 @@
-// import {
-//   fetchPopularNews,
-//   fetchNewsByCategory,
-//   fetchNewsBySearch,
-// renderEmptyMarkup,
-// } from './fetches';
-// import { renderMarkup } from './render-markup';
+import {
+  fetchPopularNews,
+  fetchNewsByCategory,
+  fetchNewsBySearch,
+  renderEmptyMarkup,
+} from './fetches';
+import { renderMarkup } from './render-markup';
 import { getCurrentWeather } from './fetches';
 let page = 1;
 export async function successCallback(position) {
