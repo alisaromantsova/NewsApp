@@ -62,14 +62,15 @@ const categoriesList = [
 
 const buttonsList = document.querySelector('.nav-buttons');
 const selectList = document.querySelector('.nav-select');
-
+if(window.location.pathname==='/index.html'){
 renderNavigation(window.screen.width);
-
+}
+if(window.location.pathname==='/index.html'){
 window.onresize = function checkWindow(e) {
   const width = e.target.outerWidth;
   renderNavigation(width);
 };
-
+}
 function renderNavigation(width) {
   buttonsList.innerHTML = '';
   selectList.innerHTML = '';
@@ -138,7 +139,9 @@ function renderNavigation(width) {
 }
 
 const block = document.querySelector('.nav-buttons');
+if(window.location.pathname==='/index.html'){
 block.addEventListener('click', onCategoryButtonClick);
+}
 async function onCategoryButtonClick(e) {
   removeActiveClass()
   if (e.target.nodeName !== 'BUTTON') {
@@ -153,8 +156,9 @@ async function onCategoryButtonClick(e) {
   renderMarkup(result);
 }
 const select = document.querySelector('.nav-select');
-
+if(window.location.pathname==='/index.html'){
 select.addEventListener('change', onSelect);
+}
 async function onSelect(e) {
   removeActiveClass()
   categoryValue.value = '';
