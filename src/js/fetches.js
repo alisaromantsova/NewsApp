@@ -2,6 +2,7 @@ import axios, { isCancel, AxiosError } from 'axios';
 const KEY = 'jeNm7rY37TemUh2AGcwUEtOAak9bew4U';
 const KEY_WEATHER_API = 'b45ce7b42bd659df434b4de28331d70c';
 const div = document.querySelector('.news');
+const img404 = require('../images/haventFound.png');
 
 // Фетч популярних
 export async function fetchPopularNews() {
@@ -26,11 +27,13 @@ export async function fetchPopularNews() {
         text: article.abstract,
         imgSrc: article.media[0]
           ? article.media[0][meta][2].url
-          : 'https://static01.nyt.com/images/2023/03/12/12vid-oscars-95910-cover/12vid-oscars-95910-cover-articleInline.jpg',
+          :`${img404}`,
         link: article.url,
 
         category: article.section,
         date: makeDate(article.published_date),
+        hasLiked:false,
+        hasRead:false
       };
       return newsObject;
     });
@@ -62,11 +65,12 @@ export async function fetchNewsByCategory(category) {
         text: article.abstract,
         imgSrc: article.multimedia
           ? article.multimedia[2].url
-          : 'https://static01.nyt.com/images/2023/03/12/12vid-oscars-95910-cover/12vid-oscars-95910-cover-articleInline.jpg',
+          : `${img404}`,
         link: article.url,
 
         category: article.section,
         date: makeDate(article.published_date),
+        
       };
       return newsObject;
     });
@@ -106,6 +110,8 @@ export async function fetchNewsBySearch(search) {
 
         category: article.section_name,
         date: makeDate(article.pub_date),
+        hasLiked:false,
+        hasRead:false
       };
       return newsObject;
     });
@@ -133,7 +139,7 @@ export async function getCurrentWeather(lat, lon) {
 }
 
 export function renderEmptyMarkup() {
-  const img404 = require('../images/haventFound.png');
+
 
   return `
     <div style="width: 100%;
@@ -165,6 +171,7 @@ export async function fetchNewsByCategoryAndDate(
     }
 
     const newsBySearch = await response.data.response.docs;
+    console.log(newsBySearch)
     const array = newsBySearch.map(article => {
       const newsObject = {
         title: article.headline.main,
@@ -178,6 +185,8 @@ export async function fetchNewsByCategoryAndDate(
 
         category: article.section_name,
         date: makeDate(article.pub_date),
+        hasLiked:false,
+        hasRead:false
       };
       return newsObject;
     });
