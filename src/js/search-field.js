@@ -36,7 +36,7 @@ function createNews(event){
          renderMarkup(result);
 
    } catch(error){
-      console.log(error);
+
     }
 
 }

@@ -186,8 +186,7 @@ class Calendar {
   #calendarContainerOnClick(event) {
     if (event.target.dataset.date !== 'current') return;
     const currentDate = event.target.textContent;
-    //console.log(currentDate);
-    //save current date for future
+  
     const fullFormatCurrentDate = this.#calendarArray.filter(
       item => item.type === 'current' && item.date == currentDate
     );

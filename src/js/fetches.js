@@ -158,7 +158,7 @@ export async function fetchNewsByCategoryAndDate(
       )
       .catch(function (err) {
         div.innerHTML = renderEmptyMarkup();
-        console.log('error1');
+       
       });
 
     if (!response.data.response.docs) {
@@ -166,7 +166,6 @@ export async function fetchNewsByCategoryAndDate(
     }
 
     const newsBySearch = await response.data.response.docs;
-    console.log(newsBySearch)
     const array = newsBySearch.map(article => {
       const newsObject = {
         title: article.headline.main,
