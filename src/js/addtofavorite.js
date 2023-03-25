@@ -1,11 +1,15 @@
+import { renderEmptyMarkup } from './fetches';
 const favoriteList = document.querySelector('.list-news');
+const cards = JSON.parse(localStorage.getItem('newsCard'));
+if (!cards) {
+  favoriteList.innerHTML = renderEmptyMarkup();
+}
 
 function renderMarkup() {
-  const cards = JSON.parse(localStorage.getItem('newsCard'));
   if (cards) {
     favoriteList.insertAdjacentHTML(
       'afterend',
-      cards.map(card => card.newsCard)
+      cards.map(card => `<div class="new__card">${card.newsCard}</div>`)
     );
   }
 }
