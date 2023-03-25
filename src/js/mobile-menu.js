@@ -11,9 +11,7 @@ function menuToggle() {
   refs.mobileMenu.classList.toggle('is-open');
   if (refs.mobileMenu.classList.contains('is-open')) {
     document.body.style.overflow = 'hidden';
-    disableScroll.on();
   } else {
     document.body.style.overflow = 'scroll';
-    disableScroll.off();
   }
 }
