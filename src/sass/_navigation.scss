@@ -6,13 +6,12 @@
 }
 .navblock {
   display: flex;
- 
 }
-.nav-buttons{
+.nav-buttons {
   display: flex;
   gap: 14px;
   align-items: center;
-  @include tablet{
+  @include tablet {
     gap: 16px;
   }
 }
@@ -26,7 +25,8 @@
   font-size: 12px;
   line-height: 16px;
   color: var(--markercolor);
-  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
   @include tablet {
     padding: 8px 21px;
@@ -58,14 +58,14 @@
   }
 }
 .nav-select {
-  width:112px
+  width: 112px;
 }
-// custom select 
+// custom select
 .custom-select-list {
   position: absolute;
   height: 400px;
   overflow: auto;
-  z-index:1;
+  z-index: 1;
 
   border: 1px solid var(--markercolor);
   background-color: var(--color-btn-white);
@@ -75,30 +75,29 @@
   font-family: inherit;
   font-size: 12px;
   line-height: 16px;
-
 }
-.custom-select-list-item{
-    padding: 8px 13px;
-    // border-radius: 20px;
-    background-color: var(--color-btn-white);
-    font-family: inherit;
-    font-size: 12px;
-    line-height: 16px;
-    color: var(--markercolor);
-    transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    outline: none;
-    @include tablet {
-      padding: 8px 21px;
-    }
+.custom-select-list-item {
+  padding: 8px 13px;
+  // border-radius: 20px;
+  background-color: var(--color-btn-white);
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--markercolor);
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  @include tablet {
+    padding: 8px 21px;
+  }
 
   &:hover,
   &:focus,
   &:active {
     color: var(--color-btn-white);
-  
+
     background-color: var(--markercolor);
   }
-
 }
 .custom-select-btn {
   padding: 8px 30px 8px 14px;
@@ -109,52 +108,61 @@
   font-size: 12px;
   line-height: 16px;
   color: var(--markercolor);
-  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
   @include tablet {
     padding: 8px 35px 8px 21px;
     margin-left: 16px;
   }
-
 }
 .custom-select-btn-textContent {
   white-space: nowrap;
 }
 .custom-select-arrow {
   fill: #a2a2a2;
-    position: absolute;
-    right: 8px;
-    top: 10px;
-    transform: rotateZ(0deg);
-    transition: 300ms;
+  position: absolute;
+  right: 8px;
+  top: 10px;
+  transform: rotateZ(0deg);
+  transition: 300ms;
 }
-.custom-select-is-open{
+.custom-select-is-open {
   transform: rotateZ(180deg);
 }
-.custom-select-list::-webkit-scrollbar{
+.custom-select-list::-webkit-scrollbar {
   overflow: hidden;
   width: 10px;
-  
 }
-.custom-select-list::-webkit-scrollbar-track{
+.custom-select-list::-webkit-scrollbar-track {
   background: #d8d8d8;
 }
-.custom-select-list::-webkit-scrollbar-thumb{
+.custom-select-list::-webkit-scrollbar-thumb {
   background: var(--markercolor);
   border-radius: 8px;
 }
-.custom-select-list::-webkit-scrollbar-thumb:hover{
+.custom-select-list::-webkit-scrollbar-thumb:hover {
   background: #abc4ec;
 }
 
-.custom-select-thumb{
+.custom-select-thumb {
   overflow: hidden;
   position: absolute;
   height: 400px;
   width: 156px;
   top: 36px;
   border-radius: 20px;
-  @include tablet{
+  @include tablet {
     width: 172px;
+  }
+}
+.navigation {
+  position: relative;
+  background-color: var(--color-btn-white);
+}
+
+.dark {
+  & .navigation {
+    background-color: var(--background-color-dark);
   }
 }

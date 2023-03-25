@@ -258,3 +258,9 @@
     color: var(--text-color);
   }
 }
+.calendar2__container {
+  z-index: -1;
+  &.js-calendar-zIndexChange {
+    z-index: 2;
+  }
+}
