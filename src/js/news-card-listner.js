@@ -39,7 +39,7 @@ function onAddToFavoriteClick(event) {
         return;
       }
     });
-    console.log(arreyCardSecond.length);
+
     if (arreyCardSecond.length !== 0) {
       localStorage.setItem('newsCard', JSON.stringify(arreyCardSecond));
     }
