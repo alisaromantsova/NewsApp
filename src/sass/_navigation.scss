@@ -63,7 +63,6 @@
 // custom select 
 .custom-select-list {
   position: absolute;
-  top:36px;
   height: 400px;
   overflow: auto;
   z-index:1;
@@ -122,13 +121,40 @@
   white-space: nowrap;
 }
 .custom-select-arrow {
-    font-size: 30px;
+  fill: #a2a2a2;
     position: absolute;
     right: 8px;
     top: 10px;
-    transform: rotateZ(90deg);
+    transform: rotateZ(0deg);
     transition: 300ms;
 }
 .custom-select-is-open{
-  transform: rotateZ(270deg);
+  transform: rotateZ(180deg);
+}
+.custom-select-list::-webkit-scrollbar{
+  overflow: hidden;
+  width: 10px;
+  
+}
+.custom-select-list::-webkit-scrollbar-track{
+  background: #d8d8d8;
+}
+.custom-select-list::-webkit-scrollbar-thumb{
+  background: var(--markercolor);
+  border-radius: 8px;
+}
+.custom-select-list::-webkit-scrollbar-thumb:hover{
+  background: #abc4ec;
+}
+
+.custom-select-thumb{
+  overflow: hidden;
+  position: absolute;
+  height: 400px;
+  width: 156px;
+  top: 36px;
+  border-radius: 20px;
+  @include tablet{
+    width: 175px;
+  }
 }

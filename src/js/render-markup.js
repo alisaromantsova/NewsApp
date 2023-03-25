@@ -101,7 +101,6 @@ export async function renderMarkup(array) {
     .join('');
 
   div.insertAdjacentHTML('beforeend', markup);
-  // checkedString();
   setEventAfterRender();
   setEventAfterRead();
 }
