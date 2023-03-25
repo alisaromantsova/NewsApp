@@ -238,7 +238,19 @@ const customSelectFn = () => {
     .join('');
 
   customSelectList.insertAdjacentHTML('beforeend', markup);
+  if (
+    window.location.pathname === '/index.html' ||
+    window.location.pathname === '/NewsApp/' ||
+    window.location.pathname === '/'||  window.location.pathname === '/NewsApp/index.html'
+  ) {
   addListenersOnCustomSelect();
+  }
 };
 
-customSelectFn();
+if (
+  window.location.pathname === '/index.html' ||
+  window.location.pathname === '/NewsApp/' ||
+  window.location.pathname === '/'||  window.location.pathname === '/NewsApp/index.html'
+) {
+customSelectFn()
+}
