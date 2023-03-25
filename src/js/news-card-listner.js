@@ -15,41 +15,47 @@ function onAddToFavoriteClick(event) {
   ) {
     return;
   }
- 
+
   let newsCard = null;
   let linkNewCArd = null;
 
-  if (event.target.tagName === 'BUTTON') {
-    newsCard = event.target.parentNode.parentNode.innerHTML;
-    linkNewCArd =
-      event.target.parentNode.parentNode.querySelector('.news__link');
-  } else if (event.target.tagName === 'SPAN') {
-    newsCard = event.target.parentNode.parentNode.parentNode.innerHTML;
-    linkNewCArd =
-      event.target.parentNode.parentNode.parentNode.querySelector(
-        '.news__link'
-      );
-  } else if (event.target.tagName === 'svg') {
-    newsCard = event.target.parentNode.parentNode.parentNode.innerHTML;
-    linkNewCArd =
-      event.target.parentNode.parentNode.parentNode.querySelector(
-        '.news__link'
-      );
-  } else if (event.target.tagName === 'path') {
-    newsCard =
-      event.target.parentNode.parentNode.parentNode.parentNode.parentNode
-        .parentNode.parentNode.parentNode.parentNode.innerHTML;
-    linkNewCArd =
-      event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(
-        '.news__link'
-      );
-  } else if (event.target.tagName === 'use') {
-    newsCard =
-      event.target.parentNode.parentNode.parentNode.parentNode.innerHTML;
-    linkNewCArd =
-      event.target.parentNode.parentNode.parentNode.parentNode.querySelector(
-        '.news__link'
-      );
+  switch (event.target.tagName) {
+    case 'BUTTON':
+      newsCard = event.target.parentNode.parentNode.innerHTML;
+      linkNewCArd =
+        event.target.parentNode.parentNode.querySelector('.news__link');
+      break;
+    case 'SPAN':
+      newsCard = event.target.parentNode.parentNode.parentNode.innerHTML;
+      linkNewCArd =
+        event.target.parentNode.parentNode.parentNode.querySelector(
+          '.news__link'
+        );
+      break;
+    case 'svg':
+      newsCard = event.target.parentNode.parentNode.parentNode.innerHTML;
+      linkNewCArd =
+        event.target.parentNode.parentNode.parentNode.querySelector(
+          '.news__link'
+        );
+      break;
+    case 'path':
+      newsCard =
+        event.target.parentNode.parentNode.parentNode.parentNode.parentNode
+          .parentNode.parentNode.parentNode.parentNode.innerHTML;
+      linkNewCArd =
+        event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(
+          '.news__link'
+        );
+      break;
+    case 'use':
+      newsCard =
+        event.target.parentNode.parentNode.parentNode.parentNode.innerHTML;
+      linkNewCArd =
+        event.target.parentNode.parentNode.parentNode.parentNode.querySelector(
+          '.news__link'
+        );
+      break;
   }
 
   if (

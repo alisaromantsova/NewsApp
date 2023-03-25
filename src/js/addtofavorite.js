@@ -34,31 +34,36 @@ function onRemoveNewCardToFavoriteClick(event) {
 
   let linkNewCArd = null;
 
-  if (event.target.tagName === 'BUTTON') {
-    linkNewCArd =
-      event.target.parentNode.parentNode.querySelector('.news__link');
-  } else if (event.target.tagName === 'SPAN') {
-    linkNewCArd =
-      event.target.parentNode.parentNode.parentNode.querySelector(
-        '.news__link'
-      );
-  } else if (event.target.tagName === 'svg') {
-    linkNewCArd =
-      event.target.parentNode.parentNode.parentNode.querySelector(
-        '.news__link'
-      );
-  } else if (event.target.tagName === 'path') {
-    linkNewCArd =
-      event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(
-        '.news__link'
-      );
-  } else if (event.target.tagName === 'use') {
-    linkNewCArd =
-      event.target.parentNode.parentNode.parentNode.parentNode.querySelector(
-        '.news__link'
-      );
+  switch (event.target.tagName) {
+    case 'BUTTON':
+      linkNewCArd =
+        event.target.parentNode.parentNode.querySelector('.news__link');
+      break;
+    case 'SPAN':
+      linkNewCArd =
+        event.target.parentNode.parentNode.parentNode.querySelector(
+          '.news__link'
+        );
+      break;
+    case 'svg':
+      linkNewCArd =
+        event.target.parentNode.parentNode.parentNode.querySelector(
+          '.news__link'
+        );
+      break;
+    case 'path':
+      linkNewCArd =
+        event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(
+          '.news__link'
+        );
+      break;
+    case 'use':
+      linkNewCArd =
+        event.target.parentNode.parentNode.parentNode.parentNode.querySelector(
+          '.news__link'
+        );
+      break;
   }
-
   if (arreyCard.length !== 0) {
     localStorage.removeItem('newsCard');
     const arreyCardSecond = [];
