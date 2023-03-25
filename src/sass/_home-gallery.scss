@@ -86,79 +86,71 @@
 }
 
 .news__category {
-  position: absolute;
-  display: flex;
-  min-width: 96px;
-  height: auto;
-  padding: 4px 14px;
-  margin: 0;
-  left: 0px;
-  top: 40px;
-  background: rgba(68, 64, 247, 0.7);
 
-  border-radius: 0px 4px 4px 0px;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  justify-content: center;
-  border-color: transparent;
+   position: absolute;
+   display: flex;
+   cursor: pointer;
+   min-width: 96px;
+   height: auto;
+   padding: 4px 14px;
+   margin: 0;
+   left: 0px;
+   top: 44px;
+   background: var(--color-active-btn);
 
-  color: var(--color-btn-white);
+
+   border-radius: 0px 4px 4px 0px;
+   font-weight: 500;
+   font-size: 12px;
+   line-height: 16px;
+   justify-content: center;
+   border-color: transparent;
+
+   color: var(--color-btn-white);
 }
 
 .news__addbtn {
-  position: absolute;
-  display: block;
-  cursor: pointer;
-  pointer-events: auto;
-  z-index: 2;
+   position: absolute;
+   right: 12px;
+   bottom: 12px;
+   display: flex;
+   gap: 4px;
+   align-items: center;
+   border-radius: 20px;
+   border: none;
+   max-height: 28px;
+   font-style: normal;
+   font-weight: 500;
+   font-size: 12px;
+   line-height: 16px;
+   padding: 6px 12px;
+   cursor: pointer;
+   background-color: var(--color-btn-white);
+   color: var(--text-color);
 
-  min-width: 40px;
-  min-height: 10px;
-  margin: 0;
-  padding: 6px 32px 6px 12px;
-  right: 12px;
-  bottom: 12px;
 
-  background-color: var(--color-btn-white);
-  border-radius: 20px;
-  border-color: transparent;
-
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  text-align: left;
-  opacity: 1;
-
-  color: var(--text-color);
 }
 
 .news__removebtn {
-  position: absolute;
-  display: flex;
-  align-items: end;
-  cursor: pointer;
-  pointer-events: auto;
-  z-index: 2;
+   position: absolute;
+   right: 12px;
+   bottom: 12px;
+   display: flex;
+   gap: 4px;
+   align-items: center;
+   border-radius: 20px;
+   border: none;
+   max-height: 28px;
+   font-style: normal;
+   font-weight: 500;
+   font-size: 12px;
+   line-height: 16px;
+   padding: 6px 12px;
+   cursor: pointer;
+   background-color: var(--color-btn-white);
+   color: var(--text-color);
 
-  min-width: 40px;
-  min-height: 10px;
-  margin: 0;
-  padding: 6px 12px 6px 12px;
-  right: 12px;
-  bottom: 12px;
 
-  background-color: var(--color-btn-white);
-  border-radius: 20px;
-  border-color: transparent;
-
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  text-align: left;
-  opacity: 1;
-
-  color: var(--text-color);
 }
 
 .text__removebtn {
@@ -166,21 +158,23 @@
 }
 
 .news__title {
-  height: 99px;
-  margin-bottom: 20px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 1.36;
-  letter-spacing: -0.01em;
 
-  color: var(----text-color);
-  overflow: hidden;
+   height: 99px;
+   margin-bottom: 20px;
+   font-style: normal;
+   font-weight: 700;
+   font-size: 24px;
+   line-height: 1.36;
+   letter-spacing: -0.01em;
 
-  @include tablet {
-    font-size: 32px;
-    height: 132px;
-  }
+   color: var(---text-color);
+   overflow: hidden;
+
+   @include tablet {
+      font-size: 32px;
+      height: 132px;
+   }
+
 }
 
 .news__text {
@@ -229,34 +223,56 @@
   }
 }
 
-.news__icon {
-  fill: var(--color-btn-white);
-  position: absolute;
-  right: 12px;
+
+
+
+
+.news__heart-icon {
+   stroke: #4440f6;
+   fill: var(--color-btn-white);
+}
+
+.news__fiilheart-icon {
+   fill: #4440f6;
 }
 
 .is-read {
-  color: var(--green-text);
-  font-family: 'Manrope500', sans-serif;
-  font-size: 14px;
-  line-height: 1.36;
-  opacity: 1;
-  min-width: 112px;
-  height: 24px;
-  background-color: transparent;
-  z-index: 9;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 8px;
-  display: flex;
-  position: absolute;
-  top: 40px;
-  right: 0;
+   font-family: 'Manrope500', sans-serif;
+   font-size: 14px;
+   line-height: 1.36;
+   opacity: 1;
+   z-index: 2;
+   padding: 4px 8px;
+   position: absolute;
+   right: 0;
+   color: var(--green-text);
+
+   position: absolute;
+   top: 20px;
+   right: 10px;
+
+   &::after {
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      background-image: url('/src/images/icon-read.svg');
+      background-repeat: no-repeat;
+      background-position-y: 5.5px;
+      margin-left: 6px;
+
+   }
 }
 
 .dark {
-  & .news__text {
-    color: var(--text-color-dark-theme);
-  }
+   & .news__text {
+      color: var(--text-color-dark-theme);
+   }
 }
+
+
+.icon-checked {
+   fill: var(--green-text);
+   opacity: 1;
+}
+
