@@ -405,35 +405,45 @@ input:checked + .ball:before {
   position: absolute;
   display: none;
 }
-.dark{
-  & .search-field{
-    border:  1px solid var(--text-color-dark-theme);
+.dark {
+  & .search-field {
+    border: 1px solid var(--text-color-dark-theme);
   }
-  & #search-field__input{
+  & #search-field__input {
     color: var(--text-color-dark-theme);
   }
-  & .header{
-    border-bottom: 1px solid rgba(244, 244, 244, 0.2);;
+  & .header {
+    border-bottom: 1px solid rgba(244, 244, 244, 0.2);
   }
-  & .search__icon{
+  & .search__icon {
     fill: var(--text-color-dark-theme);
   }
-  & .choseTheme__light{
+  & .choseTheme__light {
     color: var(--text-color-dark-theme);
   }
-  & .choseTheme__dark{
+  & .choseTheme__dark {
     color: var(--secondary-text-color);
   }
-  & .sun{
+  & .sun {
     fill: var(--dark-text);
   }
   & .moon {
     fill: var(--markercolor);
   }
-  & .menu__container{
+  & .menu__container {
     background-color: var(--background-color-dark);
   }
-  & .close__button-icon{
+  & .close__button-icon {
     fill: var(--text-color-dark-theme);
+  }
+}
+.header {
+  position: relative;
+  background-color: var(--color-btn-white);
+}
+
+.dark {
+  & .header {
+    background-color: var(--background-color-dark);
   }
 }
