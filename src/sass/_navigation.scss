@@ -6,13 +6,7 @@
 }
 .navblock {
   display: flex;
-  gap: 24px;
-  @include tablet {
-    gap: 40px;
-  }
-  @include desktop {
-    gap: 111px;
-  }
+ 
 }
 .nav-buttons{
   display: flex;
@@ -22,13 +16,7 @@
     gap: 16px;
   }
 }
-.nav-btnsel{
-  display: flex;
-  gap: 14px;
-  @include tablet{
-    gap: 16px;
-  }
-}
+
 .category-item {
   padding: 8px 13px;
   border: 1px solid var(--markercolor);
@@ -71,4 +59,102 @@
 }
 .nav-select {
   width:112px
+}
+// custom select 
+.custom-select-list {
+  position: absolute;
+  height: 400px;
+  overflow: auto;
+  z-index:1;
+
+  border: 1px solid var(--markercolor);
+  background-color: var(--color-btn-white);
+  color: var(--markercolor);
+  border-radius: 20px;
+  outline: none;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+
+}
+.custom-select-list-item{
+    padding: 8px 13px;
+    // border-radius: 20px;
+    background-color: var(--color-btn-white);
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--markercolor);
+    transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    @include tablet {
+      padding: 8px 21px;
+    }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--color-btn-white);
+  
+    background-color: var(--markercolor);
+  }
+
+}
+.custom-select-btn {
+  padding: 8px 30px 8px 14px;
+  border: 1px solid var(--markercolor);
+  border-radius: 20px;
+  background-color: var(--color-btn-white);
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--markercolor);
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  @include tablet {
+    padding: 8px 35px 8px 21px;
+    margin-left: 16px;
+  }
+
+}
+.custom-select-btn-textContent {
+  white-space: nowrap;
+}
+.custom-select-arrow {
+  fill: #a2a2a2;
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    transform: rotateZ(0deg);
+    transition: 300ms;
+}
+.custom-select-is-open{
+  transform: rotateZ(180deg);
+}
+.custom-select-list::-webkit-scrollbar{
+  overflow: hidden;
+  width: 10px;
+  
+}
+.custom-select-list::-webkit-scrollbar-track{
+  background: #d8d8d8;
+}
+.custom-select-list::-webkit-scrollbar-thumb{
+  background: var(--markercolor);
+  border-radius: 8px;
+}
+.custom-select-list::-webkit-scrollbar-thumb:hover{
+  background: #abc4ec;
+}
+
+.custom-select-thumb{
+  overflow: hidden;
+  position: absolute;
+  height: 400px;
+  width: 156px;
+  top: 36px;
+  border-radius: 20px;
+  @include tablet{
+    width: 175px;
+  }
 }

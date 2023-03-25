@@ -1,89 +1,128 @@
 <section class="navigation">
   <div class="container">
     <div class="navblock">
-     <div class="nav-btnsel">
-      <div class="nav-buttons"></div>
-      <select class="nav-select category-item"></select>
-    </div>
+     
+        <div class="nav-buttons"></div>
+
        
+        <div class="custom-select" style="position:relative;">
+          <button aria-label="chose-category-button" class="custom-select-btn">
+            <span class="custom-select-btn-textContent">Others</span> 
+            <svg class="custom-select-arrow" width="15" height="15">
+              <use
+                href="./images/symbol-defs.svg#icon-arrowToDown"
+              ></use>
+            </svg>
+          </button>
+        <div class="custom-select-thumb">
+          <ul class="custom-select-list is-hidden"></ul>
+        </div>
+        </div>
+
+      
+     
+
       <div class="calendar2">
-      <div class="calendar2__search-info">
-        <p class="calendar2__search">Search date news</p>
-        <div class="calendar2__current-date-container">
-          <svg class="calendar2__current-date-before" width="20" height="20">
-            <use href="./images/symbol-defs.svg#icon-frame"></use>
-          </svg>
-          <p class="calendar2__current-date">Please choose date...</p>
-          <svg class="calendar2__current-date-after" width="15" height="15">
-            <use
-              href="./images/symbol-defs.svg#icon-vector-up"
-              class="calendar2__current-date-svg-up visually-hidden"
-            ></use>
-            <use
-              href="./images/symbol-defs.svg#icon-arrowToDown"
-              class="calendar2__current-date-svg-down"
-            ></use>
-          </svg>
-        </div>
-      </div>
-      <div class="calendar2__container">
-        <div class="calendar2__manager-container">
-          <div class="calendar2__month-year-container">    
-             <button type="button" class="calendar2__month-year-button-left"> 
-              <svg class="calendar2__month-year-left" width="7" height="12">
+        <div class="calendar2__search-info">
+          <p class="calendar2__search">Search date news</p>
+          <div class="calendar2__current-date-container">
+            <svg class="calendar2__current-date-before" width="20" height="20">
+              <use href="./images/symbol-defs.svg#icon-frame"></use>
+            </svg>
+            <p class="calendar2__current-date">Please choose date...</p>
+            <svg class="calendar2__current-date-after" width="15" height="15">
               <use
-                href="./images/symbol-defs.svg#icon-arrowbackward"
-                class="calendar2__month-year-left-svg"
-              ></use></button>
-            <p class="calendar2__month-year">February 2021</p> 
-            <button type="button" class="calendar2__month-year-button-right"> 
-              <svg class="calendar2__month-year-right" width="7" height="12">
+                href="./images/symbol-defs.svg#icon-vector-up"
+                class="calendar2__current-date-svg-up visually-hidden"
+              ></use>
               <use
-                href="./images/symbol-defs.svg#icon-arrowforward"
-                class="calendar2__month-year-right-svg"
-              ></use></button>
-             
+                href="./images/symbol-defs.svg#icon-arrowToDown"
+                class="calendar2__current-date-svg-down"
+              ></use>
+            </svg>
           </div>
-
-          <button
-            type="button"
-            class="calendar2__button-left"
-            data-button="left"
-          >
-            <svg class="calendar2__current-month-left" width="9" height="17">
-              <use
-                href="./images/symbol-defs.svg#icon-arrowbackward"
-                class="calendar2__current-month-left-svg"
-              ></use>
-            </svg>
-          </button>
-          <button
-            type="button"
-            class="calendar2__button-right"
-            data-button="right"
-          >
-            <svg class="calendar2__current-month-right" width="9" height="17">
-              <use
-                href="./images/symbol-defs.svg#icon-arrowforward"
-                class="calendar2__current-month-right-svg"
-              ></use>
-            </svg>
-          </button>
         </div>
-        <ul class="calendar2__weekDays">
-          <li class="calendar2__dayName">Mo</li>
-          <li class="calendar2__dayName">Tu</li>
-          <li class="calendar2__dayName">We</li>
-          <li class="calendar2__dayName">Th</li>
-          <li class="calendar2__dayName">Fr</li>
-          <li class="calendar2__dayName">Sa</li>
-          <li class="calendar2__dayName">Su</li>
-        </ul>
+        <div class="calendar__wrapper">
+          <div class="calendar2__container">
+            <div class="calendar2__manager-container">
+              <div class="calendar2__month-year-container">
+                <button aria-label="previous-year" type="button" class="calendar2__month-year-button-left">
+                  <svg class="calendar2__month-year-left" width="7" height="12">
+                    <use
+                      href="./images/symbol-defs.svg#icon-arrowbackward"
+                      class="calendar2__month-year-left-svg"
+                    ></use>
+                  </svg>
+                </button>
+                <p class="calendar2__month-year">February 2021</p>
+                <button
+                  type="button"
+                  aria-label="next-year"
+                  class="calendar2__month-year-button-right"
+                >
+                  <svg
+                    class="calendar2__month-year-right"
+                    width="7"
+                    height="12"
+                  >
+                    <use
+                      href="./images/symbol-defs.svg#icon-arrowforward"
+                      class="calendar2__month-year-right-svg"
+                    ></use>
+                  </svg>
+                </button>
+              </div>
 
-        <ul class="calendar2__dates"></ul>
+              <button
+                type="button"
+                aria-label="previous-month"
+                class="calendar2__button-left"
+                data-button="left"
+              >
+                <svg
+                  class="calendar2__current-month-left"
+                  width="9"
+                  height="17"
+                >
+                  <use
+                    href="./images/symbol-defs.svg#icon-arrowbackward"
+                    class="calendar2__current-month-left-svg"
+                  ></use>
+                </svg>
+              </button>
+              <button
+                type="button"
+                aria-label="next-month"
+                class="calendar2__button-right"
+                data-button="right"
+              >
+                <svg
+                  class="calendar2__current-month-right"
+                  width="9"
+                  height="17"
+                >
+                  <use
+                    href="./images/symbol-defs.svg#icon-arrowforward"
+                    class="calendar2__current-month-right-svg"
+                  ></use>
+                </svg>
+              </button>
+            </div>
+            <ul class="calendar2__weekDays">
+              <li class="calendar2__dayName">Mo</li>
+              <li class="calendar2__dayName">Tu</li>
+              <li class="calendar2__dayName">We</li>
+              <li class="calendar2__dayName">Th</li>
+              <li class="calendar2__dayName">Fr</li>
+              <li class="calendar2__dayName">Sa</li>
+              <li class="calendar2__dayName">Su</li>
+            </ul>
+
+            <ul class="calendar2__dates"></ul>
+          </div>
+        </div>
       </div>
     </div>
-
-      </div>
     </div>
+  </div>
 </section>
