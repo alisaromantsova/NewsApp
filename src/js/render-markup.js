@@ -1,5 +1,7 @@
 const div = document.querySelector('.news');
 let newsCardAddToFavorite = 0;
+import { pagination, paginationData } from './pagination';
+// додав я
 
 // export async function  renderMarkup(array){
 // const markup = array.map((article)=>{
@@ -24,7 +26,36 @@ import { setEventAfterRead } from './news-card';
 // import { checkedString } from './news-card';
 const iconSvg = new URL('../images/symbol-defs.svg', import.meta.url);
 
-export async function renderMarkup(array) {
+export function renderMarkupData(array) {
+  switch (true) {
+    case window.matchMedia('(max-width: 768px)').matches:
+      paginationData.newsPerPage = 5;
+      paginationData.start = 0;
+      paginationData.end = 4;
+      break;
+    case window.matchMedia('(min-width: 769px) and (max-width: 1280px)')
+      .matches:
+      paginationData.newsPerPage = 8;
+      paginationData.start = 0;
+      paginationData.end = 7;
+      break;
+    case window.matchMedia('(min-width: 1281px)').matches:
+      // треба переписати
+      paginationData.newsPerPage = 9;
+      paginationData.start = 0;
+      paginationData.end = 8;
+      break;
+  }
+  paginationData.originalArray = array;
+  paginationData.totalPage = Math.ceil(
+    (array.length + 1) / paginationData.newsPerPage
+  );
+  renderMarkup(array.slice(paginationData.start, paginationData.end));
+}
+
+export function renderMarkup(array) {
+  // Алісин код!!! Чіпати тільки назву масиву який передає новини!!!
+
   const markup = array
     .map(article => {
       if (JSON.parse(localStorage.getItem('newsCard'))) {
@@ -100,7 +131,8 @@ export async function renderMarkup(array) {
     })
     .join('');
 
-  div.insertAdjacentHTML('beforeend', markup);
+  div.innerHTML = markup;
+  // checkedString();
   setEventAfterRender();
   setEventAfterRead();
 }
