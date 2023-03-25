@@ -19,21 +19,45 @@ function renderMarkup() {
 
 renderMarkup();
 
-function onRemoveNewCardToFavoriteClick(e) {
-  if (event.target.tagName !== 'SPAN' && event.target.tagName !== 'BUTTON') {
+function onRemoveNewCardToFavoriteClick(event) {
+  if (
+    event.target.tagName !== 'SPAN' &&
+    event.target.tagName !== 'BUTTON' &&
+    event.target.classList.contains('news__icon') &&
+    event.target.hasAttribute('d')
+  ) {
     return;
   }
-
   const arreyCard = JSON.parse(localStorage.getItem('newsCard'))
     ? [...JSON.parse(localStorage.getItem('newsCard'))]
     : [];
 
-  const linkNewCArd =
-    event.target.tagName === 'BUTTON'
-      ? event.target.parentNode.parentNode.querySelector('.news__link')
-      : event.target.parentNode.parentNode.parentNode.querySelector(
-          '.news__link'
-        );
+  let linkNewCArd = null;
+
+  if (event.target.tagName === 'BUTTON') {
+    linkNewCArd =
+      event.target.parentNode.parentNode.querySelector('.news__link');
+  } else if (event.target.tagName === 'SPAN') {
+    linkNewCArd =
+      event.target.parentNode.parentNode.parentNode.querySelector(
+        '.news__link'
+      );
+  } else if (event.target.tagName === 'svg') {
+    linkNewCArd =
+      event.target.parentNode.parentNode.parentNode.querySelector(
+        '.news__link'
+      );
+  } else if (event.target.tagName === 'path') {
+    linkNewCArd =
+      event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(
+        '.news__link'
+      );
+  } else if (event.target.tagName === 'use') {
+    linkNewCArd =
+      event.target.parentNode.parentNode.parentNode.parentNode.querySelector(
+        '.news__link'
+      );
+  }
 
   if (arreyCard.length !== 0) {
     localStorage.removeItem('newsCard');

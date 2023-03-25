@@ -7,25 +7,56 @@ function onAddToFavoriteClick(event) {
   const arreyCard = JSON.parse(localStorage.getItem('newsCard'))
     ? [...JSON.parse(localStorage.getItem('newsCard'))]
     : [];
-  if (event.target.tagName !== 'SPAN' && event.target.tagName !== 'BUTTON') {
+  if (
+    event.target.tagName !== 'SPAN' &&
+    event.target.tagName !== 'BUTTON' &&
+    event.target.classList.contains('news__icon') &&
+    event.target.hasAttribute('d')
+  ) {
     return;
   }
+ 
+  let newsCard = null;
+  let linkNewCArd = null;
 
-  let newsCard =
-    event.target.tagName === 'BUTTON'
-      ? event.target.parentNode.parentNode.innerHTML
-      : event.target.parentNode.parentNode.parentNode.innerHTML;
-
-  const linkNewCArd =
-    event.target.tagName === 'BUTTON'
-      ? event.target.parentNode.parentNode.querySelector('.news__link')
-      : event.target.parentNode.parentNode.parentNode.querySelector(
-          '.news__link'
-        );
+  if (event.target.tagName === 'BUTTON') {
+    newsCard = event.target.parentNode.parentNode.innerHTML;
+    linkNewCArd =
+      event.target.parentNode.parentNode.querySelector('.news__link');
+  } else if (event.target.tagName === 'SPAN') {
+    newsCard = event.target.parentNode.parentNode.parentNode.innerHTML;
+    linkNewCArd =
+      event.target.parentNode.parentNode.parentNode.querySelector(
+        '.news__link'
+      );
+  } else if (event.target.tagName === 'svg') {
+    newsCard = event.target.parentNode.parentNode.parentNode.innerHTML;
+    linkNewCArd =
+      event.target.parentNode.parentNode.parentNode.querySelector(
+        '.news__link'
+      );
+  } else if (event.target.tagName === 'path') {
+    newsCard =
+      event.target.parentNode.parentNode.parentNode.parentNode.parentNode
+        .parentNode.parentNode.parentNode.parentNode.innerHTML;
+    linkNewCArd =
+      event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(
+        '.news__link'
+      );
+  } else if (event.target.tagName === 'use') {
+    newsCard =
+      event.target.parentNode.parentNode.parentNode.parentNode.innerHTML;
+    linkNewCArd =
+      event.target.parentNode.parentNode.parentNode.parentNode.querySelector(
+        '.news__link'
+      );
+  }
 
   if (
     event.target.classList.contains('news__removebtn') ||
-    event.target.parentNode.classList.contains('news__removebtn')
+    event.target.parentNode.classList.contains('news__removebtn') ||
+    event.target.parentNode.parentNode.classList.contains('news__removebtn') ||
+    event.target.parentNode.parentNode.classList.contains('news__removebtn')
   ) {
     localStorage.removeItem('newsCard');
     const arreyCardSecond = [];
