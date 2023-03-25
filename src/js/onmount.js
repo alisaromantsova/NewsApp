@@ -6,7 +6,7 @@ import {
 } from './fetches';
 import { renderMarkup } from './render-markup';
 import { categoryValue, removeActiveClass } from './navigation';
-// import { successCallback, failureCallback } from './weather';
+import { successCallback, failureCallback } from './weather';
 console.log(window)
 onMount();
 async function onMount() {
@@ -14,5 +14,5 @@ async function onMount() {
   categoryValue.value = '';
   const result = await fetchPopularNews();
   renderMarkup(result);
-  // navigator.geolocation.getCurrentPosition(successCallback, failureCallback);
+  navigator.geolocation.getCurrentPosition(successCallback, failureCallback);
 }

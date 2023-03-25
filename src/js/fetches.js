@@ -26,7 +26,7 @@ export async function fetchPopularNews() {
         title: article.title,
         text: article.abstract,
         imgSrc: article.media[0]
-          ? article.media[0][meta][3].url
+          ? article.media[0][meta][2].url
           :`${img404}`,
         link: article.url,
 
