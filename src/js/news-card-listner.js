@@ -1,7 +1,6 @@
 // збереження в локалсторедж по кліку на add
 
 const divClassNews = document.querySelector('.news');
-
 divClassNews.addEventListener('click', onAddToFavoriteClick);
 
 function onAddToFavoriteClick(event) {
