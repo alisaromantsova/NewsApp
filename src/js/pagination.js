@@ -89,7 +89,7 @@ const paginEventListener = () => {
   }
 };
 
-prevBtnRef.disabled = true;
+if (prevBtnRef) prevBtnRef.disabled = true;
 paginEventListener();
 function smoothScrollUp() {
   window.scrollTo({
