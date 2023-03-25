@@ -12,7 +12,11 @@ function onAddToFavoriteClick(event) {
     return;
   }
 
-  const newsCard = event.target.parentNode.parentNode.parentNode.innerHTML;
+  const newsCard =
+    event.target.tagName === 'BUTTON'
+      ? event.target.parentNode.parentNode.innerHTML
+      : event.target.parentNode.parentNode.parentNode.innerHTML;
+
   arreyCard.push({ newsCard });
   localStorage.setItem('newsCard', JSON.stringify(arreyCard));
 }
