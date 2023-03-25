@@ -5,3 +5,4 @@ import './js/theme-btn';
 import './js/current-page-underline';
 import './js/search-field';
 import './js/mobile-menu';
+import './js/btnUpp';

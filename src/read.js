@@ -4,5 +4,6 @@ import './js/theme-btn';
 import './js/current-page-underline';
 import './js/search-field';
 import './js/mobile-menu';
-import './js/read-page'
-import './js/addtoread'
+import './js/read-page';
+import './js/addtoread';
+import './js/btnUpp';
