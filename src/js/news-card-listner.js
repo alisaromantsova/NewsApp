@@ -3,11 +3,11 @@
 const divClassNews = document.querySelector('.news');
 
 divClassNews.addEventListener('click', onAddToFavoriteClick);
-let arreyCard = JSON.parse(localStorage.getItem('newsCard'))
-  ? [...JSON.parse(localStorage.getItem('newsCard'))]
-  : [];
 
 function onAddToFavoriteClick(event) {
+  const arreyCard = JSON.parse(localStorage.getItem('newsCard'))
+    ? [...JSON.parse(localStorage.getItem('newsCard'))]
+    : [];
   if (event.target.tagName !== 'SPAN' && event.target.tagName !== 'BUTTON') {
     return;
   }
