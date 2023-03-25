@@ -80,17 +80,19 @@ const nextBtnRef = document.querySelector('.next');
 const paginationRefs = document.querySelector('.pagination');
 
 const paginEventListener = () => {
-  if (
-    window.location.pathname === '/index.html' ||
-    window.location.pathname === '/NewsApp/' ||
-    window.location.pathname === '/'
-  ) {
+  
     paginationRefs.addEventListener('click', pagination);
   }
-};
+
 
 if (prevBtnRef) prevBtnRef.disabled = true;
+if (
+  window.location.pathname === '/index.html' ||
+  window.location.pathname === '/NewsApp/' ||
+  window.location.pathname === '/'||window.location.pathname === '/NewsApp/index.html'
+) {
 paginEventListener();
+}
 function smoothScrollUp() {
   window.scrollTo({
     top: 0,

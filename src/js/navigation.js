@@ -145,7 +145,7 @@ function renderNavigation(width) {
     selectList.insertAdjacentHTML('beforeend', markupSelection);
   }
 }
-console.log(window);
+
 const block = document.querySelector('.nav-buttons');
 if (
   window.location.pathname === '/index.html' ||
@@ -214,7 +214,7 @@ const onClickOutsideCustomSelect = e => {
   ) {
     return;
   }
-  // console.log(e.target);
+ 
   if (e.target !== custonmSelectListItem) {
     customSelectList.classList.add('is-hidden');
     customSelectBtn.children[1].classList.remove('custom-select-is-open');
