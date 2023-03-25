@@ -20,7 +20,7 @@ export async function failureCallback() {
   renderWeather(data);
 }
 
-function renderWeather(data) {
+export function renderWeather(data) {
   const currentDate = new Date();
   const currentDayName = currentDate.toString().split(' ')[0];
   const currentDay = currentDate.getDate();
