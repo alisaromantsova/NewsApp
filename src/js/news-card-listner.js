@@ -18,49 +18,12 @@ function onAddToFavoriteClick(event) {
     return;
   }
 
-  let newsCard = null;
-  let linkNewCArd = null;
-
-  switch (event.target.tagName) {
-    case 'BUTTON':
-      newsCard = event.target.parentNode.parentNode.innerHTML;
-      linkNewCArd =
-        event.target.parentNode.parentNode.querySelector('.news__link');
-      break;
-    case 'SPAN':
-      newsCard = event.target.parentNode.parentNode.parentNode.innerHTML;
-      linkNewCArd =
-        event.target.parentNode.parentNode.parentNode.querySelector(
-          '.news__link'
-        );
-      break;
-    case 'svg':
-      newsCard = event.target.parentNode.parentNode.parentNode.innerHTML;
-      linkNewCArd =
-        event.target.parentNode.parentNode.parentNode.querySelector(
-          '.news__link'
-        );
-      break;
-    case 'path':
-      newsCard =
-        event.target.parentNode.parentNode.parentNode.parentNode.innerHTML;
-      linkNewCArd =
-        event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(
-          '.news__link'
-        );
-      break;
-    case 'use':
-      newsCard =
-        event.target.parentNode.parentNode.parentNode.parentNode.innerHTML;
-      linkNewCArd =
-        event.target.parentNode.parentNode.parentNode.parentNode.querySelector(
-          '.news__link'
-        );
-      break;
-  }
+  const newsCard = event.target.closest('.new__card').innerHTML;
+  const linkNewCArd = event.target
+    .closest('.new__card')
+    .querySelector('.news__link');
 
   if (!newsCard.includes('news__addbtn is-hidden')) {
-    console.log('delet');
     localStorage.removeItem('newsCard');
     const arreyCardSecond = [];
     arreyCard.map(item => {
