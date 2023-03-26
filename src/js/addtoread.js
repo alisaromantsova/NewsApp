@@ -7,7 +7,9 @@ if (
 ) {
 linkReadMoreNews.addEventListener('click', readMoreClick);
 }
-function readMoreClick(event) {
+
+
+export function readMoreClick(event) {
   const arreyReadCard = JSON.parse(localStorage.getItem('newsReadMore'))
     ? [...JSON.parse(localStorage.getItem('newsReadMore'))]
     : [];
