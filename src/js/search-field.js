@@ -12,7 +12,7 @@ const selectEl = document.querySelector('.nav-select ');
 const div = document.querySelector('.news');
 
 searchForm.addEventListener('submit', createNews);
-
+searchForm.setAttribute('autocomplete', "off");
 function createNews(event) {
   event.preventDefault();
   const inputName = event.currentTarget.searchQuery.value.trim();
