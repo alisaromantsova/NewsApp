@@ -25,15 +25,13 @@ export async function fetchPopularNews() {
       const newsObject = {
         title: article.title,
         text: article.abstract,
-        imgSrc: article.media[0]
-          ? article.media[0][meta][2].url
-          :`${img404}`,
+        imgSrc: article.media[0] ? article.media[0][meta][2].url : `${img404}`,
         link: article.url,
 
         category: article.section,
         date: makeDate(article.published_date),
-        hasLiked:false,
-        hasRead:false
+        hasLiked: false,
+        hasRead: false,
       };
       return newsObject;
     });
@@ -43,7 +41,9 @@ export async function fetchPopularNews() {
   }
 }
 
-//Фетч по категориям
+//Фетч по категориямн
+// api.nytimes.com/svc/news/v3/content/all/arts.json?api-key=H3FRH5IMtPz0yNN170uMkDXY0wt0kfbS&limit=500&offset=0
+
 export async function fetchNewsByCategory(category) {
   try {
     const response = await axios
@@ -63,14 +63,11 @@ export async function fetchNewsByCategory(category) {
       const newsObject = {
         title: article.title,
         text: article.abstract,
-        imgSrc: article.multimedia
-          ? article.multimedia[2].url
-          : `${img404}`,
+        imgSrc: article.multimedia ? article.multimedia[2].url : `${img404}`,
         link: article.url,
 
         category: article.section,
         date: makeDate(article.published_date),
-        
       };
       return newsObject;
     });
@@ -110,8 +107,8 @@ export async function fetchNewsBySearch(search) {
 
         category: article.section_name,
         date: makeDate(article.pub_date),
-        hasLiked:false,
-        hasRead:false
+        hasLiked: false,
+        hasRead: false,
       };
       return newsObject;
     });
@@ -158,7 +155,6 @@ export async function fetchNewsByCategoryAndDate(
       )
       .catch(function (err) {
         div.innerHTML = renderEmptyMarkup();
-       
       });
 
     if (!response.data.response.docs) {
@@ -179,8 +175,8 @@ export async function fetchNewsByCategoryAndDate(
 
         category: article.section_name,
         date: makeDate(article.pub_date),
-        hasLiked:false,
-        hasRead:false
+        hasLiked: false,
+        hasRead: false,
       };
       return newsObject;
     });

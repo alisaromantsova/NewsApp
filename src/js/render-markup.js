@@ -1,6 +1,7 @@
 const div = document.querySelector('.news');
 let newsCardAddToFavorite = 0;
-import { pagination, paginationData } from './pagination';
+import { renderPaginationBtn, paginationData } from './pagination';
+import { successCallback, failureCallback } from './weather';
 // додав я
 
 // export async function  renderMarkup(array){
@@ -27,6 +28,8 @@ import { createThreePoints } from './news-card';
 import sprite from '../images/symbol-defs.svg';
 
 export function renderMarkupData(array) {
+  restart();
+  console.log('array:', array);
   switch (true) {
     case window.matchMedia('(max-width: 768px)').matches:
       paginationData.newsPerPage = 5;
@@ -50,6 +53,7 @@ export function renderMarkupData(array) {
   paginationData.totalPage = Math.ceil(
     (array.length + 1) / paginationData.newsPerPage
   );
+  renderPaginationBtn();
   renderMarkup(array.slice(paginationData.start, paginationData.end));
 }
 
@@ -133,7 +137,17 @@ export function renderMarkup(array) {
     .join('');
 
   div.innerHTML = markup;
+  if (paginationData.page === 1) {
+    navigator.geolocation.getCurrentPosition(successCallback, failureCallback);
+  }
   // checkedString();
   setEventAfterRender();
   setEventAfterRead();
+}
+
+function restart() {
+  paginationData.newsPerPage = 0;
+  paginationData.start = 0;
+  paginationData.end = 0;
+  paginationData.page = 1;
 }
