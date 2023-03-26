@@ -25,15 +25,13 @@ export async function fetchPopularNews() {
       const newsObject = {
         title: article.title,
         text: article.abstract,
-        imgSrc: article.media[0]
-          ? article.media[0][meta][2].url
-          :`${img404}`,
+        imgSrc: article.media[0] ? article.media[0][meta][2].url : `${img404}`,
         link: article.url,
 
         category: article.section,
         date: makeDate(article.published_date),
-        hasLiked:false,
-        hasRead:false
+        hasLiked: false,
+        hasRead: false,
       };
       return newsObject;
     });
@@ -63,14 +61,11 @@ export async function fetchNewsByCategory(category) {
       const newsObject = {
         title: article.title,
         text: article.abstract,
-        imgSrc: article.multimedia
-          ? article.multimedia[2].url
-          : `${img404}`,
+        imgSrc: article.multimedia ? article.multimedia[2].url : `${img404}`,
         link: article.url,
 
         category: article.section,
         date: makeDate(article.published_date),
-        
       };
       return newsObject;
     });
@@ -110,8 +105,8 @@ export async function fetchNewsBySearch(search) {
 
         category: article.section_name,
         date: makeDate(article.pub_date),
-        hasLiked:false,
-        hasRead:false
+        hasLiked: false,
+        hasRead: false,
       };
       return newsObject;
     });
@@ -158,7 +153,6 @@ export async function fetchNewsByCategoryAndDate(
       )
       .catch(function (err) {
         div.innerHTML = renderEmptyMarkup();
-       
       });
 
     if (!response.data.response.docs) {
@@ -179,8 +173,46 @@ export async function fetchNewsByCategoryAndDate(
 
         category: article.section_name,
         date: makeDate(article.pub_date),
-        hasLiked:false,
-        hasRead:false
+        hasLiked: false,
+        hasRead: false,
+      };
+      return newsObject;
+    });
+    return array;
+  } catch (e) {
+    div.innerHTML = renderEmptyMarkup();
+  }
+}
+export async function fetchNewsByCategoryAndDate2(date, query) {
+  try {
+    const response = await axios
+      .get(
+        `https://api.nytimes.com/svc/search/v2/articlesearch.json?${query}&facet_fields=source&facet=true&begin_date=${date}&end_date=${date}&api-key=${KEY}`
+      )
+      .catch(function (err) {
+        div.innerHTML = renderEmptyMarkup();
+      });
+    if (response.data.response.docs.length === 0) {
+      div.innerHTML = renderEmptyMarkup();
+      return;
+    }
+
+    const newsBySearch = await response.data.response.docs;
+    const array = newsBySearch.map(article => {
+      const newsObject = {
+        title: article.headline.main,
+        text: article.abstract,
+        imgSrc: `https://static01.nyt.com/${
+          article.multimedia[0]
+            ? article.multimedia[2].url
+            : 'images/2023/02/21/multimedia/21skeleton-ukraine-01-zjwv/21skeleton-ukraine-01-zjwv-articleLarge.jpg'
+        }`,
+        link: article.web_url,
+
+        category: article.section_name,
+        date: makeDate(article.pub_date),
+        hasLiked: false,
+        hasRead: false,
       };
       return newsObject;
     });
