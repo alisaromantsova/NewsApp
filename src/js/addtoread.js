@@ -1,6 +1,12 @@
 const linkReadMoreNews = document.querySelector('.news');
+if (
+  window.location.pathname === '/index.html' ||
+  window.location.pathname === '/NewsApp/' ||
+  window.location.pathname === '/' ||
+  window.location.pathname === '/NewsApp/index.html'
+) {
 linkReadMoreNews.addEventListener('click', readMoreClick);
-
+}
 function readMoreClick(event) {
   const arreyReadCard = JSON.parse(localStorage.getItem('newsReadMore'))
     ? [...JSON.parse(localStorage.getItem('newsReadMore'))]
