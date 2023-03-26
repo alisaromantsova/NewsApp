@@ -2,7 +2,7 @@ const newsList = document.querySelector('.list-news');
 
 newsList.addEventListener('click', linkReadMore);
 
-let readMoreID = [];
+let readMoreId = [];
 isLocalEmpty();
 
 function isLocalEmpty() {
