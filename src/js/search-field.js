@@ -8,7 +8,7 @@ import { renderMarkup } from './render-markup';
 import { categoryValue } from './navigation';
 export let inputValueData = { value: '' };
 const searchForm = document.querySelector('#form-field');
-const selectEl = document.querySelector('.nav-select ');
+const selectEl = document.querySelector('.custom-select-btn');
 const div = document.querySelector('.news');
 
 searchForm.addEventListener('submit', createNews);
