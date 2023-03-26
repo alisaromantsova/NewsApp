@@ -8,7 +8,8 @@ import { renderMarkup } from './render-markup';
 import { categoryValue, removeActiveClass } from './navigation';
 import { successCallback, failureCallback } from './weather';
 console.log(window)
-onMount();
+console.log(new Date());
+onMount()
 async function onMount() {
   removeActiveClass();
   categoryValue.value = '';
