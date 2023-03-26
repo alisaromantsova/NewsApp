@@ -338,16 +338,41 @@ input:checked + .ball:before {
   background: var(--color-btn-white);
   padding-top: 125px;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
   height: 100vh;
-  transform: translateY(-150%);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0 auto;
+  @include tablet {
+    display: none;
+  }
 }
 
-.menu__container.is-open {
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  z-index: 1000;
+  background: var(--color-btn-white);
+  padding-top: 125px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  transform: translateY(-150%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  @include tablet {
+    display: none;
+  }
+}
+
+.backdrop.is-open {
   transform: translateY(0);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .menu__logo {
