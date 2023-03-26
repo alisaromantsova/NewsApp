@@ -1,6 +1,6 @@
 import axios, { isCancel, AxiosError } from 'axios';
 // import './js/render-markup';
-import './js/addtofavorite';
+import './js/read-page';
 import './js/theme-btn';
 import './js/current-page-underline';
 import './js/search-field';

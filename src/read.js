@@ -5,7 +5,6 @@ import './js/current-page-underline';
 import './js/search-field';
 import './js/mobile-menu';
 import './js/read-page';
-import './js/addtoread';
 import './js/btnUpp';
 import './js/header-fixed-position';
 
