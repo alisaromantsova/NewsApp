@@ -12,6 +12,7 @@ export async function successCallback(position) {
     position.coords.latitude,
     position.coords.longitude
   );
+  console.log(data);
   renderWeather(data);
 }
 

@@ -14,9 +14,20 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
-  border: 2px solid var(--secondary-text-color);
+  border: 1px solid var(--secondary-text-color);
   border-radius: 2px;
-  padding: 5px;
+  padding: 4px 10px 4px 16px;
+  span {
+    pointer-events: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  svg {
+    justify-content: center;
+    fill: inherit;
+  }
 }
 
 .next {
@@ -28,7 +39,34 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
-  border: 2px solid var(--secondary-text-color);
+  border: 1px solid var(--secondary-text-color);
   border-radius: 2px;
-  padding: 5px;
+  padding: 4px 17px 5px 10px;
+  span {
+    pointer-events: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  svg {
+    justify-content: center;
+    fill: inherit;
+  }
+}
+
+.pag-btn-container {
+  display: flex;
+  gap: 8px;
+}
+.pag-btn {
+  align-items: center;
+  background-color: var(--background-color-light);
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  border: 1px solid var(--secondary-text-color);
+  border-radius: 2px;
+  padding: 4px 12px;
 }

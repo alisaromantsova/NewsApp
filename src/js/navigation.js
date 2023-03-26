@@ -4,7 +4,7 @@ import {
   fetchNewsBySearch,
   renderEmptyMarkup,
 } from './fetches';
-import { renderMarkup } from './render-markup';
+import { renderMarkup, renderMarkupData } from './render-markup';
 export let categoryValue = { value: '' };
 const div = document.querySelector('.news');
 const categoriesList = [
@@ -166,7 +166,7 @@ async function onCategoryButtonClick(e) {
   const result = await fetchNewsByCategory(chosenCategory);
   categoryValue.value = chosenCategory;
   addActiveClass(e.target);
-  renderMarkup(result);
+  renderMarkupData(result);
 }
 const items = [...document.querySelectorAll('.category-item')];
 
@@ -204,7 +204,7 @@ const onClickCustonListItem = async e => {
   const result = await fetchNewsByCategory(e.target.dataset.action);
   categoryValue.value = e.target.dataset.action;
   addActiveClass(e.target);
-  renderMarkup(result);
+  renderMarkupData(result);
 };
 const onClickOutsideCustomSelect = e => {
   if (
@@ -214,7 +214,7 @@ const onClickOutsideCustomSelect = e => {
   ) {
     return;
   }
- 
+
   if (e.target !== custonmSelectListItem) {
     customSelectList.classList.add('is-hidden');
     customSelectBtn.children[1].classList.remove('custom-select-is-open');
@@ -241,16 +241,18 @@ const customSelectFn = () => {
   if (
     window.location.pathname === '/index.html' ||
     window.location.pathname === '/NewsApp/' ||
-    window.location.pathname === '/'||  window.location.pathname === '/NewsApp/index.html'
+    window.location.pathname === '/' ||
+    window.location.pathname === '/NewsApp/index.html'
   ) {
-  addListenersOnCustomSelect();
+    addListenersOnCustomSelect();
   }
 };
 
 if (
   window.location.pathname === '/index.html' ||
   window.location.pathname === '/NewsApp/' ||
-  window.location.pathname === '/'||  window.location.pathname === '/NewsApp/index.html'
+  window.location.pathname === '/' ||
+  window.location.pathname === '/NewsApp/index.html'
 ) {
-customSelectFn()
+  customSelectFn();
 }
