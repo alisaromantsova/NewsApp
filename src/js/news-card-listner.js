@@ -7,11 +7,13 @@ function onAddToFavoriteClick(event) {
   const arreyCard = JSON.parse(localStorage.getItem('newsCard'))
     ? [...JSON.parse(localStorage.getItem('newsCard'))]
     : [];
+
   if (
     event.target.tagName !== 'SPAN' &&
     event.target.tagName !== 'BUTTON' &&
-    event.target.classList.contains('news__icon') &&
-    event.target.hasAttribute('d')
+    event.target.tagName !== 'svg' &&
+    event.target.tagName !== 'path' &&
+    event.target.tagName !== 'use'
   ) {
     return;
   }
@@ -41,8 +43,7 @@ function onAddToFavoriteClick(event) {
       break;
     case 'path':
       newsCard =
-        event.target.parentNode.parentNode.parentNode.parentNode.parentNode
-          .parentNode.parentNode.parentNode.parentNode.innerHTML;
+        event.target.parentNode.parentNode.parentNode.parentNode.innerHTML;
       linkNewCArd =
         event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(
           '.news__link'
@@ -58,12 +59,8 @@ function onAddToFavoriteClick(event) {
       break;
   }
 
-  if (
-    event.target.classList.contains('news__removebtn') ||
-    event.target.parentNode.classList.contains('news__removebtn') ||
-    event.target.parentNode.parentNode.classList.contains('news__removebtn') ||
-    event.target.parentNode.parentNode.classList.contains('news__removebtn')
-  ) {
+  if (!newsCard.includes('news__addbtn is-hidden')) {
+    console.log('delet');
     localStorage.removeItem('newsCard');
     const arreyCardSecond = [];
     arreyCard.map(item => {
@@ -82,8 +79,6 @@ function onAddToFavoriteClick(event) {
     return;
   }
 
-  if (arreyCard !== []) {
-    arreyCard.push({ newsCard });
-    localStorage.setItem('newsCard', JSON.stringify(arreyCard));
-  }
+  arreyCard.push({ newsCard });
+  localStorage.setItem('newsCard', JSON.stringify(arreyCard));
 }
