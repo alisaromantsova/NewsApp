@@ -1,87 +1,64 @@
-const newsList = document.querySelector('.list-news');
-
-newsList.addEventListener('click', linkReadMore);
-
-let readMoreId = [];
-isLocalEmpty();
-
-function isLocalEmpty() {
-    if (JSON.parse(localStorage.getItem('readMoreLocal')) === null)
-    return;readMoreID = JSON.parse(localStorage.getItem('readMoreLocal'));
+import { renderEmptyMarkup } from './fetches';
+const readList = document.querySelector('.list-news');
+const cardsRead = JSON.parse(localStorage.getItem('newsReadMore'));
+// readList.addEventListener('click', onRemoveNewCardToReadClick);
+if (!cardsRead) {
+  readList.innerHTML = renderEmptyMarkup();
 }
 
-function linkReadMore(event) {
-    const readMore = event.target.closest(`.new__link`);
-    if (!readMore) return;
-    readMore.parentNode.parentNode.parentNode.classList.add('opacity');
-    addReadMore(readMore);
+function renderMarkup() {
+  if (cardsRead) {
+    readList.insertAdjacentHTML(
+      'afterbegin',
+      cardsRead
+        .map(card => `<div class="new__card">${card.newsReadMoreCard}</div>`)
+        .join('')
+    );
   }
+}
 
-  function addReadMore(readMore) {
-    const evenDateNow = new Date();
-    const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
-    const readDateNow = evenDateNow
-      .toLocaleDateString([], options)
-      .replaceAll('.', '/');
-    const read = {
-      uri: readMore.nextElementSibling.textContent,
-      date: readMore.parentNode.firstElementChild.innerText,
-      img: readMore.parentNode.parentNode.childNodes[1].children[0].currentSrc,
-      title: readMore.parentNode.parentNode.childNodes[3].children[0].innerText,
-      description:
-        readMore.parentNode.parentNode.childNodes[3].children[1].innerText,
-      link: readMore.parentNode.children[1].href,
-      category:
-        readMore.parentNode.parentNode.childNodes[1].children[1].innerHTML,
-      dayRead: readDateNow,
-    };
+renderMarkup();
 
-    for (let i = 0; i < readMoreId.length; i += 1) {
-        if (readMoreId[i].uri === read.uri) {
-          return;
-        }
-      }
-      readMoreId.push(read);
-      localStorage.setItem(`readMoreLocal`, JSON.stringify(readMoreId));
-    }
-// renderMarkup(array)
-// news__link
-// import {renderMarkup} from './render-markup'
+// function onRemoveNewCardToReadClick(event) {
+//   if (
+//     event.target.tagName !== 'A'
+//       ) {
+//     return;
+//   }
+//   const arreyReadCard = JSON.parse(localStorage.getItem('newsReadMore'))
+//     ? [...JSON.parse(localStorage.getItem('newsReadMore'))]
+//     : [];
+//   const linkNewReadCard = event.target
+//     .closest('.new__card')
+//     .querySelector('.news__link');
 
 
-// class renderMarkupStorage {
-//   static KEY = "SELECTED_CARD";
-// #selectedMarkup = [];
+  // if (arreyReadCard.length !== 0) {
+  //   localStorage.removeItem('newsReadMore');
+  //   const arreyCardSecond = [];
+  //   arreyCard.map(item => {
+  //     if (item.newsReadMore.includes(linkNewReadCard)) {
+  //       return;
+  //     } else {
+  //       if (item) {
+  //         arreyCardSecond.push({ ...item });
+  //       }
+  //     }
+  //   });
 
-// #getMarkupFromStorage() {
-//     try {
-//         this.#selectedMarkup = JSON.parse(localStorage.getItem(renderMarkupStorage.KEY)) || [];
-//     } catch (error) {
-//         this.#selectedMarkup = [];
+//     if (arreyCardSecond.length !== 0) {
+//       localStorage.setItem('newsReadMore', JSON.stringify(arreyCardSecond));
+//       readList.innerHTML = null;
+//       readList.insertAdjacentHTML(
+//         'afterbegin',
+//         arreyCardSecond
+//           .map(item => `<div class="new__card">${item.newsReadMore}</div>`)
+//           .join('')
+//       );
+//     } else {
+//       readList.innerHTML = renderEmptyMarkup();
 //     }
+//     return;
+//   }
 // }
-
-// constructor() {
-//     this.#getMarkupFromStorage();
-// }
-
-// add = (card) => {
-//     this.#selectedMarkup.push(card);
-//     localStorage.setItem(renderMarkupStorage.KEY, JSON.stringify(this.#selectedMarkup));
-// };
-
-// get selectedMarkup(){
-//     return this.#selectedMarkup;
-// }
-// }
-
-// const markupNewsStorage = new renderMarkupStorage();
-
-// const refs =  {
-// linkReadMore: document.querySelector('.news__link'),
-// };
-
-// refs.linkReadMore.addEventListener('click', addNewsMarkup);
-
- 
 
