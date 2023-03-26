@@ -1,7 +1,8 @@
 import { renderEmptyMarkup } from './fetches';
+
 const readList = document.querySelector('.list-news');
 const cardsRead = JSON.parse(localStorage.getItem('newsReadMore'));
-readList.addEventListener('click', onAddToFavoriteClick);
+readList.addEventListener('click', onRemoveNewCardToReadClick);
 if (!cardsRead) {
   readList.innerHTML = renderEmptyMarkup();
 }
@@ -19,48 +20,47 @@ function renderMarkup() {
 
 renderMarkup();
 
-// function onRemoveNewCardToReadClick(event) {
-//   if (
-//     event.target.tagName !== 'A'
-//       ) {
-//     return;
-//   }
-//   const arreyReadCard = JSON.parse(localStorage.getItem('newsReadMore'))
-//     ? [...JSON.parse(localStorage.getItem('newsReadMore'))]
-//     : [];
-//   const linkNewReadCard = event.target
-//     .closest('.new__card')
-//     .querySelector('.news__link');
+function onRemoveNewCardToReadClick(event) {
+  //   if (
+  //     event.target.tagName !== 'A'
+  //       ) {
+  //     return;
+  //   }
+  //   const arreyReadCard = JSON.parse(localStorage.getItem('newsReadMore'))
+  //     ? [...JSON.parse(localStorage.getItem('newsReadMore'))]
+  //     : [];
+  //   const linkNewReadCard = event.target
+  //     .closest('.new__card')
+  //     .querySelector('.news__link');
+  // if (arreyReadCard.length !== 0) {
+  //   localStorage.removeItem('newsReadMore');
+  //   const arreyCardSecond = [];
+  //   arreyCard.map(item => {
+  //     if (item.newsReadMore.includes(linkNewReadCard)) {
+  //       return;
+  //     } else {
+  //       if (item) {
+  //         arreyCardSecond.push({ ...item });
+  //       }
+  //     }
+  //   });
+  //     if (arreyCardSecond.length !== 0) {
+  //       localStorage.setItem('newsReadMore', JSON.stringify(arreyCardSecond));
+  //       readList.innerHTML = null;
+  //       readList.insertAdjacentHTML(
+  //         'afterbegin',
+  //         arreyCardSecond
+  //           .map(item => `<div class="new__card">${item.newsReadMore}</div>`)
+  //           .join('')
+  //       );
+  //     } else {
+  //       readList.innerHTML = renderEmptyMarkup();
+  //     }
+  //     return;
+  //   }
+}
 
-// if (arreyReadCard.length !== 0) {
-//   localStorage.removeItem('newsReadMore');
-//   const arreyCardSecond = [];
-//   arreyCard.map(item => {
-//     if (item.newsReadMore.includes(linkNewReadCard)) {
-//       return;
-//     } else {
-//       if (item) {
-//         arreyCardSecond.push({ ...item });
-//       }
-//     }
-//   });
-
-//     if (arreyCardSecond.length !== 0) {
-//       localStorage.setItem('newsReadMore', JSON.stringify(arreyCardSecond));
-//       readList.innerHTML = null;
-//       readList.insertAdjacentHTML(
-//         'afterbegin',
-//         arreyCardSecond
-//           .map(item => `<div class="new__card">${item.newsReadMore}</div>`)
-//           .join('')
-//       );
-//     } else {
-//       readList.innerHTML = renderEmptyMarkup();
-//     }
-//     return;
-//   }
-// }
-
+// функція додавання карток у фейворіт
 function onAddToFavoriteClick(event) {
   const arreyCard = JSON.parse(localStorage.getItem('newsCard'))
     ? [...JSON.parse(localStorage.getItem('newsCard'))]
@@ -80,7 +80,7 @@ function onAddToFavoriteClick(event) {
   const linkNewCArd = event.target
     .closest('.new__card')
     .querySelector('.news__link');
- 
+
   if (newsCard.includes('news__addbtn is-hidden')) {
     localStorage.removeItem('newsCard');
     const arreyCardSecond = [];

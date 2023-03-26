@@ -1,4 +1,5 @@
 import { renderEmptyMarkup } from './fetches';
+import { readMoreClick } from './addtoread';
 const favoriteList = document.querySelector('.list-news');
 const cards = JSON.parse(localStorage.getItem('newsCard'));
 favoriteList.addEventListener('click', onRemoveNewCardToFavoriteClick);
@@ -20,6 +21,7 @@ function renderMarkup() {
 renderMarkup();
 
 function onRemoveNewCardToFavoriteClick(event) {
+  readMoreClick(event);
   if (
     event.target.tagName !== 'SPAN' &&
     event.target.tagName !== 'BUTTON' &&
