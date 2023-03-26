@@ -16,9 +16,6 @@ function readMoreClick(event) {
 
   let newsReadMoreCard = event.target.closest('.new__card').innerHTML;
   if (arreyReadCard.length !== 0) {
-    // newsReadMoreCard = item.newsReadMoreCard.includes(linkNewReadCard) ?
-    //  0 : event.target.closest('.new__card').innerHTML;
-
     arreyReadCard.map(item => {
       if (item.newsReadMoreCard.includes(linkNewReadCard)) {
         newsReadMoreCard = null;
