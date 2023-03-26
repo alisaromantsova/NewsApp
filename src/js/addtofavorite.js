@@ -23,8 +23,9 @@ function onRemoveNewCardToFavoriteClick(event) {
   if (
     event.target.tagName !== 'SPAN' &&
     event.target.tagName !== 'BUTTON' &&
-    event.target.classList.contains('news__icon') &&
-    event.target.hasAttribute('d')
+    event.target.tagName !== 'svg' &&
+    event.target.tagName !== 'path' &&
+    event.target.tagName !== 'use'
   ) {
     return;
   }
