@@ -473,6 +473,9 @@ input:checked + .ball:before {
   & .close__button-icon {
     fill: var(--text-color-dark-theme);
   }
+  & .backdrop {
+    background-color: var(--background-color-dark);
+  }
 }
 .header {
   position: relative;
