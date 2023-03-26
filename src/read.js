@@ -7,3 +7,4 @@ import './js/mobile-menu';
 import './js/read-page';
 import './js/addtoread';
 import './js/btnUpp';
+import './js/header-fixed-position';

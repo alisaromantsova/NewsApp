@@ -2,6 +2,18 @@
   min-height: 81px;
   border-bottom: 1px solid var(--headerborder);
   font-family: Manrope, sans-serif;
+  z-index: 1000;
+
+  &.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+body {
+  margin: 0;
 }
 
 .header-container {
