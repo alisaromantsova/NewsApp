@@ -142,47 +142,6 @@ export function renderEmptyMarkup() {
 `;
 }
 
-export async function fetchNewsByCategoryAndDate(
-  date = '20220110',
-  category = 'Sports'
-) {
-  try {
-    const response = await axios
-      .get(
-        `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("${category}")&begin_date=${date}&end_date=${date}&api-key=${KEY}`
-      )
-      .catch(function (err) {
-        div.innerHTML = renderEmptyMarkup();
-      });
-
-    if (!response.data.response.docs) {
-      div.innerHTML = renderEmptyMarkup();
-    }
-
-    const newsBySearch = await response.data.response.docs;
-    const array = newsBySearch.map(article => {
-      const newsObject = {
-        title: article.headline.main,
-        text: article.abstract,
-        imgSrc: `https://static01.nyt.com/${
-          article.multimedia[0]
-            ? article.multimedia[2].url
-            : 'images/2023/02/21/multimedia/21skeleton-ukraine-01-zjwv/21skeleton-ukraine-01-zjwv-articleLarge.jpg'
-        }`,
-        link: article.url,
-
-        category: article.section_name,
-        date: makeDate(article.pub_date),
-        hasLiked: false,
-        hasRead: false,
-      };
-      return newsObject;
-    });
-    return array;
-  } catch (e) {
-    div.innerHTML = renderEmptyMarkup();
-  }
-}
 export async function fetchNewsByCategoryAndDate2(date, query) {
   try {
     const response = await axios
