@@ -187,7 +187,7 @@ class Calendar {
   #calendarContainerOnClick(event) {
     if (event.target.dataset.date !== 'current') return;
     const currentDate = event.target.textContent;
-  
+
     const fullFormatCurrentDate = this.#calendarArray.filter(
       item => item.type === 'current' && item.date == currentDate
     );
@@ -205,9 +205,11 @@ class Calendar {
     // this.ref.calendarCurrentDateSvgUp.classList.add('visually-hidden');
 
     const dateForFetch = fullFormatCurrentDate[0].iso.split('-').join('');
-    if (categoryValue.value) {
-      this.#renderNews(dateForFetch, categoryValue.value);
-    }
+    // if (categoryValue.value) {
+    //   this.#renderNews(dateForFetch, categoryValue.value);
+    // }
+    categoryValue.value = categoryValue.value || 'books';
+    this.#renderNews(dateForFetch, categoryValue.value);
   }
 
   async #renderNews(date, category) {
