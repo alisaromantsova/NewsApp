@@ -1,6 +1,7 @@
 .home-gallery {
   padding-top: 40px;
   padding-bottom: 40px;
+  min-height: 1000px;
 
   @include tablet {
     padding-top: 48px;
