@@ -29,25 +29,73 @@ export function setEventAfterRender() {
   });
 }
 
-export function setEventAfterRead() {
-  const card = document.querySelectorAll('.new__card');
+// export function setEventAfterRender() {
+//   const cardContainer = document.querySelector('.news');
+//   const addBtns = cardContainer.querySelectorAll('.news__addbtn');
+//   const removeBtns = cardContainer.querySelectorAll('.news__removebtn');
 
+//   cardContainer.addEventListener('click', event => {
+//     const addBtn = event.target.closest('.news__addbtn');
+//     if (addBtn) {
+//       const removeBtn = addBtn.nextElementSibling;
+//       addBtn.classList.add('is-hidden');
+//       removeBtn.classList.remove('is-hidden');
+//     }
+
+//     const removeBtn = event.target.closest('.news__removebtn');
+//     if (removeBtn) {
+//       const addBtn = removeBtn.previousElementSibling;
+//       addBtn.classList.remove('is-hidden');
+//       removeBtn.classList.add('is-hidden');
+//     }
+//   });
+// }
+
+// export function setEventAfterRead() {
+//   const [cards, newsLinks, readsMarks] = [
+//     document.querySelectorAll('.new__card'),
+//     document.querySelectorAll('.news__link'),
+//     document.querySelectorAll('.is-read'),
+//     ,
+//   ];
+
+//   newsLinks.forEach((newsLink, i) => {
+//     newsLink.addEventListener('click', () => {
+//       readsMarks[i].classList.remove('is-hidden');
+//       cards[i].classList.add('overlay');
+//     });
+//   });
+// }
+
+export function setEventAfterRead() {
+  const cards = document.querySelectorAll('.new__card');
   const newsLinks = document.querySelectorAll('.news__link');
   const readsMarks = document.querySelectorAll('.is-read');
+  let localStorageKey = 'isRead';
 
   newsLinks.forEach((newsLink, i) => {
     newsLink.addEventListener('click', () => {
-      const readsMark = readsMarks[i];
-      readsMark.classList.remove('is-hidden');
+      readsMarks[i].classList.remove('is-hidden');
+      cards[i].classList.add('overlay');
+      localStorage.setItem(
+        localStorageKey,
+        JSON.stringify({
+          ...JSON.parse(localStorage.getItem(localStorageKey)),
+          [i]: true,
+        })
+      );
     });
+    const storedData = JSON.parse(localStorage.getItem(localStorageKey));
+    if (storedData && storedData[i]) {
+      readsMarks[i].classList.remove('is-hidden');
+      cards[i].classList.add('overlay');
+    }
   });
 }
 
-// export function checkedString() {
-//   const MAX_LENGTH = 140;
-//   const articleTexts = document.querySelectorAll('.article.text');
-//   const articleText = articleTexts[i];
-//   if (articleText.length > MAX_LENGTH) {
-//     articleText = articleText.slice(0, MAX_LENGTH - 3) + '...';
-//   }
-// }
+export function createThreePoints(str) {
+  if (str.length > 130) {
+    return str.slice(0, 130) + '...';
+  }
+  return str;
+}

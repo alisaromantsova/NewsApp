@@ -7,6 +7,8 @@
 @import './utils/reset';
 @import './common';
 
+@import './spinner';
+@import './loader.scss';
 @import './header';
 @import './navigation';
 @import './home-gallery';
@@ -17,3 +19,4 @@
 @import './read-gallery';
 @import './calendar';
 @import './weather';
+@import './btnUp';

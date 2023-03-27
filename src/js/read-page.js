@@ -1,42 +1,61 @@
-// renderMarkup(array)
-// news__link
-import {renderMarkup} from './render-markup'
-
-
-class renderMarkupStorage {
-  static KEY = "SELECTED_CARD";
-#selectedCards = [];
-
-#getCardsFromStorage() {
-    try {
-        this.#selectedCards = JSON.parse(localStorage.getItem(renderMarkupStorage.KEY)) || [];
-    } catch (error) {
-        this.#selectedCards = [];
-    }
+import { renderEmptyMarkup } from './fetches';
+import { onAddToFavoriteClick } from './news-card-listner';
+const readList = document.querySelector('.list-news');
+const cardsRead = JSON.parse(localStorage.getItem('newsReadMore'));
+readList.addEventListener('click', onRemoveNewCardToReadClick);
+if (!cardsRead) {
+  readList.innerHTML = renderEmptyMarkup();
 }
 
-constructor() {
-    this.#getCardsFromStorage();
+function renderMarkup() {
+  if (cardsRead) {
+    readList.insertAdjacentHTML(
+      'afterbegin',
+      cardsRead
+        .map(card => `<div class="new__card">${card.newsReadMoreCard}</div>`)
+        .join('')
+    );
+  }
 }
 
-add = (card) => {
-    this.#selectedCards.push(card);
-    localStorage.setItem(renderMarkupStorage.KEY, JSON.stringify(this.#selectedCards));
-};
+renderMarkup();
 
-get selectedCards(){
-    return this.#selectedCards;
+function onRemoveNewCardToReadClick(event) {
+  onAddToFavoriteClick(event); // функція додавання карток у фейворіт
+  //     event.target.tagName !== 'A'
+  //       ) {
+  //     return;
+  //   }
+  //   const arreyReadCard = JSON.parse(localStorage.getItem('newsReadMore'))
+  //     ? [...JSON.parse(localStorage.getItem('newsReadMore'))]
+  //     : [];
+  //   const linkNewReadCard = event.target
+  //     .closest('.new__card')
+  //     .querySelector('.news__link');
+  // if (arreyReadCard.length !== 0) {
+  //   localStorage.removeItem('newsReadMore');
+  //   const arreyCardSecond = [];
+  //   arreyCard.map(item => {
+  //     if (item.newsReadMore.includes(linkNewReadCard)) {
+  //       return;
+  //     } else {
+  //       if (item) {
+  //         arreyCardSecond.push({ ...item });
+  //       }
+  //     }
+  //   });
+  //     if (arreyCardSecond.length !== 0) {
+  //       localStorage.setItem('newsReadMore', JSON.stringify(arreyCardSecond));
+  //       readList.innerHTML = null;
+  //       readList.insertAdjacentHTML(
+  //         'afterbegin',
+  //         arreyCardSecond
+  //           .map(item => `<div class="new__card">${item.newsReadMore}</div>`)
+  //           .join('')
+  //       );
+  //     } else {
+  //       readList.innerHTML = renderEmptyMarkup();
+  //     }
+  //     return;
+  //   }
 }
-}
-
-const cardNewsStorage = new renderMarkupStorage();
-
-const customCreator = (name, config = {}) => {
-      const element = document.createElement(name);
-    
-      Object.entries(config).forEach(([key, value]) => {
-        element[key] = value;
-      });
-    
-      return element;
-    };
