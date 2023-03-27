@@ -1,9 +1,11 @@
 // збереження в локалсторедж по кліку на add
-
 const divClassNews = document.querySelector('.news');
 divClassNews.addEventListener('click', onAddToFavoriteClick);
 
-function onAddToFavoriteClick(event) {
+
+
+
+export function onAddToFavoriteClick(event) {
   const arreyCard = JSON.parse(localStorage.getItem('newsCard'))
     ? [...JSON.parse(localStorage.getItem('newsCard'))]
     : [];
