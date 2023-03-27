@@ -68,7 +68,7 @@ export async function successCallback(position) {
 
 export async function failureCallback() {
   if (!localStorage.getItem('onHourWeather')){
-  let { data } = await getCurrentWeather(40.748488, -73.985508);
+  let { data } = await getCurrentWeather(40.748488, -73.985508); 
     OnStorageSetWeather(data);
     OnStorageGetWeather();
     renderWeather(parseWeather);
