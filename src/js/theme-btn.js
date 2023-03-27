@@ -8,8 +8,10 @@ const isTrue = screenWidth <= 767;
 
 if(isTrue !== true){
     checkboxEl = document.querySelector('.choseTheme .chose-checkbox');
+    // console.log("FIRST");
 } else if(isTrue === true){
    checkboxEl = document.querySelector('.js-menu-container .menu__choseTheme .chose-checkbox');
+//    console.log("SEC");
 }
 
 window.onload = function() {
