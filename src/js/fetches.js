@@ -43,8 +43,11 @@ export async function fetchPopularNews() {
 
 //Фетч по категориямн
 // api.nytimes.com/svc/news/v3/content/all/arts.json?api-key=H3FRH5IMtPz0yNN170uMkDXY0wt0kfbS&limit=500&offset=0
+let preLoader = document.querySelector('.preloader');
+preLoader.classList.add('loaded');
 
 export async function fetchNewsByCategory(category) {
+  preLoader.classList.remove('loaded');
   try {
     const response = await axios
       .get(
@@ -69,6 +72,7 @@ export async function fetchNewsByCategory(category) {
         category: article.section,
         date: makeDate(article.published_date),
       };
+      preLoader.classList.add('loaded');
       return newsObject;
     });
     return array;
@@ -79,6 +83,7 @@ export async function fetchNewsByCategory(category) {
 
 //Фетч по поисковому запросу
 export async function fetchNewsBySearch(search) {
+  preLoader.classList.remove('loaded');
   try {
     const response = await axios
       .get(
@@ -110,6 +115,7 @@ export async function fetchNewsBySearch(search) {
         hasLiked: false,
         hasRead: false,
       };
+      preLoader.classList.add('loaded');
       return newsObject;
     });
     return array;
