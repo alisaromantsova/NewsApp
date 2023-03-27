@@ -1,27 +1,12 @@
 const div = document.querySelector('.news');
 let newsCardAddToFavorite = 0;
-import { renderPaginationBtn, paginationData } from './pagination';
+import {
+  renderPaginationBtn,
+  paginationData,
+  prevBtnRef,
+  nextBtnRef,
+} from './pagination';
 import { successCallback, failureCallback } from './weather';
-// додав я
-
-// export async function  renderMarkup(array){
-// const markup = array.map((article)=>{
-//     return `<div class="new__card">
-//     <h2 class="news__title">${article.title}</h2>
-//        <p class="news__text">${article.text}</p>
-//      <img class="new__img" src="${ article.imgSrc}"/>
-//      <div class="article_flag">
-//      <button class="article_flag--add"><span class="article_flag_text">Add to favorite</span>
-//      </button>
-//      <button class="article_flag--remove is-hidden"><span class="article_flag_text">Remove from favorite</span>
-//      </button>
-//      </div>
-//      <a class="new__link" href="${article.url}">read more</a>
-//      </div>`;
-// }).join('');
-//   div.insertAdjacentHTML('beforeend', markup);
-// }
-
 import { setEventAfterRender } from './news-card';
 import { setEventAfterRead } from './news-card';
 import { createThreePoints } from './news-card';
@@ -31,28 +16,41 @@ export function renderMarkupData(array) {
   restart();
   console.log('array:', array);
   switch (true) {
-    case window.matchMedia('(max-width: 768px)').matches:
+    case window.matchMedia('(max-width: 767px)').matches:
       paginationData.newsPerPage = 5;
       paginationData.start = 0;
       paginationData.end = 4;
       break;
-    case window.matchMedia('(min-width: 769px) and (max-width: 1280px)')
+    case window.matchMedia('(min-width: 768px) and (max-width: 1279px)')
       .matches:
       paginationData.newsPerPage = 8;
       paginationData.start = 0;
       paginationData.end = 7;
       break;
-    case window.matchMedia('(min-width: 1281px)').matches:
+    case window.matchMedia('(min-width: 1280px)').matches:
       // треба переписати
       paginationData.newsPerPage = 9;
       paginationData.start = 0;
       paginationData.end = 8;
       break;
   }
+
   paginationData.originalArray = array;
   paginationData.totalPage = Math.ceil(
-    (array.length + 1) / paginationData.newsPerPage
+    (paginationData.originalArray.length + 1) / paginationData.newsPerPage
   );
+
+  // console.log(
+  //   'paginationData.end:',
+  //   paginationData.end,
+  //   'paginationData.start:',
+  //   paginationData.start,
+  //   'paginationData.page:',
+  //   paginationData.page,
+  //   'paginationData.totalPage:',
+  //   paginationData.totalPage
+  // );
+
   renderPaginationBtn();
   renderMarkup(array.slice(paginationData.start, paginationData.end));
 }
@@ -150,4 +148,6 @@ function restart() {
   paginationData.start = 0;
   paginationData.end = 0;
   paginationData.page = 1;
+  prevBtnRef.disabled = false;
+  nextBtnRef.disabled = false;
 }
