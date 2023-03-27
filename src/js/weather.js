@@ -49,8 +49,6 @@ export async function successCallback(position) {
     renderWeather(parseWeather);
     }
 
-  );
-
 }
 
 
