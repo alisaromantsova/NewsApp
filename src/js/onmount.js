@@ -15,7 +15,6 @@ async function onMount() {
   removeActiveClass();
   categoryValue.value = '';
   const result = await fetchPopularNews();
-  // renderMarkup(result);
   renderMarkupData(result);
    navigator.geolocation.getCurrentPosition(successCallback, failureCallback);
 }

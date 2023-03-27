@@ -1,25 +1,25 @@
-.text-error{
-    padding-bottom: 40px;
-    font-weight: 700;
-    text-align: center;
-    @include mobile {
-        font-size: 20px;
-        width: 276px;
-        line-height: 1.35;
-        letter-spacing: -0.01em;
-      }
-      @include tablet{
-        width: 548px;
-        font-size: 40px;
-        line-height: 1.37;
-        letter-spacing: -0.01em;
-      }
-      @include desktop{
-        width: 548px;
-        font-size: 40px;
-        line-height: 1.37;
-        letter-spacing: -0.01em;
-      }
+.text-error {
+  padding-bottom: 40px;
+  font-weight: 700;
+  text-align: center;
+  @include mobile {
+    font-size: 20px;
+    width: 276px;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+  @include tablet {
+    width: 548px;
+    font-size: 40px;
+    line-height: 1.37;
+    letter-spacing: -0.01em;
+  }
+  @include desktop {
+    width: 548px;
+    font-size: 40px;
+    line-height: 1.37;
+    letter-spacing: -0.01em;
+  }
 }
 
 // 1
@@ -29,6 +29,7 @@
     flex-flow: column nowrap;
     align-items: center;
 @include mobile {
+
     padding-top: 0;
     padding-bottom: 0;
   }
