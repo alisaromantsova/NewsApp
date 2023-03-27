@@ -11,6 +11,7 @@ import { inputValueData } from './search-field';
 import { renderMarkup, renderMarkupData } from './render-markup';
 import CalendarDates from 'calendar-dates';
 import { inputValueData } from './search-field';
+import Notiflix from 'notiflix';
 const calendarDates = new CalendarDates();
 class Calendar {
   ref = {
@@ -194,10 +195,32 @@ class Calendar {
     const fullFormatCurrentDate = this.#calendarArray.filter(
       item => item.type === 'current' && item.date == currentDate
     );
-    const fullDateArray = fullFormatCurrentDate[0].iso.split('-');
+    //Add Notiflix alarm
+    Notiflix.Notify.init({
+      width: '280px',
+      position: 'right-top',
+      distance: '50px',
+      borderRadius: '20px',
+      timeout: 3000,
+      fontFamily: 'Monrope',
+      cssAnimationDuration: 1000,
+      cssAnimationStyle: 'fade',
+    });
+
+    const chosenDate = fullFormatCurrentDate[0].iso;
+    if (new Date(chosenDate) > new Date()) {
+      Notiflix.Notify.failure(
+        'Please choose current date or date in the past',
+        {}
+      );
+      this.#currentDateOnClick();
+      return;
+    }
+    const fullDateArray = chosenDate.split('-');
     this.#currentDate.date = fullDateArray[2];
     this.#currentDate.month = fullDateArray[1];
     this.#currentDate.year = fullDateArray[0];
+
     this.#deleteAndAddCurrentClass(event.target);
     this.#getHTMLCurrentDateInfo();
 
@@ -207,7 +230,8 @@ class Calendar {
     // this.ref.calendarCurrentDateSvgDown.classList.remove('visually-hidden');
     // this.ref.calendarCurrentDateSvgUp.classList.add('visually-hidden');
 
-    const dateForFetch = fullFormatCurrentDate[0].iso.split('-').join('');
+    const dateForFetch = chosenDate.split('-').join('');
+    console.log(dateForFetch);
     // if (categoryValue.value) {
     //   this.#renderNews(dateForFetch, categoryValue.value);
     // }

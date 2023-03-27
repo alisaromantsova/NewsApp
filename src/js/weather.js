@@ -1,21 +1,14 @@
-import {
-  fetchPopularNews,
-  fetchNewsByCategory,
-  fetchNewsBySearch,
-  renderEmptyMarkup,
-} from './fetches';
-import { renderMarkup } from './render-markup';
 import { getCurrentWeather } from './fetches';
 
 function OnStorageSetWeather(data) {
-  const WEATHER_KEY = 'onHourWeather'
+  const WEATHER_KEY = 'onHourWeather';
   localStorage.setItem(WEATHER_KEY, JSON.stringify(data));
   // console.log('Data loaded successfully!');
 }
 
 let parseWeather;
 function OnStorageGetWeather() {
-  const getWeather = localStorage.getItem('onHourWeather') || "";
+  const getWeather = localStorage.getItem('onHourWeather') || '';
   parseWeather = JSON.parse(getWeather);
   return parseWeather;
 }
@@ -24,21 +17,18 @@ let timeDiff;
 function onTimeCheck(parseWeather) {
   parseWeather = OnStorageGetWeather();
   const date = new Date();
-  const dateNow = date.getTime()/1000;
+  const dateNow = date.getTime() / 1000;
   const dt = parseWeather.dt;
   timeDiff = dateNow - dt;
   return timeDiff;
 }
 
-
-
-
 let page = 1;
 export async function successCallback(position) {
-  if (!localStorage.getItem('onHourWeather')){
-  let { data } = await getCurrentWeather(
-    position.coords.latitude,
-    position.coords.longitude
+  if (!localStorage.getItem('onHourWeather')) {
+    let { data } = await getCurrentWeather(
+      position.coords.latitude,
+      position.coords.longitude
     );
     OnStorageSetWeather(data);
     OnStorageGetWeather();
@@ -53,22 +43,22 @@ export async function successCallback(position) {
       renderWeather(parseWeather);
       // console.log('прошло меньше часа, беру инфу с ЛС');
     } else {
-     let { data } = await getCurrentWeather(
-    position.coords.latitude,
-    position.coords.longitude
-    );
-    OnStorageSetWeather(data);
-    OnStorageGetWeather();
+      let { data } = await getCurrentWeather(
+        position.coords.latitude,
+        position.coords.longitude
+      );
+      OnStorageSetWeather(data);
+      OnStorageGetWeather();
       renderWeather(parseWeather);
       // console.log('прошло больше часа, фетчу');
     }
-    }
+  }
 }
 // const { data } = await getCurrentWeather(40.748488, -73.985508);
 
 export async function failureCallback() {
-  if (!localStorage.getItem('onHourWeather')){
-  let { data } = await getCurrentWeather(40.748488, -73.985508);
+  if (!localStorage.getItem('onHourWeather')) {
+    let { data } = await getCurrentWeather(40.748488, -73.985508);
     OnStorageSetWeather(data);
     OnStorageGetWeather();
     renderWeather(parseWeather);
@@ -82,13 +72,13 @@ export async function failureCallback() {
       renderWeather(parseWeather);
       // console.log('прошло меньше часа, беру инфу с ЛС');
     } else {
-     let { data } = await getCurrentWeather(40.748488, -73.985508);
-    OnStorageSetWeather(data);
-    OnStorageGetWeather();
+      let { data } = await getCurrentWeather(40.748488, -73.985508);
+      OnStorageSetWeather(data);
+      OnStorageGetWeather();
       renderWeather(parseWeather);
       // console.log('прошло больше часа, фетчу');
     }
-    }
+  }
 }
 
 export function renderWeather(parseWeather) {
@@ -101,7 +91,9 @@ export function renderWeather(parseWeather) {
   const weatherMarkup = `
     <div class="weather">
       <div class="weather__info">
-        <p class="weather__temperature">${Math.floor(parseWeather.main.temp)}°</p>
+        <p class="weather__temperature">${Math.floor(
+          parseWeather.main.temp
+        )}°</p>
         <div class="weather__second-wrapper">
           <p class="weather__state">${parseWeather.weather[0].main}</p>
           <span class="weather__location">
@@ -120,8 +112,6 @@ export function renderWeather(parseWeather) {
 
   insertMarkup(weatherMarkup);
 }
-
-
 
 function insertMarkup(weatherMarkup) {
   const mediaQueries = [
