@@ -8,7 +8,7 @@ import {
 } from './fetches';
 import { categoryValue } from './navigation';
 import { inputValueData } from './search-field';
-import { renderMarkup } from './render-markup';
+import { renderMarkup, renderMarkupData } from './render-markup';
 import CalendarDates from 'calendar-dates';
 import { inputValueData } from './search-field';
 const calendarDates = new CalendarDates();
@@ -226,7 +226,7 @@ class Calendar {
     if (result?.length) {
       const div = document.querySelector('.news');
       div.innerHTML = '';
-      renderMarkup(result);
+      renderMarkupData(result);
     }
   }
   closeCalendar(event) {
