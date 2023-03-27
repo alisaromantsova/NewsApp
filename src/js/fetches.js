@@ -42,9 +42,11 @@ export async function fetchPopularNews() {
 }
 
 //Фетч по категориямн
+
 // Із офсетом                api.nytimes.com/svc/news/v3/content/all/arts.json?api-key=H3FRH5IMtPz0yNN170uMkDXY0wt0kfbS&limit=500&offset=0
 
 // Наша API                  api.nytimes.com/svc/news/v3/content/nyt/${category}.json?api-key=${KEY}
+
 
 let preLoader = document.querySelector('.preloader');
 preLoader.classList.add('loaded');
@@ -65,7 +67,7 @@ export async function fetchNewsByCategory(category) {
     }
 
     const newsByCategory = await response.data.results;
-    console.log(newsByCategory);
+
     const array = newsByCategory.map(article => {
       const newsObject = {
         title: article?.title ? article.title : "Don't have title",

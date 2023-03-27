@@ -5,11 +5,7 @@
   margin-left: auto;
   margin-right: 0;
   @include desktop {
-    //width: 360px;
   }
-  // @media screen and (min-width: 1248px) {
-  //   width: 360px;
-  // }
 }
 .calendar2__search-info {
   display: inline-flex;
@@ -29,32 +25,18 @@
   @include desktop {
     display: block;
   }
-  // @media screen and (min-width: 1248px) {
-  //   display: block;
-  // }
 }
-// .calendar__wrapper {
-//   position: absolute;
-//   width: 252px;
-//   height: 242px;
-//   overflow: hidden;
-//   top: 0;
-//   right: -30px;
-//   pointer-events: none;
-// }
+
 .calendar2__current-date-container {
   position: relative;
   margin: 0;
   padding: 0;
   width: 152px;
-  //background-color: var(--color-btn-white);
+
   border-radius: 20px;
   @include tablet {
     width: 168px;
   }
-  // @media screen and(min-width: 767px) {
-  //   width: 168px;
-  // }
 }
 .calendar2__current-date {
   padding: 5px 5px;
@@ -70,13 +52,12 @@
   border-radius: 20px;
 
   cursor: pointer;
-  //pointer-events: all; //add
+
   &.js-date-show {
     background-color: var(--color-active-btn);
     color: var(--color-btn-white);
     opacity: 100%;
     border: 1px solid var(--color-active-btn);
-    //pointer-events: none; // add
   }
 }
 .calendar2__current-date-before {
@@ -88,7 +69,6 @@
   transition: color, fill 500ms linear;
   pointer-events: none;
   &--active {
-    //fill: ar(--color-btn-white);
     fill: white;
   }
 }
@@ -230,20 +210,20 @@
 .calendar2__container {
   position: absolute;
   top: -210px;
-  //top: 40px; //before
-  overflow: all; //add
-  background-color: var(--color-btn-white); //add
+
+  overflow: all;
+  background-color: var(--color-btn-white);
   pointer-events: none;
   right: 0;
-  //outline: 1px solid var(--color-active-btn);
+
   width: 250px;
   border-radius: 10px;
-  //transform: scale(0, 0); //before
+
   transition: transform 500ms linear;
   pointer-events: none;
   &.js-calendar-show {
     transform: translateY(250px); //add
-    //transform: scale(1, 1); //before
+
     pointer-events: all;
   }
 }
