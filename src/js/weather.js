@@ -64,7 +64,7 @@ export async function successCallback(position) {
     }
     }
 }
-// const { data } = await getCurrentWeather(40.748488, -73.985508);
+// const { data } = await getCurrentWeather(40.748488, -73.985508)     ;
 
 export async function failureCallback() {
   if (!localStorage.getItem('onHourWeather')){
