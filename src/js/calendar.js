@@ -224,17 +224,11 @@ class Calendar {
     this.#deleteAndAddCurrentClass(event.target);
     this.#getHTMLCurrentDateInfo();
 
-    //this.ref.currentDate.remove('js-date-show'); //add
     this.#currentDateOnClick();
     this.ref.calendarContainer.classList.remove('js-calendar-show');
-    // this.ref.calendarCurrentDateSvgDown.classList.remove('visually-hidden');
-    // this.ref.calendarCurrentDateSvgUp.classList.add('visually-hidden');
 
     const dateForFetch = chosenDate.split('-').join('');
-    console.log(dateForFetch);
-    // if (categoryValue.value) {
-    //   this.#renderNews(dateForFetch, categoryValue.value);
-    // }
+
     let categorySearch = categoryValue.value;
     let inputSearch = inputValueData.value;
 

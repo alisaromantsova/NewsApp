@@ -7,7 +7,6 @@ favoriteList.addEventListener('click', onRemoveNewCardToFavoriteClick);
 if (!cards) {
   favoriteList.innerHTML = renderEmptyMarkup();
 }
-console.log(cards, 'sdsad');
 function renderMarkup() {
   if (cards) {
     favoriteList.insertAdjacentHTML(
