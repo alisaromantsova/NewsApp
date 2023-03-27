@@ -165,8 +165,6 @@ async function onCategoryButtonClick(e) {
   const chosenCategory = e.target.dataset.action;
 
   const result = await fetchNewsByCategory(chosenCategory);
-
-  console.log('result:', result);
   categoryValue.value = chosenCategory;
   addActiveClass(e.target);
   renderMarkupData(result, categoryValue.value);
@@ -205,7 +203,6 @@ const onClickCustonListItem = async e => {
   customSelectBtn.children[1].classList.remove('custom-select-is-open');
   customSelectList.classList.add('is-hidden');
   const result = await fetchNewsByCategory(e.target.dataset.action);
-  console.log('result:', result);
   categoryValue.value = e.target.dataset.action;
   addActiveClass(e.target);
   renderMarkupData(result, categoryValue.value);
