@@ -225,8 +225,8 @@
 }
 
 .is-read {
-  font-family: 'Manrope500', sans-serif;
   font-size: 14px;
+  font-weight: 700;
   line-height: 1.36;
   opacity: 1;
   z-index: 2;
@@ -238,7 +238,7 @@
   right: 15px;
 
   &::after {
-    content: '';
+    content: ' ';
     display: inline-block;
     width: 18px;
     height: 18px;
@@ -246,6 +246,7 @@
     background-repeat: no-repeat;
     background-position-y: 6px;
     margin-left: 6px;
+
 
   }
 }

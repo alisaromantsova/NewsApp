@@ -1,12 +1,13 @@
 import { renderEmptyMarkup } from './fetches';
 import { readMoreClick } from './addtoread';
+import { setEventAfterRead } from './news-card';
 const favoriteList = document.querySelector('.list-news');
 const cards = JSON.parse(localStorage.getItem('newsCard'));
 favoriteList.addEventListener('click', onRemoveNewCardToFavoriteClick);
 if (!cards) {
   favoriteList.innerHTML = renderEmptyMarkup();
 }
-console.log(cards, "sdsad");
+console.log(cards, 'sdsad');
 function renderMarkup() {
   if (cards) {
     favoriteList.insertAdjacentHTML(
@@ -16,6 +17,7 @@ function renderMarkup() {
         .join('')
     );
   }
+  setEventAfterRead();
 }
 
 renderMarkup();
