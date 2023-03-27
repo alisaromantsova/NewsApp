@@ -7,8 +7,9 @@ import {
 import { renderMarkup } from './render-markup';
 import { categoryValue, removeActiveClass } from './navigation';
 import { successCallback, failureCallback } from './weather';
-console.log(window)
-console.log(new Date());
+console.log(window);
+const date = new Date();
+console.log(date.getTime()); 
 onMount()
 async function onMount() {
   removeActiveClass();

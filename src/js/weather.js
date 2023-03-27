@@ -13,18 +13,29 @@ function OnStorageSetWeather(data) {
   // console.log('Data loaded successfully!');
 }
 
-setInterval(OnStorageSetWeather, 3600000);
-
 let parseWeather;
 function OnStorageGetWeather() {
   const getWeather = localStorage.getItem('onHourWeather') || "";
   parseWeather = JSON.parse(getWeather);
-  // console.log(parseWeather);
+  
+  // const date = new Date();
+  // const dateNow = date.getTime()/1000;
+  // const dt = parseWeather.dt;
+  // const timeDiff = dateNow - dt;
+  // if (timeDiff >= 3600) {
+    
+  // }
+  // console.log(secondsDate);
+  // console.log(dt);
   return parseWeather;
 }
 
-setInterval(OnStorageGetWeather, 3600000);
+// function oneHourCheck(parseWeather) {
+//   OnStorageGetWeather();
+  
 
+// }
+// oneHourCheck();
 
 let page = 1;
 export async function successCallback(position) {
@@ -32,11 +43,13 @@ export async function successCallback(position) {
     position.coords.latitude,
     position.coords.longitude
   );
+  
   OnStorageSetWeather(data);
   OnStorageGetWeather();
   renderWeather(parseWeather);
-  
 }
+
+
 
 export async function failureCallback() {
   const { data } = await getCurrentWeather(40.748488, -73.985508);
