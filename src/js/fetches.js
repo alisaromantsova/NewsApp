@@ -65,6 +65,7 @@ export async function fetchNewsByCategory(category) {
     }
 
     const newsByCategory = await response.data.results;
+    console.log(newsByCategory);
     const array = newsByCategory.map(article => {
       const newsObject = {
         title: article?.title ? article.title : "Don't have title",
