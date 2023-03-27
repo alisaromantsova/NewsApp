@@ -21,12 +21,15 @@
     letter-spacing: -0.01em;
   }
 }
-.error-box {
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  @include mobile {
+
+// 1
+.error-box{
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+@include mobile {
+
     padding-top: 0;
     padding-bottom: 0;
   }
