@@ -103,7 +103,7 @@ export async function fetchNewsBySearch(search) {
             ? article.multimedia[2].url
             : 'images/2023/02/21/multimedia/21skeleton-ukraine-01-zjwv/21skeleton-ukraine-01-zjwv-articleLarge.jpg'
         }`,
-        link: article.url,
+        link: article.web_url        ,
 
         category: article.section_name,
         date: makeDate(article.pub_date),
