@@ -29,6 +29,36 @@ export function setEventAfterRender() {
   });
 }
 
+export function createThreePoints(str) {
+  if (str.length > 130) {
+    return str.slice(0, 130) + '...';
+  }
+  return str;
+}
+
+export function setEventAfterRead() {
+  const cards = Array.from(document.querySelectorAll('.new__card'));
+  const newsLinks = Array.from(document.querySelectorAll('.news__link'));
+  const readsMarks = Array.from(document.querySelectorAll('.is-read'));
+  let localStorageKey = 'isRead';
+
+  newsLinks.forEach((newsLink, i) => {
+    newsLink.addEventListener('click', () => {
+      readsMarks[i].classList.remove('is-hidden');
+      cards[i].classList.add('overlay');
+      const isReadData =
+        JSON.parse(localStorage.getItem(localStorageKey)) || {};
+      isReadData[newsLink.getAttribute('href')] = true;
+      localStorage.setItem(localStorageKey, JSON.stringify(isReadData));
+    });
+    const storedData = JSON.parse(localStorage.getItem(localStorageKey));
+    if (storedData && storedData[newsLink.getAttribute('href')]) {
+      readsMarks[i].classList.remove('is-hidden');
+      cards[i].classList.add('overlay');
+    }
+  });
+}
+
 // export function setEventAfterRender() {
 //   const cardContainer = document.querySelector('.news');
 //   const addBtns = cardContainer.querySelectorAll('.news__addbtn');
@@ -67,35 +97,28 @@ export function setEventAfterRender() {
 //   });
 // }
 
-export function setEventAfterRead() {
-  const cards = document.querySelectorAll('.new__card');
-  const newsLinks = document.querySelectorAll('.news__link');
-  const readsMarks = document.querySelectorAll('.is-read');
-  let localStorageKey = 'isRead';
+// export function setEventAfterRead() {
+//   const cards = document.querySelectorAll('.new__card');
+//   const newsLinks = document.querySelectorAll('.news__link');
+//   const readsMarks = document.querySelectorAll('.is-read');
+//   let localStorageKey = 'isRead';
 
-  newsLinks.forEach((newsLink, i) => {
-    newsLink.addEventListener('click', () => {
-      readsMarks[i].classList.remove('is-hidden');
-      cards[i].classList.add('overlay');
-      localStorage.setItem(
-        localStorageKey,
-        JSON.stringify({
-          ...JSON.parse(localStorage.getItem(localStorageKey)),
-          [i]: true,
-        })
-      );
-    });
-    const storedData = JSON.parse(localStorage.getItem(localStorageKey));
-    if (storedData && storedData[i]) {
-      readsMarks[i].classList.remove('is-hidden');
-      cards[i].classList.add('overlay');
-    }
-  });
-}
-
-export function createThreePoints(str) {
-  if (str.length > 130) {
-    return str.slice(0, 130) + '...';
-  }
-  return str;
-}
+//   newsLinks.forEach((newsLink, i) => {
+//     newsLink.addEventListener('click', () => {
+//       readsMarks[i].classList.remove('is-hidden');
+//       cards[i].classList.add('overlay');
+//       localStorage.setItem(
+//         localStorageKey,
+//         JSON.stringify({
+//           ...JSON.parse(localStorage.getItem(localStorageKey)),
+//           [i]: true,
+//         })
+//       );
+//     });
+//     const storedData = JSON.parse(localStorage.getItem(localStorageKey));
+//     if (storedData && storedData[i]) {
+//       readsMarks[i].classList.remove('is-hidden');
+//       cards[i].classList.add('overlay');
+//     }
+//   });
+// }
