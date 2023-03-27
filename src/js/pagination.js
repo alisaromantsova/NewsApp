@@ -121,6 +121,7 @@ export function paginationNumericBtn(e) {
         successCallback,
         failureCallback
       );
+      addActiveBtn();
       smoothScrollUp();
       break;
     case paginationPushedBtn === paginationData.totalPage:
@@ -135,6 +136,7 @@ export function paginationNumericBtn(e) {
           paginationData.end
         )
       );
+      addActiveBtn();
       smoothScrollUp();
       break;
     default:
@@ -152,6 +154,7 @@ export function paginationNumericBtn(e) {
           paginationData.end
         )
       );
+      addActiveBtn();
       smoothScrollUp();
       break;
   }
@@ -173,10 +176,16 @@ function smoothScrollUp() {
 }
 
 export function addActiveBtn() {
-  const activeBtn = paginationNumericBtnContainerRef.querySelector(
-    `[data-page-${page}]`
-  );
-  console.log('activeBtn:', activeBtn);
+  const numericBtn = paginationNumericBtnContainerRef
+    .querySelectorAll('.pagination__num-btn')
+    .forEach(addActive);
+
+  function addActive(item) {
+    if (item.textContent == paginationData.page) {
+      numericBtn[0].classList.remove('active');
+      numericBtn.add('active');
+    }
+  }
 }
 
 export const prevBtnRef = document.querySelector('.pagination__prev');
