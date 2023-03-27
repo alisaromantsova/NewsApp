@@ -4,7 +4,6 @@ import { renderPaginationBtn, paginationData } from './pagination';
 import { successCallback, failureCallback } from './weather';
 // додав я
 
-
 import { setEventAfterRender } from './news-card';
 import { setEventAfterRead } from './news-card';
 import { createThreePoints } from './news-card';
@@ -91,10 +90,10 @@ export function renderMarkup(array) {
       }" alt="" width="395" height="395" loading="lazy"/>
       <p class="news__category">${article.category}</p>
 
-      <button aria-label="add-to-favorite" class="news__addbtn is-hidden" type="button">Add to favorite<svg class="news__heart-icon" width="16" height="16">
+      <button aria-label="add-to-favorite" class="news__addbtn " type="button">Add to favorite<svg class="news__heart-icon" width="16" height="16">
       <use href="${sprite + '#icon-heartBcg'}"></use>
     </svg></button>
-          <button class="news__removebtn" type="button"><span class="text__removebtn">Remove from favorite</span><svg class="news__fiilheart-icon" width="16" height="16">
+          <button class="news__removebtn is-hidden" type="button"><span class="text__removebtn">Remove from favorite</span><svg class="news__fiilheart-icon" width="16" height="16">
       <use href="${sprite + '#icon-heartBcg'}"></use>
     </svg></button>
 
