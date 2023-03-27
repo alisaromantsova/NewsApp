@@ -85,6 +85,7 @@
 }
 
 .news__category {
+
   position: absolute;
   display: flex;
   justify-content: center;
@@ -101,6 +102,7 @@
   line-height: 1.33;
   background-color: var(--blue--translucent);
   color: var(--color-btn-white);
+
 }
 
 .news__addbtn {
