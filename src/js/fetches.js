@@ -23,8 +23,8 @@ export async function fetchPopularNews() {
     const array = popularNews.map(article => {
       const meta = 'media-metadata';
       const newsObject = {
-        title: article.title? article.title: "Don't have title",
-        text: article.abstract? article.abstract: "Don't have description",
+        title: article.title ? article.title : "Don't have title",
+        text: article.abstract ? article.abstract : "Don't have description",
         imgSrc: article.media[0] ? article.media[0][meta][2].url : `${img404}`,
         link: article.url,
 
@@ -43,6 +43,7 @@ export async function fetchPopularNews() {
 
 //Фетч по категориямн
 // api.nytimes.com/svc/news/v3/content/all/arts.json?api-key=H3FRH5IMtPz0yNN170uMkDXY0wt0kfbS&limit=500&offset=0
+
 let preLoader = document.querySelector('.preloader');
 preLoader.classList.add('loaded');
 
@@ -64,8 +65,8 @@ export async function fetchNewsByCategory(category) {
     const newsByCategory = await response.data.results;
     const array = newsByCategory.map(article => {
       const newsObject = {
-        title: article.title?article.title: "Don't have title",
-        text: article.abstract?article.abstract: "Don't have description",
+        title: article.title ? article.title : "Don't have title",
+        text: article.abstract ? article.abstract : "Don't have description",
         imgSrc: article.multimedia ? article.multimedia[2].url : `${img404}`,
         link: article.url,
 
@@ -101,14 +102,16 @@ export async function fetchNewsBySearch(search) {
 
     const array = newsBySearch.map(article => {
       const newsObject = {
-        title: article.headline.main?article.headline.main: "Don't have title",
-        text: article.abstract?article.abstract: "Don't have description",
+        title: article.headline.main
+          ? article.headline.main
+          : "Don't have title",
+        text: article.abstract ? article.abstract : "Don't have description",
         imgSrc: `https://static01.nyt.com/${
           article.multimedia[0]
             ? article.multimedia[2].url
             : 'images/2023/02/21/multimedia/21skeleton-ukraine-01-zjwv/21skeleton-ukraine-01-zjwv-articleLarge.jpg'
         }`,
-        link: article.web_url        ,
+        link: article.web_url,
 
         category: article.section_name,
         date: makeDate(article.pub_date),
