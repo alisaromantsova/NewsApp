@@ -25,7 +25,7 @@ export async function fetchPopularNews() {
       const newsObject = {
         title: article.title ? article.title : "Don't have title",
         text: article.abstract ? article.abstract : "Don't have description",
-        // imgSrc: article.media[0] ? article.media[0][meta][2].url : `${img404}`,
+        imgSrc: article.media[0] ? article.media[0][meta][2].url : `${img404}`,
         link: article.url,
 
         category: article.section,
@@ -134,7 +134,7 @@ export async function fetchNewsBySearch(search) {
     div.innerHTML = renderEmptyMarkup();
   }
 }
-
+  
 function makeDate(isodate) {
   const date = new Date(isodate);
   const day = date.getDate().toString().padStart(2, '0');
