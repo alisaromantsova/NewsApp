@@ -1,23 +1,22 @@
-.pagination-section{
-  padding-bottom: 60px;
-  @include tablet{
-    padding-bottom: 100px;
-  }
-  @include desktop{
-    padding-bottom: 150px;
-  }
-}
 .pagination {
   &__container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
+    padding-bottom: 60px;
+    @include tablet {
+      padding-bottom: 100px;
+    }
+    @include desktop {
+      padding-bottom: 150px;
+    }
   }
   &__btn {
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: var(--background-color-light);
     font-weight: 500;
     font-size: 14px;
@@ -29,15 +28,23 @@
       line-height: 1.375;
     }
   }
-
+  &__btn:hover {
+    background-color: var(--secondary-text-color);
+    color: var(--background-color-light);
+    fill: var(--background-color-light);
+  }
   &__prev {
-    padding: 4px 10px;
+    width: 72px;
+    height: 28px;
+    @include tablet {
+      width: 82px;
+      height: 31px;
+    }
     span {
       pointer-events: none;
       display: flex;
       flex-direction: row;
       align-items: center;
-
       gap: 10px;
     }
     svg {
@@ -47,19 +54,31 @@
   }
 
   &__next {
-    padding: 4px 10px;
+    width: 72px;
+    height: 28px;
+    @include tablet {
+      width: 82px;
+      height: 31px;
+    }
     span {
       pointer-events: none;
       display: flex;
       flex-direction: row;
       align-items: center;
-
       gap: 10px;
     }
     svg {
       justify-content: center;
       fill: inherit;
     }
+  }
+
+  &__next[disabled],
+  &__prev[disabled] {
+    color: var(--color-fon-footer);
+    background-color: var(--additional-text-color);
+    border: none;
+    fill: var(--color-fon-footer);
   }
 
   &__numeric-btn-container {

@@ -6,7 +6,7 @@ import {
   prevBtnRef,
   nextBtnRef,
 } from './pagination';
-import { successCallback, failureCallback } from './weather';
+// import { successCallback, failureCallback } from './weather';
 import { setEventAfterRender } from './news-card';
 import { setEventAfterRead } from './news-card';
 import { createThreePoints } from './news-card';
