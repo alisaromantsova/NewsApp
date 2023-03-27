@@ -28,7 +28,7 @@ const btnUp = {
     }
   },
   addEventListener() {
-    // when scrolling the window
+    
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY || document.documentElement.scrollTop;
       if (this.scrolling && scrollY > 0) {
