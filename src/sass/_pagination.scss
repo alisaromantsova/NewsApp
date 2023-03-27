@@ -28,7 +28,8 @@
       line-height: 1.375;
     }
   }
-  &__btn:hover {
+  &__btn:hover,
+  .active-btn {
     background-color: var(--secondary-text-color);
     color: var(--background-color-light);
     fill: var(--background-color-light);
