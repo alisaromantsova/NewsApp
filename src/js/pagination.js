@@ -49,6 +49,10 @@ export function pagination(e) {
       paginationData.end =
         paginationData.start + paginationData.newsPerPage - 1;
       prevBtnRef.disabled = true;
+      navigator.geolocation.getCurrentPosition(
+        successCallback,
+        failureCallback
+      );
     } else {
       paginationData.start =
         (paginationData.page - 1) * paginationData.newsPerPage;
@@ -91,41 +95,6 @@ export function renderPaginationBtn() {
   paginationRef.children[1].innerHTML = markup;
 }
 
-export const prevBtnRef = document.querySelector('.pagination__prev');
-export const nextBtnRef = document.querySelector('.pagination__next');
-const paginationRef = document.querySelector('.pagination__container');
-
-const paginationNumericBtnContainerRef = document.querySelector(
-  '.pagination__numeric-btn-container'
-);
-
-const paginEventListener = () => {
-  paginationRef.addEventListener('click', pagination);
-};
-const paginNumericBtnEventListener = () => {
-  paginationNumericBtnContainerRef.addEventListener(
-    'click',
-    paginationNumericBtn
-  );
-};
-
-if (prevBtnRef) prevBtnRef.disabled = true;
-if (
-  window.location.pathname === '/index.html' ||
-  window.location.pathname === '/NewsApp/' ||
-  window.location.pathname === '/' ||
-  window.location.pathname === '/NewsApp/index.html'
-) {
-  paginEventListener();
-  paginNumericBtnEventListener();
-}
-function smoothScrollUp() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
-}
-
 export function paginationNumericBtn(e) {
   const paginationPushedBtn = parseInt(
     paginationNumericBtnContainerRef.querySelector(
@@ -147,6 +116,10 @@ export function paginationNumericBtn(e) {
           paginationData.start,
           paginationData.end
         )
+      );
+      navigator.geolocation.getCurrentPosition(
+        successCallback,
+        failureCallback
       );
       smoothScrollUp();
       break;
@@ -190,4 +163,45 @@ export function paginationNumericBtn(e) {
   //   'paginationData.page:',
   //   paginationData.page
   // );
+}
+
+function smoothScrollUp() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+}
+
+export function addActiveBtn() {
+  const activeBtn = paginationNumericBtnContainerRef.querySelector(
+    `[data-page-${page}]`
+  );
+  console.log('activeBtn:', activeBtn);
+}
+
+export const prevBtnRef = document.querySelector('.pagination__prev');
+export const nextBtnRef = document.querySelector('.pagination__next');
+const paginationRef = document.querySelector('.pagination__container');
+const paginationNumericBtnContainerRef = document.querySelector(
+  '.pagination__numeric-btn-container'
+);
+const paginEventListener = () => {
+  paginationRef.addEventListener('click', pagination);
+};
+const paginNumericBtnEventListener = () => {
+  paginationNumericBtnContainerRef.addEventListener(
+    'click',
+    paginationNumericBtn
+  );
+};
+
+if (prevBtnRef) prevBtnRef.disabled = true;
+if (
+  window.location.pathname === '/index.html' ||
+  window.location.pathname === '/NewsApp/' ||
+  window.location.pathname === '/' ||
+  window.location.pathname === '/NewsApp/index.html'
+) {
+  paginEventListener();
+  paginNumericBtnEventListener();
 }
