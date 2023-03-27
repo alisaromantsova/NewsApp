@@ -10,7 +10,10 @@ import './js/weather';
 import './js/mobile-menu';
 import './js/onmount';
 import './js/news-card-listner';
-
+import './js/btnUpp';
+import './js/header-fixed-position';
+// import './js/read-page';
+import './js/addtoread';
 import axios, { isCancel, AxiosError } from 'axios';
 const CalendarDates = require('calendar-dates');
 const calendarDates = new CalendarDates();

@@ -39,6 +39,7 @@ export async function successCallback(position) {
   const { data } = await getCurrentWeather(
     position.coords.latitude,
     position.coords.longitude
+
     );
     OnStorageSetWeather(data);
     OnStorageGetWeather();
@@ -47,6 +48,9 @@ export async function successCallback(position) {
     OnStorageGetWeather();
     renderWeather(parseWeather);
     }
+
+  );
+
 }
 
 
@@ -64,7 +68,9 @@ export async function failureCallback() {
     }
 }
 
+
 export function renderWeather(parseWeather) {
+
   const currentDate = new Date();
   const currentDayName = currentDate.toString().split(' ')[0];
   const currentDay = currentDate.getDate();

@@ -33,21 +33,21 @@
   //   display: block;
   // }
 }
-.calendar__wrapper {
-  position: absolute;
-  width: 252px;
-  height: 242px;
-  overflow: hidden;
-  top: 0;
-  right: -30px;
-  pointer-events: none;
-}
+// .calendar__wrapper {
+//   position: absolute;
+//   width: 252px;
+//   height: 242px;
+//   overflow: hidden;
+//   top: 0;
+//   right: -30px;
+//   pointer-events: none;
+// }
 .calendar2__current-date-container {
   position: relative;
   margin: 0;
   padding: 0;
   width: 152px;
-  background-color: var(--color-btn-white);
+  //background-color: var(--color-btn-white);
   border-radius: 20px;
   @include tablet {
     width: 168px;
@@ -235,7 +235,7 @@
   background-color: var(--color-btn-white); //add
   pointer-events: none;
   right: 0;
-  outline: 1px solid var(--color-active-btn);
+  //outline: 1px solid var(--color-active-btn);
   width: 250px;
   border-radius: 10px;
   //transform: scale(0, 0); //before
@@ -256,5 +256,20 @@
   }
   & .calendar2__container {
     color: var(--text-color);
+  }
+}
+.calendar2__container {
+  z-index: -1;
+  &.js-calendar-zIndexChange {
+    z-index: 2;
+  }
+}
+.dark {
+  & .calendar2__current-date.js-date-show {
+    background-color: var(--color-active-btn);
+    border: 1px solid var(--color-active-btn);
+  }
+  & .calendar2__container {
+    outline: 1px solid var(--color-btn-white);
   }
 }

@@ -4,10 +4,13 @@ import {
   fetchNewsBySearch,
   renderEmptyMarkup,
   fetchNewsByCategoryAndDate,
+  fetchNewsByCategoryAndDate2,
 } from './fetches';
 import { categoryValue } from './navigation';
+import { inputValueData } from './search-field';
 import { renderMarkup } from './render-markup';
 import CalendarDates from 'calendar-dates';
+import { inputValueData } from './search-field';
 const calendarDates = new CalendarDates();
 class Calendar {
   ref = {
@@ -181,13 +184,13 @@ class Calendar {
     ); //change
     this.ref.calendarCurrentDateSvgDown.classList.toggle('visually-hidden');
     this.ref.calendarCurrentDateSvgUp.classList.toggle('visually-hidden');
+    this.#calendarZindexChange();
   }
 
   #calendarContainerOnClick(event) {
     if (event.target.dataset.date !== 'current') return;
     const currentDate = event.target.textContent;
-    //console.log(currentDate);
-    //save current date for future
+
     const fullFormatCurrentDate = this.#calendarArray.filter(
       item => item.type === 'current' && item.date == currentDate
     );
@@ -205,18 +208,54 @@ class Calendar {
     // this.ref.calendarCurrentDateSvgUp.classList.add('visually-hidden');
 
     const dateForFetch = fullFormatCurrentDate[0].iso.split('-').join('');
-    if (categoryValue.value) {
-      this.#renderNews(dateForFetch, categoryValue.value);
+    // if (categoryValue.value) {
+    //   this.#renderNews(dateForFetch, categoryValue.value);
+    // }
+    let categorySearch = categoryValue.value;
+    let inputSearch = inputValueData.value;
+
+    if (categorySearch) {
+      this.#renderNews(dateForFetch, `fq=news_desk:("${categorySearch}")`);
+      return;
+    }
+    return this.#renderNews(dateForFetch, `q=${inputSearch || 'top news'}`);
+  }
+
+  async #renderNews(date, query) {
+    const result = await fetchNewsByCategoryAndDate2(date, query);
+    if (result?.length) {
+      const div = document.querySelector('.news');
+      div.innerHTML = '';
+      renderMarkup(result);
     }
   }
-
-  async #renderNews(date, category) {
-    const result = await fetchNewsByCategoryAndDate(date, category);
-    const div = document.querySelector('.news');
-    div.innerHTML = '';
-    renderMarkup(result);
+  closeCalendar(event) {
+    if (event.target.closest('.calendar2__container')) return;
+    if (
+      !this.ref.calendarContainer.classList.contains('js-calendar-zIndexChange')
+    )
+      return;
+    this.#currentDateOnClick();
   }
-
+  #calendarZindexChange() {
+    const gallery = document.querySelector('.home-gallery');
+    if (
+      !this.ref.calendarContainer.classList.contains('js-calendar-zIndexChange')
+    ) {
+      gallery.style.position = 'relative';
+      gallery.style.zIndex = '-2';
+      setTimeout(
+        () =>
+          this.ref.calendarContainer.classList.toggle(
+            'js-calendar-zIndexChange'
+          ),
+        500
+      );
+      return;
+    }
+    this.ref.calendarContainer.classList.toggle('js-calendar-zIndexChange');
+    setTimeout(() => (gallery.style.zIndex = '0'), 500);
+  }
   #deleteAndAddCurrentClass(element) {
     const refPreviousDate = document.querySelector('.current-date');
     if (refPreviousDate) {
@@ -225,6 +264,7 @@ class Calendar {
     element.classList.toggle('current-date');
   }
   #buttonMonthAfterOnClick(event) {
+    event.stopPropagation();
     let chosenDate = '';
     if (this.#currentDate.month == 12) {
       this.#currentDate.month = 1;
@@ -246,6 +286,7 @@ class Calendar {
   }
 
   #buttonMonthBeforeOnClick(event) {
+    event.stopPropagation();
     let chosenDate = '';
     if (this.#currentDate.month == 1) {
       this.#currentDate.month = 12;
@@ -266,6 +307,7 @@ class Calendar {
     this.futureDate(new Date(chosenDate));
   }
   #yearForwardOnClick(event) {
+    event.stopPropagation();
     let chosenDate = '';
     this.#currentDate.year = Number(this.#currentDate.year) + 1;
     chosenDate = `${this.#currentDate.year}/${this.#currentDate.month}/${
@@ -278,6 +320,7 @@ class Calendar {
     this.futureDate(new Date(chosenDate));
   }
   #yearBackWardOnClick(event) {
+    event.stopPropagation();
     let chosenDate = '';
     this.#currentDate.year = Number(this.#currentDate.year) - 1;
     chosenDate = `${this.#currentDate.year}/${this.#currentDate.month}/${
@@ -294,3 +337,4 @@ class Calendar {
 const calendar = new Calendar();
 calendar.futureDate();
 calendar.activateListeners();
+document.body.addEventListener('click', event => calendar.closeCalendar(event));
