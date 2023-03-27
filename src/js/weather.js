@@ -3,6 +3,7 @@ import { getCurrentWeather } from './fetches';
 function OnStorageSetWeather(data) {
   const WEATHER_KEY = 'onHourWeather';
   localStorage.setItem(WEATHER_KEY, JSON.stringify(data));
+  // console.log('Data loaded successfully!');
 }
 
 let parseWeather;
@@ -32,13 +33,15 @@ export async function successCallback(position) {
     OnStorageSetWeather(data);
     OnStorageGetWeather();
     renderWeather(parseWeather);
+    // console.log('в локал сторедж ничего нет, запускаю фетч');
   } else {
     OnStorageGetWeather();
-
+    // console.log('в локал сторедж все есть, беру инфо оттуда');
     timeDiff = onTimeCheck(parseWeather);
-
+    // console.log(timeDiff);
     if (timeDiff < 3600) {
       renderWeather(parseWeather);
+      // console.log('прошло меньше часа, беру инфу с ЛС');
     } else {
       let { data } = await getCurrentWeather(
         position.coords.latitude,
@@ -47,9 +50,11 @@ export async function successCallback(position) {
       OnStorageSetWeather(data);
       OnStorageGetWeather();
       renderWeather(parseWeather);
+      // console.log('прошло больше часа, фетчу');
     }
   }
 }
+// const { data } = await getCurrentWeather(40.748488, -73.985508);
 
 export async function failureCallback() {
   if (!localStorage.getItem('onHourWeather')) {
@@ -57,18 +62,21 @@ export async function failureCallback() {
     OnStorageSetWeather(data);
     OnStorageGetWeather();
     renderWeather(parseWeather);
+    // console.log('в локал сторедж ничего нет, запускаю фетч');
   } else {
     OnStorageGetWeather();
-
+    // console.log('в локал сторедж все есть, беру инфо оттуда');
     timeDiff = onTimeCheck(parseWeather);
-
+    // console.log(timeDiff);
     if (timeDiff < 3600) {
       renderWeather(parseWeather);
+      // console.log('прошло меньше часа, беру инфу с ЛС');
     } else {
       let { data } = await getCurrentWeather(40.748488, -73.985508);
       OnStorageSetWeather(data);
       OnStorageGetWeather();
       renderWeather(parseWeather);
+      // console.log('прошло больше часа, фетчу');
     }
   }
 }

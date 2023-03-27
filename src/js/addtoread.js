@@ -5,8 +5,9 @@ if (
   window.location.pathname === '/' ||
   window.location.pathname === '/NewsApp/index.html'
 ) {
-  linkReadMoreNews.addEventListener('click', readMoreClick);
+linkReadMoreNews.addEventListener('click', readMoreClick);
 }
+
 
 export function readMoreClick(event) {
   const arreyReadCard = JSON.parse(localStorage.getItem('newsReadMore'))
