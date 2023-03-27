@@ -1,5 +1,7 @@
 import { renderEmptyMarkup } from './fetches';
 import { onAddToFavoriteClick } from './news-card-listner';
+import { setEventAfterRender } from './news-card';
+import { setEventAfterRead } from './news-card';
 const readList = document.querySelector('.list-news');
 const cardsRead = JSON.parse(localStorage.getItem('newsReadMore'));
 readList.addEventListener('click', onRemoveNewCardToReadClick);
@@ -16,6 +18,8 @@ function renderMarkup() {
         .join('')
     );
   }
+  setEventAfterRender();
+  setEventAfterRead();
 }
 
 renderMarkup();
