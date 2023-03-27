@@ -17,16 +17,6 @@ let parseWeather;
 function OnStorageGetWeather() {
   const getWeather = localStorage.getItem('onHourWeather') || "";
   parseWeather = JSON.parse(getWeather);
-  
-  // const date = new Date();
-  // const dateNow = date.getTime()/1000;
-  // const dt = parseWeather.dt;
-  // const timeDiff = dateNow - dt;
-  // if (timeDiff >= 3600) {
-    
-  // }
-  // console.log(secondsDate);
-  // console.log(dt);
   return parseWeather;
 }
 
@@ -40,7 +30,6 @@ function onTimeCheck(parseWeather) {
   return timeDiff;
 }
 
-onTimeCheck();
 
 let page = 1;
 export async function successCallback(position) {
@@ -54,9 +43,10 @@ export async function successCallback(position) {
     OnStorageSetWeather(data);
     OnStorageGetWeather();
     renderWeather(parseWeather);
-  }
+  } else {
     OnStorageGetWeather();
     renderWeather(parseWeather);
+    }
 }
 
 
@@ -68,12 +58,13 @@ export async function failureCallback() {
     OnStorageSetWeather(data);
     OnStorageGetWeather();
     renderWeather(parseWeather);
-  }
+  } else {
     OnStorageGetWeather();
     renderWeather(parseWeather);
+    }
 }
 
-function renderWeather(parseWeather) {
+export function renderWeather(parseWeather) {
   const currentDate = new Date();
   const currentDayName = currentDate.toString().split(' ')[0];
   const currentDay = currentDate.getDate();
