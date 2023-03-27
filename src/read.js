@@ -1,4 +1,5 @@
 import axios, { isCancel, AxiosError } from 'axios';
+import './js/spinner';
 import './js/read-page';
 import './js/render-markup';
 import './js/theme-btn';

@@ -14,7 +14,7 @@ import sprite from '../images/symbol-defs.svg';
 
 export function renderMarkupData(array) {
   restart();
-  console.log('array:', array);
+
   switch (true) {
     case window.matchMedia('(max-width: 767px)').matches:
       paginationData.newsPerPage = 5;
@@ -81,7 +81,7 @@ export function renderMarkup(array) {
       <button aria-label="add-to-favorite" class="news__addbtn is-hidden" type="button">Add to favorite<svg class="news__heart-icon" width="16" height="16">
             <use href="${sprite + '#icon-heartBcg'}"></use>
           </svg></button>
-                <button class="news__removebtn" type="button"><span class="text__removebtn">Remove from favorite</span><svg class="news__fiilheart-icon" width="16" height="16">
+                <button class="news__removebtn is-hidden" type="button"><span class="text__removebtn">Remove from favorite</span><svg class="news__fiilheart-icon" width="16" height="16">
             <use href="${sprite + '#icon-heartBcg'}"></use>
           </svg></button>
 
@@ -106,19 +106,12 @@ export function renderMarkup(array) {
       }" alt="" width="395" height="395" loading="lazy"/>
       <p class="news__category">${article.category}</p>
 
-      <button aria-label="add-to-favorite" class="news__addbtn" type="button"><span>Add to favorite</span><svg class="news__heart-icon" width="16" height="16">
-            <use href="${sprite + '#icon-heartBcg'}"></use>
-          </svg></button>
-                <button class="news__removebtn is-hidden" type="button">Remove from favorite<svg class="news__fiilheart-icon" width="16" height="16">
-            <use href="${sprite + '#icon-heartBcg'}"></use>
-          </svg></button>
-
-      <button aria-label="add-to-favorite" class="news__addbtn" type="button"><span>Add to favorite</span><svg class="news__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4.66659 2C2.82592 2 1.33325 3.47733 1.33325 5.3C1.33325 6.77133 1.91659 10.2633 7.65858 13.7933C7.76144 13.8559 7.87952 13.889 7.99992 13.889C8.12032 13.889 8.2384 13.8559 8.34125 13.7933C14.0833 10.2633 14.6666 6.77133 14.6666 5.3C14.6666 3.47733 13.1739 2 11.3333 2C9.49258 2 7.99992 4 7.99992 4C7.99992 4 6.50725 2 4.66659 2Z" stroke="#4440F7" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg></button>
-                <button aria-label="add-to-favorite" class="news__removebtn is-hidden" type="button"><span class="text__removebtn">Remove from favorite</span><svg class="card-button-icon" width="16" height="16" viewBox="0 0 16 16" fill="#4b48da" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4.66659 2C2.82592 2 1.33325 3.47733 1.33325 5.3C1.33325 6.77133 1.91659 10.2633 7.65858 13.7933C7.76144 13.8559 7.87952 13.889 7.99992 13.889C8.12032 13.889 8.2384 13.8559 8.34125 13.7933C14.0833 10.2633 14.6666 6.77133 14.6666 5.3C14.6666 3.47733 13.1739 2 11.3333 2C9.49258 2 7.99992 4 7.99992 4C7.99992 4 6.50725 2 4.66659 2Z" stroke="#4440F7" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg></button>
+      <button aria-label="add-to-favorite" class="news__addbtn " type="button">Add to favorite<svg class="news__heart-icon" width="16" height="16">
+      <use href="${sprite + '#icon-heartBcg'}"></use>
+    </svg></button>
+          <button class="news__removebtn is-hidden" type="button"><span class="text__removebtn">Remove from favorite</span><svg class="news__fiilheart-icon" width="16" height="16">
+      <use href="${sprite + '#icon-heartBcg'}"></use>
+    </svg></button>
 
        </div>
     <h2 class="news__title">${article.title}</h2>
@@ -128,6 +121,7 @@ export function renderMarkup(array) {
   <a target="_blank" rel="noopener noreferrer" class="news__link" href="${
     article.link
   }" target="_blank" rel="noreferrer noopener">read more</a>
+  
  </div>
  </div>`;
       }
@@ -135,10 +129,6 @@ export function renderMarkup(array) {
     .join('');
 
   div.innerHTML = markup;
-  // if (paginationData.page === 1) {
-  //   navigator.geolocation.getCurrentPosition(successCallback, failureCallback);
-  // }
-  // checkedString();
   setEventAfterRender();
   setEventAfterRead();
 }

@@ -1,0 +1,40 @@
+.preloader {
+  position: absolute;
+  left: 0;
+  top: 176px;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 90%;
+  overflow: hidden;
+  z-index: 1001;
+  color: var(--color-active-btn);
+  transition: all 100ms ease-in-out;
+  opacity: 1;
+}
+
+.preloader__image {
+  position: relative;
+  top: 35%;
+  left: 50%;
+  width: 70px;
+  height: 70px;
+  margin-top: -35px;
+  margin-left: -35px;
+  text-align: center;
+
+  animation: preloader-rotate 2s infinite linear;
+}
+
+@keyframes preloader-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.preloader.loaded {
+  // transform: scale(1.7);
+  opacity: 0;
+  pointer-events: none;
+  // transition: all 0.25 ease-in-out;
+}

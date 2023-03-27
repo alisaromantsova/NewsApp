@@ -1,9 +1,16 @@
 // збереження в локалсторедж по кліку на add
+
+if (
+  window.location.pathname === '/index.html' ||
+  window.location.pathname === '/NewsApp/' ||
+  window.location.pathname === '/' ||
+  window.location.pathname === '/NewsApp/index.html'
+) {
+  const divClassNews = document.querySelector('.news');
+  divClassNews.addEventListener('click', onAddToFavoriteClick);
+}
+
 const divClassNews = document.querySelector('.news');
-divClassNews.addEventListener('click', onAddToFavoriteClick);
-
-
-
 
 export function onAddToFavoriteClick(event) {
   const arreyCard = JSON.parse(localStorage.getItem('newsCard'))

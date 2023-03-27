@@ -1,3 +1,4 @@
+import './js/spinner';
 import './js/fetches';
 import './js/render-markup';
 import './js/theme-btn';
