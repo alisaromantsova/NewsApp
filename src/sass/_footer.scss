@@ -1,7 +1,7 @@
-footer {
-  height: 120px;
-  background-color: #7a7a7a;
-  @include tablet {
-    height: 146px;
-  }
+footer{
+    height: 120px;
+   background-color: #7A7A7A;
+    @include tablet{
+        height: 146px;
+    }
 }

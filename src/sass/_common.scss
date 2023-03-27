@@ -1,8 +1,9 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
-body {
-  font-family: 'Manrope', sans-serif;
+body{
+    font-family: 'Manrope', sans-serif;
+    
 }
-body.dark {
-  background-color: var(--background-color-dark);
-  color: var(--text-color-dark-theme);
+body.dark{
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark-theme);
 }
