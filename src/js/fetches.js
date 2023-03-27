@@ -25,7 +25,7 @@ export async function fetchPopularNews() {
       const newsObject = {
         title: article.title ? article.title : "Don't have title",
         text: article.abstract ? article.abstract : "Don't have description",
-        imgSrc: article.media[0] ? article.media[0][meta][2].url : `${img404}`,
+        // imgSrc: article.media[0] ? article.media[0][meta][2].url : `${img404}`,
         link: article.url,
 
         category: article.section,
@@ -42,6 +42,11 @@ export async function fetchPopularNews() {
 }
 
 //Фетч по категориямн
+
+// Із офсетом                api.nytimes.com/svc/news/v3/content/all/arts.json?api-key=H3FRH5IMtPz0yNN170uMkDXY0wt0kfbS&limit=500&offset=0
+
+// Наша API                  api.nytimes.com/svc/news/v3/content/nyt/${category}.json?api-key=${KEY}
+
 
 let preLoader = document.querySelector('.preloader');
 preLoader.classList.add('loaded');

@@ -73,10 +73,102 @@ export function renderPaginationBtn() {
 }
 
 export function paginationNumericBtn(e) {
+
+  const paginationPushedBtn = parseInt(
+    paginationNumericBtnContainerRef.querySelector(
+      `[data-page-${e.target.textContent}]`
+    ).textContent
+  );
+  paginationData.page = paginationPushedBtn;
+  switch (true) {
+    case paginationPushedBtn === 1:
+      prevBtnRef.disabled = true;
+      nextBtnRef.disabled = false;
+
+      paginationData.start =
+        (paginationPushedBtn - 1) * paginationData.newsPerPage;
+      paginationData.end =
+        paginationData.start + paginationData.newsPerPage - 1;
+      renderMarkup(
+        paginationData.originalArray.slice(
+          paginationData.start,
+          paginationData.end
+        )
+      );
+      navigator.geolocation.getCurrentPosition(
+        successCallback,
+        failureCallback
+      );
+      addActiveBtn();
+      smoothScrollUp();
+      break;
+    case paginationPushedBtn === paginationData.totalPage:
+      nextBtnRef.disabled = true;
+      prevBtnRef.disabled = false;
+      paginationData.start =
+        (paginationPushedBtn - 1) * paginationData.newsPerPage - 1;
+      paginationData.end = paginationData.originalArray.length;
+      renderMarkup(
+        paginationData.originalArray.slice(
+          paginationData.start,
+          paginationData.end
+        )
+      );
+      addActiveBtn();
+      smoothScrollUp();
+      break;
+    default:
+      nextBtnRef.disabled = false;
+      prevBtnRef.disabled = false;
+      paginationData.start =
+        (paginationPushedBtn - 1) * paginationData.newsPerPage - 1;
+      paginationData.end =
+        (paginationPushedBtn - 1) * paginationData.newsPerPage +
+        paginationData.newsPerPage -
+        1;
+      renderMarkup(
+        paginationData.originalArray.slice(
+          paginationData.start,
+          paginationData.end
+        )
+      );
+      addActiveBtn();
+      smoothScrollUp();
+      break;
+  }
+  // console.log(
+  //   'paginationData.end:',
+  //   paginationData.end,
+  //   'paginationData.start:',
+  //   paginationData.start,
+  //   'paginationData.page:',
+  //   paginationData.page
+  // );
 }
 
-const prevBtnRef = document.querySelector('.pagination__prev');
-const nextBtnRef = document.querySelector('.pagination__next');
+function smoothScrollUp() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+}
+
+export function addActiveBtn() {
+  const numericBtn = paginationNumericBtnContainerRef
+    .querySelectorAll('.pagination__num-btn')
+    .forEach(addActive);
+
+  function addActive(item) {
+    if (item.textContent == paginationData.page) {
+      numericBtn[0].classList.remove('active');
+      numericBtn.add('active');
+    }
+  }
+}
+
+export const prevBtnRef = document.querySelector('.pagination__prev');
+export const nextBtnRef = document.querySelector('.pagination__next');
+
 const paginationRef = document.querySelector('.pagination__container');
 
 const paginationNumericBtnContainerRef = document.querySelector(
