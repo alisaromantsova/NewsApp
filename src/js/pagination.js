@@ -6,7 +6,7 @@ export const paginationData = {
 };
 
 export function pagination(e) {
-  if (e.target.classList.contains('next')) {
+  if (e.target.classList.contains('pagination__next')) {
     prevBtnRef.disabled = false;
     paginationData.page += 1;
     if (paginationData.page > 1) {
@@ -33,7 +33,7 @@ export function pagination(e) {
     smoothScrollUp();
     return;
   }
-  if (e.target.classList.contains('prev')) {
+  if (e.target.classList.contains('pagination__prev')) {
     paginationData.page -= 1;
     if (paginationData.page === 1) {
       paginationData.start =
@@ -64,12 +64,34 @@ export function pagination(e) {
   }
 }
 
-const prevBtnRef = document.querySelector('.prev');
-const nextBtnRef = document.querySelector('.next');
-const paginationRefs = document.querySelector('.pagination');
+export function renderPaginationBtn() {
+  let markup = '';
+  for (let index = 1; index <= paginationData.totalPage; index += 1) {
+    markup += `<button type="button" class="pagination__btn pagination__num-btn" data-page="${index}">${index}</button>`;
+  }
+  paginationRef.children[1].innerHTML = markup;
+}
+
+export function paginationNumericBtn(e) {
+  console.log(e.target.dataset.page);
+}
+
+const prevBtnRef = document.querySelector('.pagination__prev');
+const nextBtnRef = document.querySelector('.pagination__next');
+const paginationRef = document.querySelector('.pagination__container');
+
+const paginationNumericBtnContainerRef = document.querySelector(
+  '.pagination__numeric-btn-container'
+);
 
 const paginEventListener = () => {
-  paginationRefs.addEventListener('click', pagination);
+  paginationRef.addEventListener('click', pagination);
+};
+const paginNumericBtnEventListener = () => {
+  paginationNumericBtnContainerRef.addEventListener(
+    'click',
+    paginationNumericBtn
+  );
 };
 
 if (prevBtnRef) prevBtnRef.disabled = true;
@@ -80,18 +102,11 @@ if (
   window.location.pathname === '/NewsApp/index.html'
 ) {
   paginEventListener();
+  paginNumericBtnEventListener();
 }
 function smoothScrollUp() {
   window.scrollTo({
     top: 0,
     behavior: 'smooth',
   });
-}
-
-export function renderPaginationBtn() {
-  let markup = '';
-  for (let index = 1; index <= paginationData.totalPage; index += 1) {
-    markup += `<button type="button" class="pag-btn pag-btn-${index}">${index}</button>`;
-  }
-  paginationRefs.children[1].innerHTML = markup;
 }
