@@ -4,10 +4,13 @@ import {
   fetchNewsBySearch,
   renderEmptyMarkup,
   fetchNewsByCategoryAndDate,
+  fetchNewsByCategoryAndDate2,
 } from './fetches';
 import { categoryValue } from './navigation';
-import { renderMarkup } from './render-markup';
+import { inputValueData } from './search-field';
+import { renderMarkup, renderMarkupData } from './render-markup';
 import CalendarDates from 'calendar-dates';
+import { inputValueData } from './search-field';
 const calendarDates = new CalendarDates();
 class Calendar {
   ref = {
@@ -208,15 +211,23 @@ class Calendar {
     // if (categoryValue.value) {
     //   this.#renderNews(dateForFetch, categoryValue.value);
     // }
-    categoryValue.value = categoryValue.value || 'books';
-    this.#renderNews(dateForFetch, categoryValue.value);
+    let categorySearch = categoryValue.value;
+    let inputSearch = inputValueData.value;
+
+    if (categorySearch) {
+      this.#renderNews(dateForFetch, `fq=news_desk:("${categorySearch}")`);
+      return;
+    }
+    return this.#renderNews(dateForFetch, `q=${inputSearch || 'top news'}`);
   }
 
-  async #renderNews(date, category) {
-    const result = await fetchNewsByCategoryAndDate(date, category);
-    const div = document.querySelector('.news');
-    div.innerHTML = '';
-    renderMarkup(result);
+  async #renderNews(date, query) {
+    const result = await fetchNewsByCategoryAndDate2(date, query);
+    if (result?.length) {
+      const div = document.querySelector('.news');
+      div.innerHTML = '';
+      renderMarkupData(result);
+    }
   }
   closeCalendar(event) {
     if (event.target.closest('.calendar2__container')) return;

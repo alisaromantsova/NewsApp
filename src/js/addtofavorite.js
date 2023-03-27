@@ -1,4 +1,5 @@
 import { renderEmptyMarkup } from './fetches';
+import { readMoreClick } from './addtoread';
 const favoriteList = document.querySelector('.list-news');
 const cards = JSON.parse(localStorage.getItem('newsCard'));
 favoriteList.addEventListener('click', onRemoveNewCardToFavoriteClick);
@@ -20,6 +21,7 @@ function renderMarkup() {
 renderMarkup();
 
 function onRemoveNewCardToFavoriteClick(event) {
+  readMoreClick(event);
   if (
     event.target.tagName !== 'SPAN' &&
     event.target.tagName !== 'BUTTON' &&
@@ -33,7 +35,7 @@ function onRemoveNewCardToFavoriteClick(event) {
     ? [...JSON.parse(localStorage.getItem('newsCard'))]
     : [];
 
-  const linkNewCArd = event.target
+  const linkNewReadCard = event.target
     .closest('.new__card')
     .querySelector('.news__link');
 
@@ -41,7 +43,7 @@ function onRemoveNewCardToFavoriteClick(event) {
     localStorage.removeItem('newsCard');
     const arreyCardSecond = [];
     arreyCard.map(item => {
-      if (item.newsCard.includes(linkNewCArd)) {
+      if (item.newsCard.includes(linkNewReadCard)) {
         return;
       } else {
         if (item) {
