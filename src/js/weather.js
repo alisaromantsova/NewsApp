@@ -30,32 +30,47 @@ function OnStorageGetWeather() {
   return parseWeather;
 }
 
-// function oneHourCheck(parseWeather) {
-//   OnStorageGetWeather();
-  
+let timeDiff;
+function onTimeCheck(parseWeather) {
+  parseWeather = OnStorageGetWeather();
+  const date = new Date();
+  const dateNow = date.getTime()/1000;
+  const dt = parseWeather.dt;
+  timeDiff = dateNow - dt;
+  return timeDiff;
+}
 
-// }
-// oneHourCheck();
+onTimeCheck();
 
 let page = 1;
 export async function successCallback(position) {
+  timeDiff = onTimeCheck();
+  console.log(timeDiff);
+  if(timeDiff >= 3600){
   const { data } = await getCurrentWeather(
     position.coords.latitude,
     position.coords.longitude
-  );
-  
-  OnStorageSetWeather(data);
-  OnStorageGetWeather();
-  renderWeather(parseWeather);
+    );
+    OnStorageSetWeather(data);
+    OnStorageGetWeather();
+    renderWeather(parseWeather);
+  }
+    OnStorageGetWeather();
+    renderWeather(parseWeather);
 }
 
 
-
 export async function failureCallback() {
+  timeDiff = onTimeCheck();
+  console.log(timeDiff);
+  if(timeDiff >= 3600){
   const { data } = await getCurrentWeather(40.748488, -73.985508);
-  OnStorageSetWeather(data);
-  OnStorageGetWeather();
-  renderWeather(parseWeather);
+    OnStorageSetWeather(data);
+    OnStorageGetWeather();
+    renderWeather(parseWeather);
+  }
+    OnStorageGetWeather();
+    renderWeather(parseWeather);
 }
 
 function renderWeather(parseWeather) {
