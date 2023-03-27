@@ -6,8 +6,6 @@ const refs = {
 refs.navItems.forEach(addUnderLine);
 
 function addUnderLine(navItem) {
-  console.log('navItem:', navItem);
-
   if (navItem.href === refs.currentPage) {
     refs.navItems[0].classList.remove('site-nav__link--current');
     navItem.classList.add('site-nav__link--current');

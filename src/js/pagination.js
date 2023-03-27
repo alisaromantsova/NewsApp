@@ -9,6 +9,7 @@ export function pagination(e) {
   if (e.target.classList.contains('pagination__next')) {
     prevBtnRef.disabled = false;
     paginationData.page += 1;
+    addActiveBtn();
     if (paginationData.page > 1) {
       paginationData.start =
         (paginationData.page - 1) * paginationData.newsPerPage - 1;
@@ -43,6 +44,7 @@ export function pagination(e) {
   }
   if (e.target.classList.contains('pagination__prev')) {
     paginationData.page -= 1;
+    addActiveBtn();
     if (paginationData.page === 1) {
       paginationData.start =
         (paginationData.page - 1) * paginationData.newsPerPage;
@@ -63,14 +65,6 @@ export function pagination(e) {
       paginationData.end -= 1;
     }
     nextBtnRef.disabled = false;
-    // console.log(
-    //   'paginationData.end:',
-    //   paginationData.end,
-    //   'paginationData.start:',
-    //   paginationData.start,
-    //   'paginationData.page:',
-    //   paginationData.page
-    // );
     renderMarkup(
       paginationData.originalArray.slice(
         paginationData.start,
@@ -93,6 +87,7 @@ export function renderPaginationBtn() {
     markup += `<button type="button" class="pagination__btn pagination__num-btn" data-page-${index}>${index}</button>`;
   }
   paginationRef.children[1].innerHTML = markup;
+  paginationNumericBtnContainerRef.children[0].classList.add('active-btn');
 }
 
 export function paginationNumericBtn(e) {
@@ -158,14 +153,6 @@ export function paginationNumericBtn(e) {
       smoothScrollUp();
       break;
   }
-  // console.log(
-  //   'paginationData.end:',
-  //   paginationData.end,
-  //   'paginationData.start:',
-  //   paginationData.start,
-  //   'paginationData.page:',
-  //   paginationData.page
-  // );
 }
 
 function smoothScrollUp() {
@@ -176,14 +163,16 @@ function smoothScrollUp() {
 }
 
 export function addActiveBtn() {
-  const numericBtn = paginationNumericBtnContainerRef
+  paginationNumericBtnContainerRef
+    .querySelector('.active-btn')
+    .classList.remove('active-btn');
+  paginationNumericBtnContainerRef
     .querySelectorAll('.pagination__num-btn')
     .forEach(addActive);
 
   function addActive(item) {
     if (item.textContent == paginationData.page) {
-      numericBtn[0].classList.remove('active');
-      numericBtn.add('active');
+      item.classList.add('active-btn');
     }
   }
 }
