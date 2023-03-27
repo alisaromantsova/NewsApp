@@ -23,8 +23,8 @@ export async function fetchPopularNews() {
     const array = popularNews.map(article => {
       const meta = 'media-metadata';
       const newsObject = {
-        title: article.title,
-        text: article.abstract,
+        title: article.title? article.title: "Don't have title",
+        text: article.abstract? article.abstract: "Don't have description",
         imgSrc: article.media[0] ? article.media[0][meta][2].url : `${img404}`,
         link: article.url,
 
@@ -61,8 +61,8 @@ export async function fetchNewsByCategory(category) {
     const newsByCategory = await response.data.results;
     const array = newsByCategory.map(article => {
       const newsObject = {
-        title: article.title,
-        text: article.abstract,
+        title: article.title?article.title: "Don't have title",
+        text: article.abstract?article.abstract: "Don't have description",
         imgSrc: article.multimedia ? article.multimedia[2].url : `${img404}`,
         link: article.url,
 
@@ -96,8 +96,8 @@ export async function fetchNewsBySearch(search) {
 
     const array = newsBySearch.map(article => {
       const newsObject = {
-        title: article.headline.main,
-        text: article.abstract,
+        title: article.headline.main?article.headline.main: "Don't have title",
+        text: article.abstract?article.abstract: "Don't have description",
         imgSrc: `https://static01.nyt.com/${
           article.multimedia[0]
             ? article.multimedia[2].url
