@@ -8,74 +8,75 @@
   }
 }
 .pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 25px;
-}
-
-.prev {
-  position: relative;
-  display: flex;
-  align-items: center;
-  background-color: var(--background-color-light);
-
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  border: 1px solid var(--secondary-text-color);
-  border-radius: 2px;
-  padding: 4px 10px 4px 16px;
-  span {
-    pointer-events: none;
+  &__container {
     display: flex;
-    flex-direction: row;
     align-items: center;
+    justify-content: center;
     gap: 10px;
   }
-  svg {
-    justify-content: center;
-    fill: inherit;
-  }
-}
-
-.next {
-  position: relative;
-  display: flex;
-  align-items: center;
-  background-color: var(--background-color-light);
-
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  border: 1px solid var(--secondary-text-color);
-  border-radius: 2px;
-  padding: 4px 17px 5px 10px;
-  span {
-    pointer-events: none;
+  &__btn {
+    position: relative;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    gap: 10px;
+    background-color: var(--background-color-light);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.36;
+    border: 1px solid var(--secondary-text-color);
+    border-radius: 2px;
+    @include tablet {
+      font-size: 16px;
+      line-height: 1.375;
+    }
   }
-  svg {
+
+  &__prev {
+    padding: 4px 10px;
+    span {
+      pointer-events: none;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      gap: 10px;
+    }
+    svg {
+      justify-content: center;
+      fill: inherit;
+    }
+  }
+
+  &__next {
+    padding: 4px 10px;
+    span {
+      pointer-events: none;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      gap: 10px;
+    }
+    svg {
+      justify-content: center;
+      fill: inherit;
+    }
+  }
+
+  &__numeric-btn-container {
+    display: flex;
+    gap: 4px;
+    @include tablet {
+      gap: 8px;
+    }
+  }
+  &__num-btn {
+    align-items: center;
     justify-content: center;
-    fill: inherit;
+    width: 28px;
+    height: 28px;
+    @include tablet {
+      width: 33px;
+      height: 31px;
+    }
   }
-}
-
-.pag-btn-container {
-  display: flex;
-  gap: 8px;
-}
-.pag-btn {
-  align-items: center;
-  background-color: var(--background-color-light);
-
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  border: 1px solid var(--secondary-text-color);
-  border-radius: 2px;
-  padding: 4px 12px;
 }
