@@ -52,29 +52,32 @@ export async function fetchNewsByCategory(category) {
   try {
     const response = await axios
       .get(
-        `https://api.nytimes.com/svc/news/v3/content/nyt/${category}.json?api-key=${KEY}`
+        `https://api.nytimes.com/svc/news/v3/content/all/${category}.json?api-key=${KEY}&limit=100`
       )
       .catch(function (err) {
         div.innerHTML = renderEmptyMarkup();
       });
-
+      
     if (!response.data.results) {
       div.innerHTML = renderEmptyMarkup();
     }
 
     const newsByCategory = await response.data.results;
+    console.log(newsByCategory)
     const array = newsByCategory.map(article => {
+     
       const newsObject = {
-        title: article.title ? article.title : "Don't have title",
+        title: article?.title ? article.title : "Don't have title",
         text: article.abstract ? article.abstract : "Don't have description",
-        imgSrc: article.multimedia ? article.multimedia[2].url : `${img404}`,
-        link: article.url,
+        imgSrc: article.multimedia && article.multimedia[2] ? article.multimedia[2].url : img404,
+        link: article?.url,
 
-        category: article.section,
-        date: makeDate(article.published_date),
+        category: article.section?article.section:"Don't have",
+        date: makeDate(article?.published_date),
       };
       preLoader.classList.add('loaded');
       return newsObject;
+      
     });
     return array;
   } catch (e) {
