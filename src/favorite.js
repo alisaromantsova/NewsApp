@@ -8,4 +8,3 @@ import './js/search-field';
 import './js/mobile-menu';
 import './js/btnUpp';
 import './js/header-fixed-position';
-
