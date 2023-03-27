@@ -137,9 +137,9 @@ export function renderMarkup(array) {
     .join('');
 
   div.innerHTML = markup;
-  if (paginationData.page === 1) {
-    navigator.geolocation.getCurrentPosition(successCallback, failureCallback);
-  }
+  // if (paginationData.page === 1) {
+  //   navigator.geolocation.getCurrentPosition(successCallback, failureCallback);
+  // }
   // checkedString();
   setEventAfterRender();
   setEventAfterRead();
