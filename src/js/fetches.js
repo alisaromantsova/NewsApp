@@ -25,7 +25,7 @@ export async function fetchPopularNews() {
       const newsObject = {
         title: article.title ? article.title : "Don't have title",
         text: article.abstract ? article.abstract : "Don't have description",
-        // imgSrc: article.media[0] ? article.media[0][meta][2].url : `${img404}`,
+        imgSrc: article.media[0] ? article.media[0][meta][2].url : `${img404}`,
         link: article.url,
 
         category: article.section,
@@ -65,7 +65,6 @@ export async function fetchNewsByCategory(category) {
     }
 
     const newsByCategory = await response.data.results;
-    console.log(newsByCategory);
     const array = newsByCategory.map(article => {
       const newsObject = {
         title: article?.title ? article.title : "Don't have title",
