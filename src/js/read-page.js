@@ -93,10 +93,8 @@ function onCurrentDateClick(event) {
   event.target.nextSibling.classList.toggle('is-hidden');
 }
 function createNewsArraysForRendering(newsArray) {
-
   newsArraySorted = newsArray.sort((a, b) =>
     a.currentDate.localeCompare(b.currentDate)
-
   );
   let arrayForRender = [];
   let date = 0;
@@ -131,3 +129,4 @@ function renderMarkupNew(cardsArray) {
   setEventAfterRender();
   setEventAfterRead();
 }
+//====
