@@ -5,9 +5,8 @@ if (
   window.location.pathname === '/' ||
   window.location.pathname === '/NewsApp/index.html'
 ) {
-linkReadMoreNews.addEventListener('click', readMoreClick);
+  linkReadMoreNews.addEventListener('click', readMoreClick);
 }
-
 
 export function readMoreClick(event) {
   const arreyReadCard = JSON.parse(localStorage.getItem('newsReadMore'))
@@ -32,8 +31,18 @@ export function readMoreClick(event) {
     });
   }
 
+  // if (newsReadMoreCard) {
+  //   arreyReadCard.push({ newsReadMoreCard });
+  //   localStorage.setItem('newsReadMore', JSON.stringify(arreyReadCard));
+  // }
   if (newsReadMoreCard) {
-    arreyReadCard.push({ newsReadMoreCard });
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const year = today.getFullYear();
+
+    const currentDate = `${year}/${month}/${day}`;
+    arreyReadCard.push({ newsReadMoreCard, currentDate });
     localStorage.setItem('newsReadMore', JSON.stringify(arreyReadCard));
   }
 }
