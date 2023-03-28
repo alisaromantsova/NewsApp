@@ -56,7 +56,7 @@ function getDateOfNews(card) {
 }
 
 function createNewsArraysForRendering(newsArray) {
-  newsArraySorted = newsArray.sort((a, b) =>
+ const newsArraySorted = newsArray.sort((a, b) =>
     getDateOfNews(a).localeCompare(getDateOfNews(b))
   );
   let arrayForRender = [];
