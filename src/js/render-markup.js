@@ -48,16 +48,16 @@ export function renderMarkupData(array, category, searchQuery) {
           paginationData.originalArray.length / paginationData.newsPerPage
         );
 
-  // console.log(
-  //   'paginationData.start:',
-  //   paginationData.start,
-  //   'paginationData.end:',
-  //   paginationData.end,
-  //   'paginationData.page:',
-  //   paginationData.page,
-  //   'paginationData.totalPage:',
-  //   paginationData.totalPage
-  // );
+  console.log(
+    'paginationData.start:',
+    paginationData.start,
+    'paginationData.end:',
+    paginationData.end,
+    'paginationData.page:',
+    paginationData.page,
+    'paginationData.totalPage:',
+    paginationData.totalPage
+  );
 
   renderPaginationBtn();
   renderMarkup(array.slice(paginationData.start, paginationData.end));
