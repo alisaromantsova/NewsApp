@@ -4,7 +4,7 @@ import {
   fetchNewsBySearch,
   renderEmptyMarkup,
 } from './fetches';
-import { renderMarkup } from './render-markup';
+import { renderMarkup, renderMarkupData } from './render-markup';
 import { categoryValue } from './navigation';
 export let inputValueData = { value: '' };
 const searchForm = document.querySelector('#form-field');
@@ -12,7 +12,7 @@ const selectEl = document.querySelector('.custom-select-btn');
 const div = document.querySelector('.news');
 
 searchForm.addEventListener('submit', createNews);
-searchForm.setAttribute('autocomplete', "off");
+searchForm.setAttribute('autocomplete', 'off');
 function createNews(event) {
   event.preventDefault();
   const inputName = event.currentTarget.searchQuery.value.trim();
@@ -39,7 +39,7 @@ function createNews(event) {
         });
       }
       div.innerHTML = '';
-      renderMarkup(result);
+      renderMarkupData(result, categoryValue, inputName);
     } catch (error) {}
   }
 }

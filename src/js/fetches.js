@@ -42,8 +42,8 @@ export async function fetchPopularNews() {
 }
 
 //Фетч по категориямн
-// api.nytimes.com/svc/news/v3/content/all/arts.json?api-key=H3FRH5IMtPz0yNN170uMkDXY0wt0kfbS&limit=500&offset=0
-
+// api.nytimes.com/svc/news/v3/content/all/${category}.json?api-key=${KEY}&limit=150
+// api.nytimes.com/svc/news/v3/content/nyt/${category}.json?api-key=${KEY}
 let preLoader = document.querySelector('.preloader');
 preLoader.classList.add('loaded');
 

@@ -12,44 +12,52 @@ import { setEventAfterRead } from './news-card';
 import { createThreePoints } from './news-card';
 import sprite from '../images/symbol-defs.svg';
 
-export function renderMarkupData(array, category) {
+export function renderMarkupData(array, category, searchQuery) {
   restart();
-
+  paginationData.start = 0;
   switch (true) {
     case window.matchMedia('(max-width: 767px)').matches:
       paginationData.newsPerPage = 5;
-      paginationData.start = 0;
-      !category ? (paginationData.end = 4) : (paginationData.end = 5);
+      !category && !searchQuery
+        ? (paginationData.end = 4)
+        : (paginationData.end = 5);
       break;
     case window.matchMedia('(min-width: 768px) and (max-width: 1279px)')
       .matches:
       paginationData.newsPerPage = 8;
-      paginationData.start = 0;
-      !category ? (paginationData.end = 7) : (paginationData.end = 8);
+      !category && !searchQuery
+        ? (paginationData.end = 7)
+        : (paginationData.end = 8);
       break;
     case window.matchMedia('(min-width: 1280px)').matches:
       // треба переписати
       paginationData.newsPerPage = 9;
-      paginationData.start = 0;
-      !category ? (paginationData.end = 8) : (paginationData.end = 9);
+      !category && !searchQuery
+        ? (paginationData.end = 8)
+        : (paginationData.end = 9);
       break;
   }
 
   paginationData.originalArray = array;
-  paginationData.totalPage = Math.ceil(
-    (paginationData.originalArray.length + 1) / paginationData.newsPerPage
-  );
+  paginationData.totalPage =
+    !category && !searchQuery
+      ? Math.ceil(
+          (paginationData.originalArray.length + 1) / paginationData.newsPerPage
+        )
+      : Math.ceil(
+          paginationData.originalArray.length / paginationData.newsPerPage
+        );
 
-  // console.log(
-  //   'paginationData.end:',
-  //   paginationData.end,
-  //   'paginationData.start:',
-  //   paginationData.start,
-  //   'paginationData.page:',
-  //   paginationData.page,
-  //   'paginationData.totalPage:',
-  //   paginationData.totalPage
-  // );
+  console.log(
+    'paginationData.start:',
+    paginationData.start,
+    'paginationData.end:',
+    paginationData.end,
+    'paginationData.page:',
+    paginationData.page,
+    'paginationData.totalPage:',
+    paginationData.totalPage
+  );
 
   renderPaginationBtn();
   renderMarkup(array.slice(paginationData.start, paginationData.end));
