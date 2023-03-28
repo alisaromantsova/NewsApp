@@ -462,7 +462,7 @@ input:checked + .ball:before {
     color: var(--secondary-text-color);
   }
   & .sun {
-    fill: var(--dark-text);
+    fill: var(--text-color-dark-theme);
   }
   & .moon {
     fill: var(--markercolor);
