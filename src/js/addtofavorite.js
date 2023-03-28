@@ -12,9 +12,7 @@ function renderMarkup() {
   if (cards) {
     favoriteList.insertAdjacentHTML(
       'afterbegin',
-      cards
-        .map(card => `<div class="new__card">${card.newsCard}</div>`)
-        .join('')
+      cards.map(card => `<li class="new__card">${card.newsCard}</li>`).join('')
     );
   }
   setEventAfterRead();
@@ -60,7 +58,7 @@ function onRemoveNewCardToFavoriteClick(event) {
       favoriteList.insertAdjacentHTML(
         'afterbegin',
         arreyCardSecond
-          .map(item => `<div class="new__card">${item.newsCard}</div>`)
+          .map(item => `<li class="new__card">${item.newsCard}</li>`)
           .join('')
       );
       setEventAfterRead();
