@@ -26,8 +26,6 @@ function renderMarkup() {
       .join('');
   }
   //renderDate();
-  setEventAfterRender();
-  setEventAfterRead();
 }
 
 //renderMarkup();
@@ -95,8 +93,10 @@ function onCurrentDateClick(event) {
   event.target.nextSibling.classList.toggle('is-hidden');
 }
 function createNewsArraysForRendering(newsArray) {
+
   newsArraySorted = newsArray.sort((a, b) =>
     a.currentDate.localeCompare(b.currentDate)
+
   );
   let arrayForRender = [];
   let date = 0;
@@ -128,4 +128,6 @@ function renderMarkupNew(cardsArray) {
         .join('/')}</p><ul class='list-news'>${cardsArrayByDate}</ul></div>`
     );
   });
+  setEventAfterRender();
+  setEventAfterRead();
 }
