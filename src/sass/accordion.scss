@@ -1,0 +1,68 @@
+h1 {
+  text-align: center;
+}
+
+.accordion {
+  width: 100vw;
+  margin: auto;
+  color: black;
+  background-color: white;
+  padding: 45px 45px;
+}
+.accordion .container-box {
+  position: relative;
+  margin: 10px 10px;
+}
+
+.accordion .label {
+  position: relative;
+  padding: 10px 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: black;
+  cursor: pointer;
+}
+.accordion .label::after {
+  content: '\25BC';
+  color: #111321;
+  margin-left: 8px;
+}
+
+.accordion .content {
+  height: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 28px;
+  width: 100%;
+
+  @include tablet {
+    gap: 30px;
+    margin-top: 30px;
+  }
+
+  @include desktop {
+    gap: 32px;
+    margin-top: 40px;
+  }
+  width: 100%;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.label hr {
+  display: flex;
+  width: 100%;
+  margin-left: 0;
+  border: 1px solid grey;
+}
+
+.accordion .container-box.active .content {
+  height: 100%;
+}
+
+.accordion .container-box.active .label::after {
+  content: '\25B2';
+  margin-left: 8px;
+}
