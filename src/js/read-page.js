@@ -26,8 +26,6 @@ function renderMarkup() {
       .join('');
   }
   //renderDate();
-  setEventAfterRender();
-  setEventAfterRead();
 }
 
 //renderMarkup();
@@ -56,7 +54,7 @@ function getDateOfNews(card) {
 }
 
 function createNewsArraysForRendering(newsArray) {
- const newsArraySorted = newsArray.sort((a, b) =>
+  const newsArraySorted = newsArray.sort((a, b) =>
     getDateOfNews(a).localeCompare(getDateOfNews(b))
   );
   let arrayForRender = [];
@@ -89,6 +87,8 @@ function renderMarkupNew(cardsArray) {
       )}</p><ul class='list-news'>${cardsArrayByDate}</ul></div>`
     );
   });
+  setEventAfterRender();
+  setEventAfterRead();
 }
 function onCurrentDateClick(event) {
   if (event.target.classList.contains('.read-date')) return;
