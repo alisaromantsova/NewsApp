@@ -63,6 +63,7 @@ function onRemoveNewCardToFavoriteClick(event) {
           .map(item => `<div class="new__card">${item.newsCard}</div>`)
           .join('')
       );
+      setEventAfterRead();
     } else {
       favoriteList.innerHTML = renderEmptyMarkup();
     }
