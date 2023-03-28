@@ -31,6 +31,10 @@ export function onAddToFavoriteClick(event) {
   const linkNewCArd = event.target
     .closest('.new__card')
     .querySelector('.news__link');
+  const linkHref = event.target
+    .closest('.new__card')
+    .querySelector('.news__link')
+    .getAttribute('href');
 
   if (!newsCard.includes('news__addbtn is-hidden')) {
     localStorage.removeItem('newsCard');
@@ -51,6 +55,6 @@ export function onAddToFavoriteClick(event) {
     return;
   }
 
-  arreyCard.push({ newsCard });
+  arreyCard.push({ newsCard, linkHref });
   localStorage.setItem('newsCard', JSON.stringify(arreyCard));
 }
