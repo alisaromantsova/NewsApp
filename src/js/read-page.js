@@ -36,7 +36,7 @@ function onRemoveNewCardToReadClick(event) {
   onAddToFavoriteClick(event);
 }
 let cards = JSON.parse(localStorage.getItem('newsReadMore'));
-let arrayForRendering = null;
+const arrayForRendering = null;
 if (!cards) {
   containerRead.innerHTML = renderEmptyMarkup();
 } else {
@@ -93,10 +93,10 @@ function onCurrentDateClick(event) {
   event.target.nextSibling.classList.toggle('is-hidden');
 }
 function createNewsArraysForRendering(newsArray) {
-  newsArraySorted = newsArray.sort((a, b) =>
+  const newsArraySorted = newsArray.sort((a, b) =>
     a.currentDate.localeCompare(b.currentDate)
   );
-  let arrayForRender = [];
+  const arrayForRender = [];
   let date = 0;
   for (let i = 0; i < newsArraySorted.length; i += 1) {
     if (arrayForRender.length === 0) {
