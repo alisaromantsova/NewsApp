@@ -36,12 +36,12 @@ function onRemoveNewCardToReadClick(event) {
   onAddToFavoriteClick(event);
 }
 let cards = JSON.parse(localStorage.getItem('newsReadMore'));
-const arrayForRendering = null;
+
 if (!cards) {
   containerRead.innerHTML = renderEmptyMarkup();
 } else {
   //cards = cards.map(item => item.newsReadMoreCard);
-  arrayForRendering = createNewsArraysForRendering(cards);
+  const arrayForRendering = createNewsArraysForRendering(cards);
   renderMarkupNew(arrayForRendering);
   containerRead.addEventListener('click', onCurrentDateClick);
 }
