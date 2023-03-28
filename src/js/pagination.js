@@ -41,14 +41,7 @@ export function pagination(e) {
       nextBtnRef.disabled = true;
     }
     smoothScrollUp();
-    console.log(
-      'paginationData.start:',
-      paginationData.start,
-      'paginationData.end:',
-      paginationData.end,
-      'paginationData.page:',
-      paginationData.page
-    );
+
     return;
   }
   if (e.target.classList.contains('pagination__prev')) {
@@ -85,14 +78,6 @@ export function pagination(e) {
       )
     );
     smoothScrollUp();
-    console.log(
-      'paginationData.start:',
-      paginationData.start,
-      'paginationData.end:',
-      paginationData.end,
-      'paginationData.page:',
-      paginationData.page
-    );
   }
 }
 
@@ -144,14 +129,6 @@ export function paginationNumericBtn(e) {
       );
       addActiveBtn();
       smoothScrollUp();
-      console.log(
-        'paginationData.start:',
-        paginationData.start,
-        'paginationData.end:',
-        paginationData.end,
-        'paginationData.page:',
-        paginationData.page
-      );
       break;
     case paginationPushedBtn === paginationData.totalPage:
       nextBtnRef.disabled = true;
@@ -173,14 +150,7 @@ export function paginationNumericBtn(e) {
       );
       addActiveBtn();
       smoothScrollUp();
-      console.log(
-        'paginationData.start:',
-        paginationData.start,
-        'paginationData.end:',
-        paginationData.end,
-        'paginationData.page:',
-        paginationData.page
-      );
+
       break;
     default:
       nextBtnRef.disabled = false;
@@ -208,14 +178,7 @@ export function paginationNumericBtn(e) {
       );
       addActiveBtn();
       smoothScrollUp();
-      console.log(
-        'paginationData.start:',
-        paginationData.start,
-        'paginationData.end:',
-        paginationData.end,
-        'paginationData.page:',
-        paginationData.page
-      );
+
       break;
   }
 }
