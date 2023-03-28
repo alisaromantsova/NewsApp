@@ -22,14 +22,14 @@ export function pagination(e) {
     if (paginationData.end > paginationData.originalArray.length) {
       paginationData.end = paginationData.originalArray.length;
     }
-    // console.log(
-    //   'paginationData.end:',
-    //   paginationData.end,
-    //   'paginationData.start:',
-    //   paginationData.start,
-    //   'paginationData.page:',
-    //   paginationData.page
-    // );
+    console.log(
+      'paginationData.start:',
+      paginationData.start,
+      'paginationData.end:',
+      paginationData.end,
+      'paginationData.page:',
+      paginationData.page
+    );
     renderMarkup(
       paginationData.originalArray.slice(
         paginationData.start,
@@ -57,13 +57,12 @@ export function pagination(e) {
       );
     } else {
       paginationData.start =
-        (paginationData.page - 1) * paginationData.newsPerPage;
+        (paginationData.page - 1) * paginationData.newsPerPage - 1;
       paginationData.end = paginationData.start + paginationData.newsPerPage;
     }
-    if (paginationData.page === paginationData.totalPage - 1) {
-      paginationData.start -= 1;
-      paginationData.end -= 1;
-    }
+    // if (paginationData.page === paginationData.totalPage - 1) {
+    //   paginationData.end -= 1;
+    // }
     nextBtnRef.disabled = false;
     renderMarkup(
       paginationData.originalArray.slice(
@@ -72,6 +71,14 @@ export function pagination(e) {
       )
     );
     smoothScrollUp();
+    console.log(
+      'paginationData.start:',
+      paginationData.start,
+      'paginationData.end:',
+      paginationData.end,
+      'paginationData.page:',
+      paginationData.page
+    );
   }
 }
 
@@ -118,6 +125,14 @@ export function paginationNumericBtn(e) {
       );
       addActiveBtn();
       smoothScrollUp();
+      console.log(
+        'paginationData.start:',
+        paginationData.start,
+        'paginationData.end:',
+        paginationData.end,
+        'paginationData.page:',
+        paginationData.page
+      );
       break;
     case paginationPushedBtn === paginationData.totalPage:
       nextBtnRef.disabled = true;
@@ -133,6 +148,14 @@ export function paginationNumericBtn(e) {
       );
       addActiveBtn();
       smoothScrollUp();
+      console.log(
+        'paginationData.start:',
+        paginationData.start,
+        'paginationData.end:',
+        paginationData.end,
+        'paginationData.page:',
+        paginationData.page
+      );
       break;
     default:
       nextBtnRef.disabled = false;
@@ -151,6 +174,14 @@ export function paginationNumericBtn(e) {
       );
       addActiveBtn();
       smoothScrollUp();
+      console.log(
+        'paginationData.start:',
+        paginationData.start,
+        'paginationData.end:',
+        paginationData.end,
+        'paginationData.page:',
+        paginationData.page
+      );
       break;
   }
 }
@@ -192,8 +223,6 @@ const paginNumericBtnEventListener = () => {
     paginationNumericBtn
   );
 };
-
-if (prevBtnRef) prevBtnRef.disabled = true;
 if (
   window.location.pathname === '/index.html' ||
   window.location.pathname === '/NewsApp/' ||
@@ -203,3 +232,5 @@ if (
   paginEventListener();
   paginNumericBtnEventListener();
 }
+
+function addElipsis() {}
