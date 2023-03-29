@@ -1,6 +1,6 @@
-.read-gallery{
-    padding-top: 60px;
-    padding-bottom: 60px;
+.read-gallery {
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 .read-date {
   color: #111321;
@@ -9,4 +9,13 @@
   padding-top: 48px;
   margin-bottom: 30px;
   cursor: pointer;
+  &::after {
+    content: '\25BC';
+    margin-left: 8px;
+  }
+
+  &.aa::after {
+    content: '\25B2';
+    margin-left: 8px;
+  }
 }
