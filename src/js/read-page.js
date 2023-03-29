@@ -2,13 +2,6 @@ import { renderEmptyMarkup } from './fetches';
 import { onAddToFavoriteClick } from './news-card-listner';
 import { setEventAfterRender } from './news-card';
 import { setEventAfterRead } from './news-card';
-// const dateMerkup = document.querySelector('.label');
-// const readList = document.querySelector('.content');
-// const cardsRead = JSON.parse(localStorage.getItem('newsReadMore'));
-
-// if (!cardsRead) {
-//   readList.innerHTML = renderEmptyMarkup();
-// }
 
 function renderDate() {
   const currentDate = new Date(Date.now());

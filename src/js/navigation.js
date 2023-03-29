@@ -1,10 +1,9 @@
 import {
-  fetchPopularNews,
+ 
   fetchNewsByCategory,
-  fetchNewsBySearch,
-  renderEmptyMarkup,
+  
 } from './fetches';
-import { renderMarkup, renderMarkupData } from './render-markup';
+import {  renderMarkupData } from './render-markup';
 export let categoryValue = { value: '' };
 const div = document.querySelector('.news');
 const categoriesList = [

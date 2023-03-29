@@ -1,4 +1,4 @@
-// збереження в локалсторедж по кліку на add
+
 
 if (
   window.location.pathname === '/index.html' ||

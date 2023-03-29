@@ -6,7 +6,7 @@ import {
   prevBtnRef,
   nextBtnRef,
 } from './pagination';
-// import { successCallback, failureCallback } from './weather';
+
 import { setEventAfterRender } from './news-card';
 import { setEventAfterRead } from './news-card';
 import { createThreePoints } from './news-card';
@@ -30,7 +30,7 @@ export function renderMarkupData(array, category, searchQuery) {
         : (paginationData.end = 8);
       break;
     case window.matchMedia('(min-width: 1280px)').matches:
-      // треба переписати
+      
       paginationData.newsPerPage = 9;
       !category && !searchQuery
         ? (paginationData.end = 8)
@@ -48,16 +48,7 @@ export function renderMarkupData(array, category, searchQuery) {
           paginationData.originalArray.length / paginationData.newsPerPage
         );
 
-  // console.log(
-  //   'paginationData.start:',
-  //   paginationData.start,
-  //   'paginationData.end:',
-  //   paginationData.end,
-  //   'paginationData.page:',
-  //   paginationData.page,
-  //   'paginationData.totalPage:',
-  //   paginationData.totalPage
-  // );
+  
 
   renderPaginationBtn();
   renderMarkup(array.slice(paginationData.start, paginationData.end));

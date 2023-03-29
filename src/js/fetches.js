@@ -42,8 +42,7 @@ export async function fetchPopularNews() {
 }
 
 //Фетч по категориямн
-// api.nytimes.com/svc/news/v3/content/all/${category}.json?api-key=${KEY}&limit=150
-// api.nytimes.com/svc/news/v3/content/nyt/${category}.json?api-key=${KEY}
+
 let preLoader = document.querySelector('.preloader');
 preLoader.classList.add('loaded');
 
