@@ -33,7 +33,12 @@
     margin-left: 8px;
   }
 }
-
+.dark{
+  .read-date{
+    color: var(--text-color-dark-theme);
+    border-bottom: 1px solid var(--text-color-dark-theme);
+  }
+}
 // .read-date.arrow-change {
 //   &.aa::after {
 //     content: '\25B2';
