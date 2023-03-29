@@ -342,7 +342,7 @@ input:checked + .ball:before {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 320px;
-  height: 100vh;
+  height: 100%;
   margin: 0 auto;
   @include tablet {
     display: none;
