@@ -89,8 +89,9 @@ if (!cards) {
 //   });
 // }
 function onCurrentDateClick(event) {
-  if (event.target.classList.contains('.read-date')) return;
+  if (!event.target.classList.contains('read-date')) return;
   event.target.nextSibling.classList.toggle('is-hidden');
+  event.target.classList.toggle('arrow-change');
 }
 function createNewsArraysForRendering(newsArray) {
   const newsArraySorted = newsArray.sort((a, b) =>
@@ -132,7 +133,7 @@ function renderMarkupNew(cardsArray) {
   setEventAfterRead();
 }
 
-const refs = {
-  f: document.querySelector('.read-date'),
-};
-refs.f.addEventListener('click', () => refs.f.classList.toggle('aa'));
+// const refs = {
+//   f: document.querySelector('.read-date'),
+// };
+// refs.f.addEventListener('click', () => refs.f.classList.toggle('aa'));
