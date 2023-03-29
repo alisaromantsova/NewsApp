@@ -87,8 +87,12 @@ function onCurrentDateClick(event) {
   event.target.classList.toggle('arrow-change');
 }
 function createNewsArraysForRendering(newsArray) {
-  const newsArraySorted = newsArray.sort((a, b) =>
-    a.currentDate.localeCompare(b.currentDate)
+  const newsArraySorted = newsArray.sort((a, b) =>{
+  // console.log("a",a)
+  // console.log("a.localeCompare",a.currentDate.localeCompare(b.currentDate))
+  // console.log("b",b)
+   return a.currentDate.localeCompare(b.currentDate)
+  }
   );
   const arrayForRender = [];
   let date = 0;
@@ -126,7 +130,12 @@ function renderMarkupNew(cardsArray) {
   setEventAfterRead();
 }
 
-// const refs = {
-//   f: document.querySelector('.read-date'),
-// };
-// refs.f.addEventListener('click', () => refs.f.classList.toggle('aa'));
+
+const refs = {
+  f: document.querySelector('.read-date'),
+};
+if(refs.f){
+  refs.f.addEventListener('click', () => refs.f.classList.toggle('aa'));
+
+}
+
