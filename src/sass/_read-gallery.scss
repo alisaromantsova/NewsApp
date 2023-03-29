@@ -19,7 +19,14 @@
   
   margin-bottom: 30px;
   cursor: pointer;
-  
+
+  @include tablet {
+    padding-top: 48px;
+  }
+  @include desktop {
+    padding-bottom: 48px;
+  }
+
   &::after {
     content: '\25BC';
     margin-left: 8px;
@@ -42,3 +49,4 @@
 //     margin-left: 8px;
 //   }
 // }
+
