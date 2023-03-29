@@ -123,10 +123,16 @@ function renderMarkupNew(cardsArray) {
       `<div class='accardeon'><p class='read-date'>${cards[0].currentDate
         .split('/')
         .reverse()
-        .join('/')}</p><ul class='list-news'>${cardsArrayByDate}</ul></div>`
+        .join(
+          '/'
+        )}</p><ul class='list-news is-hidden'>${cardsArrayByDate}</ul></div>`
     );
   });
   setEventAfterRender();
   setEventAfterRead();
 }
-//====
+
+const refs = {
+  f: document.querySelector('.read-date'),
+};
+refs.f.addEventListener('click', () => refs.f.classList.toggle('aa'));

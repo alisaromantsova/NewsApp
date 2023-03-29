@@ -57,12 +57,3 @@ h1 {
   margin-left: 0;
   border: 1px solid grey;
 }
-
-.accordion .container-box.active .content {
-  height: 100%;
-}
-
-.accordion .container-box.active .label::after {
-  content: '\25B2';
-  margin-left: 8px;
-}
