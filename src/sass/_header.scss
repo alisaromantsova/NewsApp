@@ -31,6 +31,7 @@ body {
   line-height: 1.37;
   display: inline-block;
   padding: 24px 0;
+  cursor: url(../images/touch.svg), pointer;
 
   @include tablet {
     padding-top: 32px;
@@ -74,7 +75,7 @@ body {
 .site-nav__link {
   font-weight: 700;
   line-height: 1.37;
-
+  cursor: url(../images/touch.svg), pointer;
   @include desktop {
     font-size: 18px;
     line-height: 1.38;
@@ -450,7 +451,11 @@ input:checked + .ball:before {
     color: var(--text-color-dark-theme);
   }
   & .header {
+    background-color: var(--background-color-dark);
     border-bottom: 1px solid rgba(244, 244, 244, 0.2);
+  }
+  & .logo{
+    cursor: url(../images/touch-white.svg), pointer;
   }
   & .search__icon {
     fill: var(--text-color-dark-theme);
@@ -479,14 +484,17 @@ input:checked + .ball:before {
   & .icon{
     fill: var(--text-color-dark-theme);
   }
+  & .mobile-button,
+  .close__button,
+  .search-field__btn,
+  .ball.round {
+    cursor: url(../images/touch-white.svg), pointer;
+  }
+  & .site-nav__link{
+    cursor: url(../images/touch-white.svg), pointer;
+  }
 }
 .header {
   position: relative;
   background-color: var(--color-btn-white);
-}
-
-.dark {
-  & .header {
-    background-color: var(--background-color-dark);
-  }
 }

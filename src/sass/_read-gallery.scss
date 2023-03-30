@@ -18,7 +18,7 @@
   padding-bottom: 12px;
   
   margin-bottom: 30px;
-  cursor: pointer;
+  cursor: url(../images/touch.svg), pointer;
 
   @include tablet {
     padding-top: 48px;
@@ -41,6 +41,7 @@
   .read-date{
     color: var(--text-color-dark-theme);
     border-bottom: 1px solid var(--text-color-dark-theme);
+    cursor: url(../images/touch-white.svg), pointer;
   }
 }
 // .read-date.arrow-change {

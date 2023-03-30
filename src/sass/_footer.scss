@@ -95,6 +95,7 @@ gap: 16px 24px;
    display: flex;
    flex-direction: column;
    align-items: center;
+   cursor: url(../images/touch.svg), pointer;
 }
 .footer__tech{
     display: flex;
@@ -135,4 +136,9 @@ color: #04060E;
 }
 .footer__end img{
     width: 40px;
+}
+.dark{
+    & .footer__link{
+        cursor: url(../images/touch-white.svg), pointer;
+    }
 }

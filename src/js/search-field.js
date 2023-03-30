@@ -35,6 +35,8 @@ function createNews(event) {
         );
         buttons.forEach(button => {
           button.disabled = true;
+          button.style.backgroundColor = '#f4f4f4';
+          button.style.color = '#4b48db';
         });
       }
       div.innerHTML = '';

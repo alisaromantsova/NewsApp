@@ -117,7 +117,7 @@
   font-size: 12px;
   line-height: 1.33;
   padding: 6px 12px;
-  cursor: pointer;
+  cursor: url(../images/touch.svg), pointer;
   background-color: var(--color-btn-white);
   color: var(--text-color);
 }
@@ -137,7 +137,7 @@
   font-size: 12px;
   line-height: 16px;
   padding: 6px 12px;
-  cursor: pointer;
+  cursor: url(../images/touch.svg), pointer;
   background-color: var(--color-btn-white);
   color: var(--text-color);
 
@@ -203,7 +203,7 @@
   font-size: 14px;
   line-height: 1.36;
   color: var(--secondary-text-color);
-
+  cursor: url(../images/touch.svg), pointer;
   @include tablet {
     font-size: 16px;
   }
@@ -254,6 +254,9 @@
 .dark {
   & .news__text {
     color: var(--text-color-dark-theme);
+  }
+  & .news__link{
+    cursor: url(../images/touch-white.svg), pointer;
   }
 }
 

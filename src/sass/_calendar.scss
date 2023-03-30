@@ -55,7 +55,7 @@
   border: 1px solid var(--text-color);
   border-radius: 20px;
 
-  cursor: pointer;
+  cursor: url(../images/touch.svg), pointer;
  
   &.js-date-show {
     background-color: var(--color-active-btn);
@@ -70,7 +70,7 @@
   top: 6px;
   left: 12px;
   fill: var(--color-active-btn);
-  cursor: pointer;
+  cursor: url(../images/touch.svg), pointer;
   transition: color, fill 500ms linear;
   pointer-events: none;
   &--active {
@@ -83,7 +83,7 @@
   top: 9px;
   right: 12px;
   fill: #a2a2a2;
-  cursor: pointer;
+  cursor: url(../images/touch.svg), pointer;
   transition: color, fill 500ms linear;
   pointer-events: none;
   &--active {
@@ -129,7 +129,7 @@
   padding: 1px 7px;
   border: none;
   background-color: transparent;
-  cursor: pointer;
+  cursor: url(../images/touch.svg), pointer;
 }
 .calendar2__month-year-left {
   fill: var(--color-active-btn);
@@ -138,7 +138,7 @@
   padding: 1px 7px;
   border: none;
   background-color: transparent;
-  cursor: pointer;
+  cursor: url(../images/touch.svg), pointer;
 }
 .calendar2__month-year-right {
   fill: var(--color-active-btn);
@@ -146,7 +146,7 @@
 .calendar2__button-left {
   border: none;
   background-color: transparent;
-  cursor: pointer;
+  cursor: url(../images/touch.svg), pointer;
 }
 .calendar2__current-month-left {
   fill: var(--color-active-btn);
@@ -154,7 +154,7 @@
 .calendar2__button-right {
   border: none;
   background-color: transparent;
-  cursor: pointer;
+  cursor: url(../images/touch.svg), pointer;
   margin-left: 18px;
 }
 .calendar2__current-month-right {
@@ -183,7 +183,7 @@
   padding-top: 5px;
   padding-bottom: 5px;
   border-radius: 50%;
-  cursor: pointer;
+  cursor: url(../images/touch.svg), pointer;
 }
 .date.previous-month,
 .date.next-month {
@@ -237,23 +237,20 @@
     background-color: var(--background-color-dark);
     color: var(--text-color-dark-theme);
     border: 1px solid var(--text-color-dark-theme);
+    cursor: url(../images/touch-white.svg), pointer;
   }
-  & .calendar2__container {
-    color: var(--text-color);
-  }
-}
-.calendar2__container {
-  z-index: -1;
-  &.js-calendar-zIndexChange {
-    z-index: 2;
-  }
-}
-.dark {
   & .calendar2__current-date.js-date-show {
     background-color: var(--color-active-btn);
     border: 1px solid var(--color-active-btn);
   }
   & .calendar2__container {
     outline: 1px solid var(--color-btn-white);
+    color: var(--text-color-dark-theme);
+  }
+}
+.calendar2__container {
+  z-index: -1;
+  &.js-calendar-zIndexChange {
+    z-index: 2;
   }
 }
