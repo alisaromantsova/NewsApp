@@ -5,7 +5,7 @@
   bottom: 0px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  cursor: pointer;
+  cursor: url(../images/touch.svg), pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,4 +34,9 @@
 
 .btn-up_hiding {
   opacity: 0;
+}
+.dark{
+  & .btn-up{
+    cursor: url(../images/touch-white.svg), pointer;
+  }
 }

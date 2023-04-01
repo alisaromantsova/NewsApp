@@ -28,6 +28,7 @@
   transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
+  cursor: url(../images/touch.svg), pointer;
   @include tablet {
     padding: 8px 21px;
   }
@@ -87,6 +88,7 @@
   transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
+  cursor: url(../images/touch.svg), pointer;
   @include tablet {
     padding: 8px 21px;
   }
@@ -111,6 +113,7 @@
   transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
+  cursor: url(../images/touch.svg), pointer;
   @include tablet {
     padding: 8px 35px 8px 21px;
     margin-left: 16px;
@@ -165,4 +168,18 @@
   & .navigation {
     background-color: var(--background-color-dark);
   }
+  & .category-item,
+  .custom-select-btn{
+    cursor: url(../images/touch-white.svg), pointer;
+  }
+ & .custom-select-list-item{
+  cursor: url(../images/touch.svg), pointer;
+  }
+}
+.custom-select-btn:hover{
+background-color: #4440F6;
+color: var(--text-color-dark-theme);
+}
+.custom-select-arrow{
+  fill: var(--text-color-dark-theme);
 }

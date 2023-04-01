@@ -24,7 +24,7 @@
     line-height: 1.36;
     border: 1px solid var(--secondary-text-color);
     border-radius: 2px;
-    cursor: pointer;
+    cursor: url(../images/touch.svg), pointer;
     @include tablet {
       font-size: 16px;
       line-height: 1.375;
@@ -103,3 +103,8 @@
     }
   }
 }
+.dark{
+  & .pagination__btn{
+      cursor: url(../images/touch-white.svg), pointer;
+    }
+  }
