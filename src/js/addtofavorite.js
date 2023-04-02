@@ -1,6 +1,7 @@
 import { renderEmptyMarkup } from './fetches';
 import { readMoreClick } from './addtoread';
 import { setEventAfterRead } from './news-card';
+const cardsIsRead = JSON.parse(localStorage.getItem('isRead'));
 const favoriteList = document.querySelector('.list-news');
 const cards = JSON.parse(localStorage.getItem('newsCard'));
 favoriteList.addEventListener('click', onRemoveNewCardToFavoriteClick);
@@ -68,3 +69,6 @@ function onRemoveNewCardToFavoriteClick(event) {
     return;
   }
 }
+
+
+
