@@ -44,14 +44,31 @@ function onCurrentDateClick(event) {
 
   function buttonChanging(){
 const arreyNewsCard = document.querySelectorAll('.new__card');
+
+
 if (!cardsAddToFavorit) {
+  arreyNewsCard.forEach((card) => {
+    console.log(card.querySelector('.news__addbtn').classList.contains("is-hidden"));
+    if ( card.querySelector('.news__addbtn').classList.contains("is-hidden")) {
+      card.querySelector('.news__addbtn').classList.remove('is-hidden');
+          card.querySelector('.news__removebtn').classList.add('is-hidden');
+    }
+  })
   return
 }
 arreyNewsCard.forEach((card) => {
+  if (card.querySelector('.news__addbtn').classList.contains("is-hidden")) {
+    card.querySelector('.news__addbtn').classList.remove('is-hidden');
+        card.querySelector('.news__removebtn').classList.add('is-hidden');
+  }
   cardsAddToFavorit.map((item) => {
+
+  
+
     if (card.innerHTML.includes(item.linkHref)) {
       card.querySelector('.news__addbtn').classList.add('is-hidden');
       card.querySelector('.news__removebtn').classList.remove('is-hidden');
+      
     }
   })
 })
