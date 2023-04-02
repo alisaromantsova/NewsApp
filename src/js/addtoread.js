@@ -31,18 +31,18 @@ export function readMoreClick(event) {
     });
   }
 
-  // if (newsReadMoreCard) {
-  //   arreyReadCard.push({ newsReadMoreCard });
-  //   localStorage.setItem('newsReadMore', JSON.stringify(arreyReadCard));
-  // }
+  
   if (newsReadMoreCard) {
     const today = new Date();
     const day = String(today.getDate()).padStart(2, '0');
     const month = String(today.getMonth() + 1).padStart(2, '0');
     const year = today.getFullYear();
 
-    const currentDate = `${year}/${month}/${day}`;
+    // const currentDate = `${day}/${month}/${year}`;
+    const currentDate = "03/04/2023"
     arreyReadCard.push({ newsReadMoreCard, currentDate });
     localStorage.setItem('newsReadMore', JSON.stringify(arreyReadCard));
-  }
+ }
+
+
 }
