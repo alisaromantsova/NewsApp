@@ -15,9 +15,7 @@ if (!cards) {
   cards.map((card) => {
     if(dateAdded === undefined || card.currentDate !== dateAdded){
     containerRead.insertAdjacentHTML("afterbegin", `<div class="accardeon"><p class="read-date">${card.currentDate}</p><ul class="list-news is-hidden" data-time = '${card.currentDate}'><li class="new__cards overlay" >
-    <div class="new__card">${card.newsReadMoreCard}</div></li></ul></div>`)
-
-    
+    <div class="new__card">${card.newsReadMoreCard}</div></li></ul></div>`) 
   }
 
     if(card.currentDate === dateAdded){
@@ -26,13 +24,15 @@ if (!cards) {
 
     dateAdded = card.currentDate;
   })
-}
-
+  setEventAfterRender();
+setEventAfterRead();
 document.querySelector('.list-news').classList.toggle('is-hidden')
 document.querySelector('.read-date').classList.toggle('arrow-change')
+}
 
-setEventAfterRender();
-setEventAfterRead();
+
+
+
 
 function onCurrentDateClick(event) {
   onAddToFavoriteClick(event);
