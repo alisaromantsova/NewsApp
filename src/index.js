@@ -13,6 +13,7 @@ import './js/onmount';
 import './js/news-card-listner';
 import './js/btnUpp';
 import './js/header-fixed-position';
+import './js/firebase';
 
 import './js/addtoread';
 import axios, { isCancel, AxiosError } from 'axios';
