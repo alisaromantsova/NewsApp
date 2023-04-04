@@ -156,7 +156,8 @@ const monitorAuthState = async()=>{
               });
         }else{
             console.log('Loggout or not enter')
-            logedUser=null
+            refs.logedUser=null
+            refs.logedUserName=null
         }
     })
 }
