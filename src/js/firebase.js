@@ -136,12 +136,23 @@ const monitorAuthState = async()=>{
             console.log('User logged')
             
             refs.logedUser = user
+
             const favorite = ref(database, "/favorites/" + refs.logedUser.uid);
+            const db = ref(database,);
             onValue(favorite, (snapshot) => {
                 const data = snapshot.val();
                 refs.favoriteLocal = data
                 // console.log("data",data)
                 // updateStarCount(postElement, data);
+              });
+            onValue(db, (snapshot) => {
+                const data = snapshot.val();
+                refs.logedUserName = data.users[refs.logedUser.uid].name
+                console.log('logedUserName',refs.logedUserName)
+                refs.headerUserName.textContent = refs.logedUserName
+                refs.modal.classList.remove('modal-active')
+                refs.authContainer.classList.add("is-hidden");
+                refs.userContainer.classList.remove("is-hidden");
               });
         }else{
             console.log('Loggout or not enter')
