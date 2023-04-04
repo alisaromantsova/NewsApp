@@ -10,17 +10,38 @@ import { getAuth,
         signOut,
 } from "firebase/auth";
 
-const email = document.querySelector("#email")
-const password = document.querySelector("#password")
-const btn = document.querySelector("#btnSubmit")
-const btnReg = document.querySelector("#btnRegister")
-const btnLogout = document.querySelector("#btnLogout")
-const btnAdd = document.querySelector("#add")
-const btnShowBDB = document.querySelector("#showBDB")
+const refs = {
+    authContainer:document.querySelector('.auth__container'),
+    userContainer:document.querySelector('.user__container'),
+    showModalBtnSingUp:document.querySelector("#signUpBtn"),
+    showModalBtnSignIn:document.querySelector("#signInBtn"),
+    headerUserName:document.querySelector("#header-user-name"),
 
-let logedUser = null
-let favoriteLocal = null
+    modal:document.querySelector('#auth-modal'),
+    modalCloseBtn:document.querySelector('.close-btn'),
+    modalBackdrop:document.querySelector('.modal-bgd'),
+    modalText:document.querySelector('#auth-modal-text'),
 
+    name: document.querySelector("#user-name"),
+    email: document.querySelector("#user-email"),
+    password: document.querySelector("#user-password"),
+    singFormBtn: document.querySelector("#submit-form-btn"),
+    errorHandler:document.querySelector("#error-handler"),
+
+
+
+
+    btnLogout:document.querySelector("#btnLogout"),
+    btnAdd:document.querySelector("#add"),
+    btnShowBDB:document.querySelector("#showBDB"),
+    
+    authOperation:null,
+    logedUser:null,
+    logedUserName:null,
+    favoriteLocal:null,
+    readLocal:null,
+
+}
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -33,63 +54,92 @@ const firebaseConfig = {
     appId: "1:484843420821:web:e8e1da3171a09818caaf9c",
     measurementId: "G-JED1MDZDV7"
   };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-console.log(email)
-const loginEmailPassword = async ()=>{
-    const loginEmail = email.value
-    const loginPassword = password.value
+
+//function signIn or signUp operation 
+function signInOrSignUpFn (e){
+    e.preventDefault();
+    if(!refs.authOperation){
+        console.log('error auth operation')
+        return
+    }
+    if(refs.authOperation === 'signIn'){
+        authErrorMiddleware(loginEmailPassword,'signIn')
+    }
+    if(refs.authOperation === 'signUp'){
+        authErrorMiddleware(createAccount,'signUp')
+    }
+
+}
+
+//function login user on email&password 
+const loginEmailPassword = async (loginEmail,loginPassword)=>{
     try {
         console.log(loginEmail,loginPassword)
         const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-        // console.log(userCredential.user)
-        btn.textContent = "logout"
-        logedUser = userCredential.user
+        refs.logedUser = userCredential.user
+       
+        // writeUserData(userCredential.user.uid,userCredential.user.email,[],[])
+        const db = ref(database,);
+        console.log('db',db)
+        onValue(db, (snapshot) => {
+        const data = snapshot.val();
+        refs.logedUserName = data.users[refs.logedUser.uid].name
+        console.log('logedUserName',refs.logedUserName)
+        refs.headerUserName.textContent = refs.logedUserName
+        refs.modal.classList.remove('modal-active')
+        refs.authContainer.classList.add("is-hidden");
+        refs.userContainer.classList.remove("is-hidden");
 
-         writeUserData(userCredential.user.uid,userCredential.user.email,[],[])
-         const favorite = ref(database,);
-         onValue(favorite, (snapshot) => {
-            const data = snapshot.val();
-            favoriteLocal = data
-            // console.log("data",data)
-            // updateStarCount(postElement, data);
-          });
-        //  console.log("favorite",favorite)
+        });
     } catch (error) {
         console.log(error)
-        // showLoginError(error)
+        showLoginError(error)
     }
 }
 
-const createAccount = async () =>{
-    const loginEmail = email.value
-    const loginPassword = password.value
+//function create useron email&password
+const createAccount = async (createEmail,createPassword,createName) =>{
     try {
-        console.log(loginEmail,loginPassword)
-        const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword)
-        // console.log(userCredential.user)
-        writeUserData(userCredential.user.uid,userCredential.user.email,[],[])
-        logedUser = userCredential.user
-        btn.textContent = "logout"
+        console.log(createEmail,createPassword,createName)
+        const userCredential = await createUserWithEmailAndPassword(auth, createEmail, createPassword)
+        
+        refs.modal.classList.remove('modal-active')
+        refs.authContainer.classList.add("is-hidden");
+        refs.userContainer.classList.remove("is-hidden");
+        writeUserData(userCredential.user.uid,userCredential.user.email,createName,[],[])
+        refs.logedUser = userCredential.user
+
+        const db = ref(database,);
+        onValue(db, (snapshot) => {
+            const data = snapshot.val();
+            refs.logedUserName = data.users[refs.logedUser.uid].name
+            refs.headerUserName.textContent = data.users[refs.logedUser.uid].name
+            // console.log('refs.favoriteLocal1',refs.logedUserName)
+            });
+        // console.log("refs.logedUser",refs.logedUser)
+        // console.log("refs.favoriteLocal",refs.favoriteLocal)
+        // refs.singInFormBtn.textContent = "logout"
     } catch (error) {
         console.log(error)
-        // showLoginError(error)
+        showLoginError(error)
     }
 }
 
+//function monitoring changes on realtime database
 const monitorAuthState = async()=>{
     onAuthStateChanged(auth,(user)=>{
         if(user){
             console.log(user)
             console.log('User logged')
             
-            logedUser = user
-            const favorite = ref(database, "/favorites/" + logedUser.uid);
+            refs.logedUser = user
+            const favorite = ref(database, "/favorites/" + refs.logedUser.uid);
             onValue(favorite, (snapshot) => {
                 const data = snapshot.val();
-                favoriteLocal = data
+                refs.favoriteLocal = data
                 // console.log("data",data)
                 // updateStarCount(postElement, data);
               });
@@ -101,40 +151,102 @@ const monitorAuthState = async()=>{
 }
 monitorAuthState()
 
+// function logout user
 const logout = async() =>{
-    await signOut(auth)
+    try {
+        await signOut(auth)
+        refs.authContainer.classList.remove("is-hidden");
+        refs.userContainer.classList.add("is-hidden");
+        refs.errorHandler.textContent = ''
+        refs.logedUser = null
+        refs.logedUserName= null
+        refs.favoriteLocal = null
+        refs.readLocal = null
+    } catch (error) {
+        console.log(error)
+        //fn can`t logout user, because user is not loged!!!
+    }
+    
+}
+//reset form fields 
+function reset(){
+    refs.email.value = ''
+    refs.password.value = ''
+    refs.name.value = ''
 }
 
+refs.singFormBtn.addEventListener('click',signInOrSignUpFn)
 
 
+refs.btnLogout.addEventListener('click',logout)
+refs.showModalBtnSignIn.addEventListener('click',toggleModalSignIn)
+refs.showModalBtnSingUp.addEventListener('click',toggleModalSignUp)
+refs.modal.addEventListener('click',closeModal)
 
-
-btn.addEventListener('click',loginEmailPassword)
-btnReg.addEventListener('click',createAccount)
-btnLogout.addEventListener('click',logout)
+// show modal whith signIn operations 
+function toggleModalSignIn() {
+    refs.authOperation = 'signIn'
+    refs.errorHandler.textContent = ''
+    refs.modalText.textContent = 'Sign In please in account'
+    refs.singFormBtn.textContent = 'Sign In'
+    refs.name.parentElement.classList.add("is-hidden")
+    reset()
+    refs.modal.classList.add('modal-active')
+}
+//show modal whith signUp opertions 
+function toggleModalSignUp() {
+    refs.authOperation = 'signUp'
+    refs.errorHandler.textContent = ''
+    refs.modalText.textContent = 'Sign Up please for more'
+    refs.singFormBtn.textContent = 'Sign Up'
+    refs.name.parentElement.classList.remove("is-hidden")
+    reset()
+    refs.modal.classList.add('modal-active')
+}
+//close modal 
+function closeModal(e){
+    if(e.target === refs.modalCloseBtn || e.target === refs.modalBackdrop){
+        refs.modal.classList.remove('modal-active');
+        refs.authOperation = null
+    }
+}
 
 function showLoginError(error){
     // // divLoginError.style.display = 'block';
-    // if(error.code == AuthErrorCodes.INVALID_PASSWORD){
-    //     // do something
-    // }else{
-    //     //do something
-    // }
+    console.log("AuthErrorCodes",AuthErrorCodes)
+    if(error.code == AuthErrorCodes.INVALID_PASSWORD){
+        // do something
+        refs.errorHandler.textContent = 'Wrong password'
+            return
+    }
+    if(error.code == AuthErrorCodes.USER_DELETED){
+        // do something
+        refs.errorHandler.textContent = 'User not found'
+            return
+    }
+    if(error.code == AuthErrorCodes.EMAIL_EXISTS
+        ){
+        // do something
+        refs.errorHandler.textContent = 'Email already exist'
+            return
+    }
 }
-/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// ====== !! add realtime database !!===== //
 const database = getDatabase(app);
 console.log(database)
 
-function writeUserData(userId,email, newFavorite,newRead) {
+// function add user.uid in readlite db
+function writeUserData(userId,email,name) {
     // const db = getDatabase();
     set(ref(database, 'users/' + userId), {
         email:email,
-        // favorite: newFavorite,
-        // read: newRead,
-
+        name:name,
     });
   }
 
+//fucntion add user read & favorite arrays
   function writeNewPost(user, fav,red,) { 
     const id = Date.now() + ''
        
@@ -149,21 +261,51 @@ function writeUserData(userId,email, newFavorite,newRead) {
     updates['/favorites/' + user.uid + '/read/'] = red;
     return update(ref(database), updates);
   }
+
   const fav=[{q:1},{q:1},{q:2}]
   const red=[{q:1},{q:1},{q:2},{q:3}]
   
-  btnAdd.addEventListener('click',()=>{
+  refs.btnAdd.addEventListener('click',()=>{
     // console.log(logedUser)
-    writeNewPost(logedUser,fav,red)
+    writeNewPost(refs.logedUser,fav,red)
   })
 
-  btnShowBDB.addEventListener('click',()=>{
+  refs.btnShowBDB.addEventListener('click',()=>{
     // const userDB = ref(database);
     // onValue(userDB, (snapshot) => {
     //     const data = snapshot.val();
     //     // console.log("userDB",data)
     //     favoriteLocal = data
-    console.log(favoriteLocal)
+    console.log(refs.favoriteLocal)
     // updateStarCount(postElement, data);
     //   });
   })
+// ====== !! add realtime database !!===== //
+
+
+
+
+// frontend error guard 
+  function authErrorMiddleware(callback,type){
+    if(type === 'signIn'){
+        if(refs.email.value === '' || refs.password.value === ''){
+            refs.errorHandler.textContent = 'Please fill all fields'
+            return
+        }
+        callback(refs.email.value,refs.password.value)
+        return
+    }
+    if(type === 'signUp'){
+        if(refs.name.value === '' || refs.email.value === ''){
+            refs.errorHandler.textContent = 'Please fill all fields'
+            return
+        }
+        if(refs.password.value.length <6){
+            refs.errorHandler.textContent = 'Password must be more than 6 symbols'
+            return
+        }
+        callback(refs.email.value,refs.password.value,refs.name.value)
+        return
+    }
+    reset()
+  }
