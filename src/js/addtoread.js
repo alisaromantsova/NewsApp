@@ -45,7 +45,6 @@ export function readMoreClick(event) {
     });
   }
 
-  
   if (newsReadMoreCard) {
     const today = new Date();
     const day = String(today.getDate()).padStart(2, '0');
@@ -53,6 +52,7 @@ export function readMoreClick(event) {
     const year = today.getFullYear();
 
     const currentDate = `${day}/${month}/${year}`;
+
     // const currentDate = "01/04/2023"
     arreyReadCard.push({ newsReadMoreCard, currentDate });
     // localStorage.setItem('newsReadMore', JSON.stringify(arreyReadCard));
@@ -68,5 +68,5 @@ export function readMoreClick(event) {
     }
  }
 
-
 }
+
