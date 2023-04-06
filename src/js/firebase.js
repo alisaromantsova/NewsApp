@@ -184,6 +184,7 @@ export async function monitorAuthState(){
             refs.btnLogoutMob.classList.remove('is-hidden')
             refs.showModalBtnSignInMob.classList.add('is-hidden')
             refs.showModalBtnSignUpMob.classList.add('is-hidden')
+            document.body.style.overflow = 'scroll'
             refs.logedUser = user
 
             const favorite = ref(database, "/favorites/" + refs.logedUser.uid);
@@ -265,6 +266,9 @@ const logout = async() =>{
         refs.btnLogoutMob.classList.add('is-hidden')
         refs.showModalBtnSignInMob.classList.remove('is-hidden')
         refs.showModalBtnSignUpMob.classList.remove('is-hidden')
+        refs.backdropMobMenu.classList.remove('is-open')
+
+        document.body.style.overflow = 'scroll'
         refs.errorHandler.textContent = ''
         refs.logedUser = null
         refs.logedUserName= null
