@@ -86,14 +86,21 @@ export function renderPaginationBtn() {
     prevBtnRef.disabled = true;
     nextBtnRef.disabled = true;
   }
-  if (paginationData.page === 1) prevBtnRef.disabled = true;
+  if (paginationData.page === 1 && prevBtnRef) prevBtnRef.disabled = true;
 
   let markup = '';
   for (let index = 1; index <= paginationData.totalPage; index += 1) {
     markup += `<button type="button" class="pagination__btn pagination__num-btn" data-page-${index}>${index}</button>`;
   }
-  paginationRef.children[1].innerHTML = markup;
-  paginationNumericBtnContainerRef.children[0].classList.add('active-btn');
+  //guard case
+  if(paginationRef) {
+    paginationRef.children[1].innerHTML = markup;
+  }
+   //guard case
+  if(paginationNumericBtnContainerRef){
+    paginationNumericBtnContainerRef.children[0].classList.add('active-btn');
+  }
+  
 }
 
 export function paginationNumericBtn(e) {

@@ -87,6 +87,7 @@ export async function fetchNewsByCategory(category) {
 //Фетч по поисковому запросу
 export async function fetchNewsBySearch(search) {
   preLoader.classList.remove('loaded');
+  // window.location.href = '../index.html';
   try {
     const response = await axios
       .get(

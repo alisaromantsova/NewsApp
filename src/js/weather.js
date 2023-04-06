@@ -124,7 +124,9 @@ function insertMarkup(weatherMarkup) {
     const mediaQuery = window.matchMedia(mq.query);
     if (mediaQuery.matches) {
       const targetElement = document.querySelectorAll('.new__card');
+      if(targetElement[index]){
       targetElement[index].insertAdjacentHTML('beforebegin', weatherMarkup);
+      }
     }
   });
 }

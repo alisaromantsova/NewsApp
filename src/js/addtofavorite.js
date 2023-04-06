@@ -1,16 +1,30 @@
 import { renderEmptyMarkup } from './fetches';
 import { readMoreClick } from './addtoread';
 import { setEventAfterRead } from './news-card';
+import { refs,writeNewPost } from "./firebase";
 const cardsIsRead = JSON.parse(localStorage.getItem('isRead'));
 const favoriteList = document.querySelector('.list-news');
-const cards = JSON.parse(localStorage.getItem('newsCard'));
+const loader = document.querySelector('.preloader')
+// const cards = JSON.parse(localStorage.getItem('newsCard'));
+// const cards = refs.favoriteLocal
+if(favoriteList){
 favoriteList.addEventListener('click', onRemoveNewCardToFavoriteClick);
-if (!cards) {
-  favoriteList.innerHTML = renderEmptyMarkup();
 }
+export function renderMarkup() {
+  // let cards = refs.favoriteLocal
+  let cards = null
 
-function renderMarkup() {
-  if (cards) {
+  if(!refs.logedUser){
+    cards = JSON.parse(localStorage.getItem('newsCard')) ? JSON.parse(localStorage.getItem('newsCard')) : [];
+  }
+  if(refs.logedUser){
+    cards = refs.favoriteLocal
+  }
+  if (cards.length === 0) {
+    favoriteList.innerHTML = renderEmptyMarkup();
+  }
+  if (cards.length>0) {
+    favoriteList.innerHTML = '';
     favoriteList.insertAdjacentHTML(
       'afterbegin',
       cards.map(card => `<li class="new__card">${card.newsCard}</li>`).join('')
@@ -18,8 +32,9 @@ function renderMarkup() {
   }
   setEventAfterRead();
 }
-
+if(window.location.pathname === '/favorite.html'){
 renderMarkup();
+}
 
 function onRemoveNewCardToFavoriteClick(event) {
   readMoreClick(event);
@@ -32,17 +47,38 @@ function onRemoveNewCardToFavoriteClick(event) {
   ) {
     return;
   }
-  const arreyCard = JSON.parse(localStorage.getItem('newsCard'))
-    ? [...JSON.parse(localStorage.getItem('newsCard'))]
-    : [];
+  // try
+  // const arreyCard = JSON.parse(localStorage.getItem('newsCard'))
+  //   ? [...JSON.parse(localStorage.getItem('newsCard'))]
+  //   : [];
+  // const arreyCard = refs.favoriteLocal ? refs.favoriteLocal : []
+  let arreyCard = null
+  if(!refs.logedUser){
+    arreyCard = JSON.parse(localStorage.getItem('newsCard'))
+      ? [...JSON.parse(localStorage.getItem('newsCard'))]
+      : [];
+  }
+  if(refs.logedUser){
+    arreyCard = refs.favoriteLocal ? refs.favoriteLocal : []
+  }
 
   const linkNewReadCard = event.target
     .closest('.new__card')
     .querySelector('.news__link');
 
   if (arreyCard.length !== 0) {
-    localStorage.removeItem('newsCard');
+    // localStorage.removeItem('newsCard');
+    if(!refs.logedUser){
+      localStorage.removeItem('newsCard');
+    }
+    if(refs.logedUser){
+      refs.favoriteLocal = []
+      writeNewPost(refs.logedUser,refs.favoriteLocal,refs.readLocal,refs.isReadLocal)
+    }
+    // refs.favoriteLocal = []
+    // writeNewPost(refs.logedUser,refs.favoriteLocal,refs.readLocal,refs.isReadLocal)
     const arreyCardSecond = [];
+    // const arreyCardSecond = [];
     arreyCard.map(item => {
       if (item.newsCard.includes(linkNewReadCard)) {
         return;
@@ -54,8 +90,17 @@ function onRemoveNewCardToFavoriteClick(event) {
     });
 
     if (arreyCardSecond.length !== 0) {
-      localStorage.setItem('newsCard', JSON.stringify(arreyCardSecond));
-      favoriteList.innerHTML = null;
+      if(!refs.logedUser){
+        localStorage.setItem('newsCard', JSON.stringify(arreyCardSecond));
+      }
+      if(refs.logedUser){
+        refs.favoriteLocal = [...arreyCardSecond]
+      writeNewPost(refs.logedUser,refs.favoriteLocal,refs.readLocal,refs.isReadLocal)
+      }
+      // localStorage.setItem('newsCard', JSON.stringify(arreyCardSecond));
+      // refs.favoriteLocal = [...arreyCardSecond]
+      // writeNewPost(refs.logedUser,refs.favoriteLocal,refs.readLocal,refs.isReadLocal)
+      favoriteList.innerHTML = '';
       favoriteList.insertAdjacentHTML(
         'afterbegin',
         arreyCardSecond

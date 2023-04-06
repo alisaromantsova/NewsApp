@@ -9,4 +9,5 @@ import './js/mobile-menu';
 import './js/btnUpp';
 import './js/header-fixed-position';
 import './js/accordion';
+import './js/firebase'
 

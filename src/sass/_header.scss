@@ -204,7 +204,7 @@ body {
     display: flex;
     width: 98px;
     height: 21px;
-    margin-left: 24px;
+    // margin-left: 24px;
     margin-top: 49px;
     margin-bottom: 36px;
   }
@@ -510,9 +510,106 @@ input:checked + .ball:before {
   margin: 0px 0px 0px 10px;
   }
   &__signUp{
+    display: none;
+    white-space: nowrap;
+    border:none;
+    background: transparent;
+    outline: none;
+    position: relative;
+    color: currentColor;
+    cursor: url(../images/touch.svg), pointer;
+    @include tablet{
+      font-weight: 700;
+      font-size: 14px;
+      padding: 24px 0 12px 10px;
+      display: block;
+    }
+
+    @include desktop{
+    font-weight: 700;
+    font-size: 18px;
     padding: 34px 0 11px 20px;
+    }
+    &::after{
+      content: '';
+      width: 60px;
+      height: 1px;
+      background-color: var(--color-active-btn);
+      position: absolute;
+      // bottom: 0;
+      // left: 18px;
+      opacity: 0;
+      transition: 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+      @include tablet{
+        bottom: 0;
+        left: 3px;
+      }
+  
+      @include desktop{
+        bottom: 0;
+        left: 18px;
+      }
+      
+    }
+    &:hover{
+      
+      &::after{
+        opacity: 1;
+      }
+    }
+   
   }
   &__signIn{
+    display: none;
+    white-space: nowrap;
+    border:none;
+    background: transparent;
+    outline: none;
+    position: relative;
+    color: currentColor;
+    cursor: url(../images/touch.svg), pointer;
+    @include tablet{
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 0 22px 10px;
+      display: block;
+    }
+
+    @include desktop{
     padding: 11px 0 20px 20px;
+    font-weight: 700;
+    font-size: 18px;
+    }
+    &::after{
+      content: '';
+      width: 60px;
+      height: 1px;
+      background-color: var(--color-active-btn);
+      position: absolute;
+      bottom: 0;
+      left: 18px;
+      opacity: 0;
+      transition: 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+      @include tablet{
+        bottom: 0;
+        left: 3px;
+      }
+  
+      @include desktop{
+        bottom: 0;
+        left: 18px;
+      }
+      
+    }
+    &:hover{
+      
+      &::after{
+        opacity: 1;
+      }
+    }
   }
+  &__user-name{
+    padding: 34px 0 11px 20px;
+  }
+  
 }
