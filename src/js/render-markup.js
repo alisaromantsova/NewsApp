@@ -1,3 +1,4 @@
+import { refs} from "./firebase";
 const div = document.querySelector('.news');
 let newsCardAddToFavorite = 0;
 import {
@@ -49,20 +50,45 @@ export function renderMarkupData(array, category, searchQuery) {
         );
 
   
-
+  
   renderPaginationBtn();
   renderMarkup(array.slice(paginationData.start, paginationData.end));
 }
 
-export function renderMarkup(array) {
+export async function renderMarkup(array) {
   const markup = array
     .map(article => {
-      if (JSON.parse(localStorage.getItem('newsCard'))) {
-        JSON.parse(localStorage.getItem('newsCard')).map(arrey => {
-          if (arrey.newsCard.includes(article.link)) {
-            return (newsCardAddToFavorite = 1);
-          }
-        });
+      if(!refs.logedUser){
+        if (JSON.parse(localStorage.getItem('newsCard'))) {
+            JSON.parse(localStorage.getItem('newsCard')).map(arrey => {
+              if (arrey.newsCard.includes(article.link)) {
+                return (newsCardAddToFavorite = 1);
+              }
+            }
+          );
+        }}
+
+
+      if(refs.logedUser){
+        if (refs.favoriteLocal.length) {
+          refs.favoriteLocal.map(arrey => {
+            // console.log("try1",arrey.newsCard.includes(article.link))
+            if (arrey.newsCard.includes(article.link)) {
+              return (newsCardAddToFavorite = 1);
+            }
+          });
+      }
+      // if (JSON.parse(localStorage.getItem('newsCard'))) {
+      //   JSON.parse(localStorage.getItem('newsCard')).map(arrey => {
+        // console.log("try",article)
+        // console.log(refs.favoriteLocal)
+      // if (refs.favoriteLocal.length) {
+      //   refs.favoriteLocal.map(arrey => {
+      //     // console.log("try1",arrey.newsCard.includes(article.link))
+      //     if (arrey.newsCard.includes(article.link)) {
+      //       return (newsCardAddToFavorite = 1);
+      //     }
+      //   });
       }
 
       if (newsCardAddToFavorite === 1) {
@@ -122,8 +148,10 @@ export function renderMarkup(array) {
       }
     })
     .join('');
-
-  div.innerHTML = markup;
+  if(div){
+    div.innerHTML = markup;
+  }
+  
   setEventAfterRender();
   setEventAfterRead();
 }
@@ -133,6 +161,10 @@ function restart() {
   paginationData.start = 0;
   paginationData.end = 0;
   paginationData.page = 1;
+  if(prevBtnRef){
   prevBtnRef.disabled = false;
+  }
+  if(nextBtnRef){
   nextBtnRef.disabled = false;
+  }
 }

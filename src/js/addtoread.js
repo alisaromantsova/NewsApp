@@ -1,3 +1,5 @@
+import { refs,writeNewPost } from "./firebase";
+
 const linkReadMoreNews = document.querySelector('.news');
 if (
   window.location.pathname === '/index.html' ||
@@ -9,9 +11,20 @@ if (
 }
 
 export function readMoreClick(event) {
-  const arreyReadCard = JSON.parse(localStorage.getItem('newsReadMore'))
-    ? [...JSON.parse(localStorage.getItem('newsReadMore'))]
-    : [];
+  // try
+  // const arreyReadCard = JSON.parse(localStorage.getItem('newsReadMore'))
+  //   ? [...JSON.parse(localStorage.getItem('newsReadMore'))]
+  //   : [];
+  // const arreyReadCard = refs.readLocal
+  let arreyReadCard = null;
+  if(!refs.logedUser){
+    arreyReadCard = JSON.parse(localStorage.getItem('newsReadMore'))
+      ? [...JSON.parse(localStorage.getItem('newsReadMore'))]
+      : [];
+  }
+  if(refs.logedUser){
+    arreyReadCard = refs.readLocal
+  }
 
   if (event.target.tagName !== 'A') {
     return;
@@ -26,6 +39,7 @@ export function readMoreClick(event) {
     arreyReadCard.map(item => {
       if (item.newsReadMoreCard.includes(linkNewReadCard)) {
         newsReadMoreCard = null;
+        refs.readLocal = []
         return false;
       }
     });
@@ -38,8 +52,21 @@ export function readMoreClick(event) {
     const year = today.getFullYear();
 
     const currentDate = `${day}/${month}/${year}`;
-    // const currentDate = '05/04/2023';
+
+    // const currentDate = "01/04/2023"
     arreyReadCard.push({ newsReadMoreCard, currentDate });
-    localStorage.setItem('newsReadMore', JSON.stringify(arreyReadCard));
-  }
+    // localStorage.setItem('newsReadMore', JSON.stringify(arreyReadCard));
+    // refs.readLocal = [...arreyReadCard]
+    // writeNewPost(refs.logedUser,refs.favoriteLocal,refs.readLocal,refs.isReadLocal)
+
+    if(!refs.logedUser){
+      localStorage.setItem('newsReadMore', JSON.stringify(arreyReadCard));
+    }
+    if(refs.logedUser){
+      refs.readLocal = [...arreyReadCard]
+      writeNewPost(refs.logedUser,refs.favoriteLocal,refs.readLocal,refs.isReadLocal)
+    }
+ }
+
 }
+

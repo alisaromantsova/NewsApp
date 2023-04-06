@@ -1,9 +1,9 @@
-
+import { refs,writeNewPost } from "./firebase";
 
 if (
   window.location.pathname === '/index.html' ||
-  window.location.pathname === '/NewsApp/' ||
   window.location.pathname === '/' ||
+  window.location.pathname === '/NewsApp/' ||
   window.location.pathname === '/NewsApp/index.html'
 ) {
   const divClassNews = document.querySelector('.news');
@@ -13,9 +13,23 @@ if (
 const divClassNews = document.querySelector('.news');
 
 export function onAddToFavoriteClick(event) {
-  const arreyCard = JSON.parse(localStorage.getItem('newsCard'))
+   //combine auth & ls
+  let arreyCard = []
+  if(refs.logedUser){
+    arreyCard = refs.favoriteLocal ? refs.favoriteLocal : []
+  }
+  if(!refs.logedUser){
+    console.log('user not loged')
+     //combine auth & ls
+    arreyCard = JSON.parse(localStorage.getItem('newsCard'))
     ? [...JSON.parse(localStorage.getItem('newsCard'))]
     : [];
+    // return
+  }
+  // const arreyCard = JSON.parse(localStorage.getItem('newsCard'))
+  //   ? [...JSON.parse(localStorage.getItem('newsCard'))]
+  //   : [];
+ 
 
   if (
     event.target.tagName !== 'SPAN' &&
@@ -37,7 +51,15 @@ export function onAddToFavoriteClick(event) {
     .getAttribute('href');
 
   if (!newsCard.includes('news__addbtn is-hidden')) {
-    localStorage.removeItem('newsCard');
+    //combine auth & ls
+    if(!refs.logedUser){
+      localStorage.removeItem('newsCard');
+    }
+    // // if one cards in db or ls than clear array
+    if(refs.logedUser){
+      refs.favoriteLocal = []
+      writeNewPost(refs.logedUser,refs.favoriteLocal,refs.readLocal,refs.isReadLocal)
+    }
     const arreyCardSecond = [];
     arreyCard.map(item => {
       if (item.newsCard.includes(linkNewCArd)) {
@@ -48,13 +70,35 @@ export function onAddToFavoriteClick(event) {
         return;
       }
     });
-
     if (arreyCardSecond.length !== 0) {
-      localStorage.setItem('newsCard', JSON.stringify(arreyCardSecond));
+      //try
+      if(!refs.logedUser){
+        localStorage.setItem('newsCard', JSON.stringify(arreyCardSecond)); 
+      }
+      // idk
+      if(refs.logedUser){
+        refs.favoriteLocal = [...arreyCardSecond]
+        writeNewPost(refs.logedUser,refs.favoriteLocal,refs.readLocal,refs.isReadLocal)
+      }
     }
     return;
   }
 
   arreyCard.push({ newsCard, linkHref });
-  localStorage.setItem('newsCard', JSON.stringify(arreyCard));
+  //try
+  if(!refs.logedUser){
+    localStorage.setItem('newsCard', JSON.stringify(arreyCard)); 
+  }
+  // localStorage.setItem('newsCard', JSON.stringify(arreyCard));
+
+  // idk
+  if(refs.logedUser){
+    refs.favoriteLocal = [...arreyCard]
+    writeNewPost(refs.logedUser,refs.favoriteLocal,refs.readLocal,refs.isReadLocal)
+  }
+  // refs.favoriteLocal = [...arreyCard]
+  //  writeNewPost(refs.logedUser,refs.favoriteLocal,refs.readLocal,refs.isReadLocal)
+
+
+  
 }

@@ -9,12 +9,20 @@ import { getAuth,
         onAuthStateChanged,
         signOut,
 } from "firebase/auth";
+// import { fetchPopularNews } from "./fetches";
+// import { successCallback, failureCallback } from './weather';
+import { onMount } from "./onmount";
+import { renderMarkup } from "./addtofavorite";
+import { buttonChanging, renderReadMarkup } from "./read-page";
 
-const refs = {
+export const refs = {
     authContainer:document.querySelector('.auth__container'),
     userContainer:document.querySelector('.user__container'),
     showModalBtnSingUp:document.querySelector("#signUpBtn"),
     showModalBtnSignIn:document.querySelector("#signInBtn"),
+    showModalBtnSignInMob:document.querySelector("#mob-signInBtn"),
+    showModalBtnSignUpMob:document.querySelector("#mob-signUpBtn"),
+    backdropMobMenu:document.querySelector(".backdrop"),
     headerUserName:document.querySelector("#header-user-name"),
 
     modal:document.querySelector('#auth-modal'),
@@ -32,14 +40,24 @@ const refs = {
 
 
     btnLogout:document.querySelector("#btnLogout"),
+    btnLogoutMob:document.querySelector("#mob-logoutBtn"),
     btnAdd:document.querySelector("#add"),
     btnShowBDB:document.querySelector("#showBDB"),
     
     authOperation:null,
     logedUser:null,
     logedUserName:null,
-    favoriteLocal:null,
-    readLocal:null,
+    favoriteLocal:[],
+    readLocal:[],
+    isReadLocal:{},
+
+    firstUserRender:true,
+
+    ulListNews:document.querySelector('.list-news'),
+    errorBox:document.querySelector('.error-box'),
+
+    pending:true,
+    
 
 }
 
@@ -87,20 +105,40 @@ const loginEmailPassword = async (loginEmail,loginPassword)=>{
         onValue(db, (snapshot) => {
         const data = snapshot.val();
         refs.logedUserName = data.users[refs.logedUser.uid].name
-        console.log('logedUserName',refs.logedUserName)
+        // console.log('logedUserName',refs.logedUserName)
         refs.headerUserName.textContent = refs.logedUserName
         refs.modal.classList.remove('modal-active')
         refs.authContainer.classList.add("is-hidden");
         refs.userContainer.classList.remove("is-hidden");
 
         });
+        const favorite = ref(database, "/favorites/" + refs.logedUser.uid);
+        onValue(favorite, (snapshot) => {
+            const data = snapshot.val();
+            if(data?.favorite){
+                // console.log('fav',data.favorite)
+                refs.favoriteLocal = data.favorite
+            }
+            if(data?.read){
+                // console.log('red',data.read)
+                refs.readLocal = data.read
+            }
+            if(data?.isread){
+                // console.log('isred',data.isread)
+                refs.isReadLocal = data.isread
+            }
+            // console.log("data",data)
+            // updateStarCount(postElement, data);
+          });
+          refs.backdropMobMenu.classList.remove('is-open')
+          
     } catch (error) {
         console.log(error)
         showLoginError(error)
     }
 }
 
-//function create useron email&password
+//function create user on email&password
 const createAccount = async (createEmail,createPassword,createName) =>{
     try {
         console.log(createEmail,createPassword,createName)
@@ -117,49 +155,99 @@ const createAccount = async (createEmail,createPassword,createName) =>{
             const data = snapshot.val();
             refs.logedUserName = data.users[refs.logedUser.uid].name
             refs.headerUserName.textContent = data.users[refs.logedUser.uid].name
-            // console.log('refs.favoriteLocal1',refs.logedUserName)
             });
-        // console.log("refs.logedUser",refs.logedUser)
-        // console.log("refs.favoriteLocal",refs.favoriteLocal)
-        // refs.singInFormBtn.textContent = "logout"
+
+            refs.backdropMobMenu.classList.remove('is-open')
     } catch (error) {
         console.log(error)
         showLoginError(error)
     }
 }
 
-//function monitoring changes on realtime database
-const monitorAuthState = async()=>{
-    onAuthStateChanged(auth,(user)=>{
+// function monitoring changes on realtime database
+export async function monitorAuthState(){
+
+    const favoriteListNews = document.querySelector('.list-news')
+    const preloader = document.querySelector('.preloader')
+    const readContainer = document.querySelector('.container__read')
+    if(favoriteListNews)favoriteListNews.classList.add('is-hidden')
+    if(readContainer)readContainer.classList.add('is-hidden')
+    if(preloader)preloader.classList.remove('loaded')
+
+    await onAuthStateChanged(auth,(user)=>{
         if(user){
-            console.log(user)
-            console.log('User logged')
-            
+           
+            // console.log('a',a)
+            // console.log('b',b)
+            // console.log(user)
+            // console.log('User logged')
+            refs.btnLogoutMob.classList.remove('is-hidden')
+            refs.showModalBtnSignInMob.classList.add('is-hidden')
+            refs.showModalBtnSignUpMob.classList.add('is-hidden')
             refs.logedUser = user
 
             const favorite = ref(database, "/favorites/" + refs.logedUser.uid);
             const db = ref(database,);
-            onValue(favorite, (snapshot) => {
-                const data = snapshot.val();
-                refs.favoriteLocal = data
-                // console.log("data",data)
-                // updateStarCount(postElement, data);
-              });
-            onValue(db, (snapshot) => {
-                const data = snapshot.val();
+            
+            onValue(db, async(snapshot) => {
+                const data = await snapshot.val();
                 refs.logedUserName = data.users[refs.logedUser.uid].name
                 console.log('logedUserName',refs.logedUserName)
                 refs.headerUserName.textContent = refs.logedUserName
                 refs.modal.classList.remove('modal-active')
                 refs.authContainer.classList.add("is-hidden");
                 refs.userContainer.classList.remove("is-hidden");
-              });
+            });
+
+            if(refs.logedUser){
+                
+                onValue(favorite, async(snapshot) => {
+                    const data =  await snapshot.val();
+                    if(data?.favorite){
+                        // console.log('fav',data.favorite)
+                        refs.favoriteLocal = data.favorite
+                    }
+                    if(data?.read){
+                        // console.log('red',data.read)
+                        refs.readLocal = data.read
+                    }
+                    if(data?.isread){
+                        // console.log('isRed',data.isread)
+                        refs.isReadLocal = data.isread
+                    }
+
+                    if(refs.firstUserRender && window.location.pathname === '/index.html'){
+                        onMount()
+                        refs.firstUserRender = false        
+                    } 
+
+                    if(window.location.pathname === '/favorite.html'){
+                        console.log(window.location.pathname)
+                        renderMarkup(); 
+                    }
+                    if(window.location.pathname === '/read.html'){
+                        await renderReadMarkup()
+                        await buttonChanging()
+                    }
+                    if(preloader)preloader.classList.add('loaded')
+                    if(favoriteListNews)favoriteListNews.classList.remove('is-hidden')
+                    if(readContainer)readContainer.classList.remove('is-hidden') 
+                }); 
+              
+            }
+            
         }else{
             console.log('Loggout or not enter')
             refs.logedUser=null
             refs.logedUserName=null
+            if(preloader)preloader.classList.add('loaded')
+            if(favoriteListNews)favoriteListNews.classList.remove('is-hidden')
+            if(readContainer)readContainer.classList.remove('is-hidden') 
         }
+         
     })
+        
+    
 }
 monitorAuthState()
 
@@ -169,11 +257,25 @@ const logout = async() =>{
         await signOut(auth)
         refs.authContainer.classList.remove("is-hidden");
         refs.userContainer.classList.add("is-hidden");
+        refs.btnLogoutMob.classList.add('is-hidden')
+        refs.showModalBtnSignInMob.classList.remove('is-hidden')
+        refs.showModalBtnSignUpMob.classList.remove('is-hidden')
         refs.errorHandler.textContent = ''
         refs.logedUser = null
         refs.logedUserName= null
-        refs.favoriteLocal = null
-        refs.readLocal = null
+        refs.favoriteLocal = []
+        refs.readLocal = []
+        refs.isReadLocal = {}
+        if(window.location.pathname === '/index.html'){
+            onMount()  
+            refs.firstUserRender = true
+        }
+        if(window.location.pathname === '/favorite.html'){
+            renderMarkup()
+        }
+        if(window.location.pathname === '/read.html'){
+            renderReadMarkup();
+        }         
     } catch (error) {
         console.log(error)
         //fn can`t logout user, because user is not loged!!!
@@ -188,15 +290,18 @@ function reset(){
 }
 
 refs.singFormBtn.addEventListener('click',signInOrSignUpFn)
-
-
 refs.btnLogout.addEventListener('click',logout)
+refs.btnLogoutMob.addEventListener('click',logout)
 refs.showModalBtnSignIn.addEventListener('click',toggleModalSignIn)
 refs.showModalBtnSingUp.addEventListener('click',toggleModalSignUp)
+refs.showModalBtnSignInMob.addEventListener('click',toggleModalSignIn)
+refs.showModalBtnSignUpMob.addEventListener('click',toggleModalSignUp)
 refs.modal.addEventListener('click',closeModal)
 
+
 // show modal whith signIn operations 
-function toggleModalSignIn() {
+function toggleModalSignIn(e) {
+    e.preventDefault();
     refs.authOperation = 'signIn'
     refs.errorHandler.textContent = ''
     refs.modalText.textContent = 'Sign In please in account'
@@ -204,9 +309,11 @@ function toggleModalSignIn() {
     refs.name.parentElement.classList.add("is-hidden")
     reset()
     refs.modal.classList.add('modal-active')
+    document.addEventListener('keyup',closeModal)
 }
 //show modal whith signUp opertions 
-function toggleModalSignUp() {
+function toggleModalSignUp(e) {
+    e.preventDefault();
     refs.authOperation = 'signUp'
     refs.errorHandler.textContent = ''
     refs.modalText.textContent = 'Sign Up please for more'
@@ -214,17 +321,19 @@ function toggleModalSignUp() {
     refs.name.parentElement.classList.remove("is-hidden")
     reset()
     refs.modal.classList.add('modal-active')
+    document.addEventListener('keyup',closeModal)
 }
 //close modal 
 function closeModal(e){
-    if(e.target === refs.modalCloseBtn || e.target === refs.modalBackdrop){
+    if(e.target === refs.modalCloseBtn || e.target === refs.modalBackdrop || e?.key ==="Escape" ){
         refs.modal.classList.remove('modal-active');
         refs.authOperation = null
+        document.removeEventListener('keyup',closeModal)
     }
+    
 }
 
 function showLoginError(error){
-    // // divLoginError.style.display = 'block';
     console.log("AuthErrorCodes",AuthErrorCodes)
     if(error.code == AuthErrorCodes.INVALID_PASSWORD){
         // do something
@@ -246,10 +355,10 @@ function showLoginError(error){
 
 
 // ====== !! add realtime database !!===== //
-const database = getDatabase(app);
-console.log(database)
+export const database = getDatabase(app);
+// console.log(database)
 
-// function add user.uid in readlite db
+// function add user in readlite db on user registration 
 function writeUserData(userId,email,name) {
     // const db = getDatabase();
     set(ref(database, 'users/' + userId), {
@@ -259,38 +368,23 @@ function writeUserData(userId,email,name) {
   }
 
 //fucntion add user read & favorite arrays
-  function writeNewPost(user, fav,red,) { 
-    const id = Date.now() + ''
-       
-    // console.log("postData",postData)
-    // Get a key for a new Post.
-    // const newPostKey = push(child(ref(database), 'users/'+ user.uid)).key;
-    // const newPostKey = push(child(ref(database), 'favorites/'+ user.uid + "/favorite/"+ id)).key;
-    // console.log("newPostKey",newPostKey)
-    // Write the new post's data simultaneously in the posts list and the user's post list.
+ export function writeNewPost(user, fav,red,isRead) { 
     const updates = {};
     updates['/favorites/' + user.uid + '/favorite/'] = fav;
     updates['/favorites/' + user.uid + '/read/'] = red;
+    updates['/favorites/' + user.uid + '/isread/'] = isRead;
     return update(ref(database), updates);
-  }
+  }  
 
-  const fav=[{q:1},{q:1},{q:2}]
-  const red=[{q:1},{q:1},{q:2},{q:3}]
-  
-  refs.btnAdd.addEventListener('click',()=>{
-    // console.log(logedUser)
-    writeNewPost(refs.logedUser,fav,red)
-  })
+//   refs.btnAdd.addEventListener('click',()=>{
+//     writeNewPost(refs.logedUser,refs.favoriteLocal,refs.readLocal)
+//   })
 
   refs.btnShowBDB.addEventListener('click',()=>{
-    // const userDB = ref(database);
-    // onValue(userDB, (snapshot) => {
-    //     const data = snapshot.val();
-    //     // console.log("userDB",data)
-    //     favoriteLocal = data
-    console.log(refs.favoriteLocal)
-    // updateStarCount(postElement, data);
-    //   });
+    console.log("refs.favoriteLocal",refs.favoriteLocal)
+    console.log("refs.readLocal",refs.readLocal)
+    console.log("refs.isReadLocal",refs.isReadLocal)
+
   })
 // ====== !! add realtime database !!===== //
 

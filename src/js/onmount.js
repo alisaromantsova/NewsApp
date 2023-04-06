@@ -5,9 +5,13 @@ import {
 import { renderMarkupData } from './render-markup';
 import { categoryValue, removeActiveClass } from './navigation';
 import { successCallback, failureCallback } from './weather';
-onMount();
+console.log(window.location.pathname )
 
-async function onMount() {
+if(window.location.pathname ==='/index.html'){
+  onMount()   
+}
+
+export async function onMount() {
   removeActiveClass();
   categoryValue.value = '';
   const result = await fetchPopularNews();
