@@ -31,18 +31,15 @@ export function readMoreClick(event) {
     });
   }
 
-  
   if (newsReadMoreCard) {
     const today = new Date();
     const day = String(today.getDate()).padStart(2, '0');
     const month = String(today.getMonth() + 1).padStart(2, '0');
     const year = today.getFullYear();
 
-    // const currentDate = `${day}/${month}/${year}`;
-    const currentDate = "03/04/2023"
+    const currentDate = `${day}/${month}/${year}`;
+    // const currentDate = '05/04/2023';
     arreyReadCard.push({ newsReadMoreCard, currentDate });
     localStorage.setItem('newsReadMore', JSON.stringify(arreyReadCard));
- }
-
-
+  }
 }
