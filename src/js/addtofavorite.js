@@ -32,7 +32,8 @@ export function renderMarkup() {
   }
   setEventAfterRead();
 }
-if(window.location.pathname === '/favorite.html'){
+if(window.location.pathname === '/favorite.html'||
+window.location.pathname === '/NewsApp/favorite.html'){
 renderMarkup();
 }
 

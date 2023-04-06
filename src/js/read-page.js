@@ -78,7 +78,8 @@ document.querySelector('.read-date').classList.toggle('arrow-change')
 }
 }
 
-if(window.location.pathname === '/read.html'){
+if(window.location.pathname === '/read.html'||
+window.location.pathname === '/NewsApp/read.html'){
   renderReadMarkup();
   }
 

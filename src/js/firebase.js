@@ -216,16 +216,21 @@ export async function monitorAuthState(){
                         refs.isReadLocal = data.isread
                     }
 
-                    if(refs.firstUserRender && window.location.pathname === '/index.html'){
+                    if(refs.firstUserRender && window.location.pathname === '/index.html' ||
+                    window.location.pathname === '/NewsApp/' ||
+                    window.location.pathname === '/' ||
+                    window.location.pathname === '/NewsApp/index.html'){
                         onMount()
                         refs.firstUserRender = false        
                     } 
 
-                    if(window.location.pathname === '/favorite.html'){
+                    if(window.location.pathname === '/favorite.html' ||
+                    window.location.pathname === '/NewsApp/favorite.html'){
                         console.log(window.location.pathname)
                         renderMarkup(); 
                     }
-                    if(window.location.pathname === '/read.html'){
+                    if(window.location.pathname === '/read.html'||
+                    window.location.pathname === '/NewsApp/read.html'){
                         await renderReadMarkup()
                         await buttonChanging()
                     }
@@ -266,14 +271,19 @@ const logout = async() =>{
         refs.favoriteLocal = []
         refs.readLocal = []
         refs.isReadLocal = {}
-        if(window.location.pathname === '/index.html'){
+        if(window.location.pathname === '/index.html'||
+        window.location.pathname === '/NewsApp/' ||
+        window.location.pathname === '/' ||
+        window.location.pathname === '/NewsApp/index.html'){
             onMount()  
             refs.firstUserRender = true
         }
-        if(window.location.pathname === '/favorite.html'){
+        if(window.location.pathname === '/favorite.html'||
+        window.location.pathname === '/NewsApp/favorite.html'){
             renderMarkup()
         }
-        if(window.location.pathname === '/read.html'){
+        if(window.location.pathname === '/read.html'||
+        window.location.pathname === '/NewsApp/read.html'){
             renderReadMarkup();
         }         
     } catch (error) {
