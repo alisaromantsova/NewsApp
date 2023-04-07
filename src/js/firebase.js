@@ -218,9 +218,9 @@ export async function monitorAuthState(){
                     }
 
                     if(refs.firstUserRender && window.location.pathname === '/index.html' ||
-                    window.location.pathname === '/NewsApp/' ||
-                    window.location.pathname === '/' ||
-                    window.location.pathname === '/NewsApp/index.html'){
+                    refs.firstUserRender && window.location.pathname === '/NewsApp/' ||
+                    refs.firstUserRender && window.location.pathname === '/' ||
+                    refs.firstUserRender && window.location.pathname === '/NewsApp/index.html'){
                         onMount()
                         refs.firstUserRender = false        
                     } 
